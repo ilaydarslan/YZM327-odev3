@@ -1,0 +1,88 @@
+classDiagram
+  direction LR
+  class ExactSearchAtom {
+    <<abstract>>
+    +manifest$
+    +patterns: string[]
+    +ignoreCase: boolean
+    #keys: Uint16Array[]
+    #alphabet: Alphabet
+    +constructor(params)
+    #prepare()
+    #search(text, collector)
+    #searchOne(text, patternIndex, collector)
+    +process(entry)* Match
+  }
+  class NaiveSearch
+  class HorspoolSearch
+  class ShiftOrSearch
+  class KmpSearch
+  class BoyerMooreSearch
+  class Bm4DnaDsSearch
+  class Bm4DnaHmbsSearch
+  class AhoCorasickSearch
+  class WuManberSearch
+  ExactSearchAtom <|-- NaiveSearch
+  ExactSearchAtom <|-- HorspoolSearch
+  ExactSearchAtom <|-- ShiftOrSearch
+  ExactSearchAtom <|-- KmpSearch
+  ExactSearchAtom <|-- BoyerMooreSearch
+  ExactSearchAtom <|-- Bm4DnaDsSearch
+  ExactSearchAtom <|-- Bm4DnaHmbsSearch
+  ExactSearchAtom <|-- AhoCorasickSearch
+  ExactSearchAtom <|-- WuManberSearch
+
+  class Selection {
+    <<interface>>
+    +features(shape) Features
+    +defaults: Coefficients
+    +applicable(shape) true|string
+  }
+  ExactSearchAtom ..> Selection : static selection
+
+  class Registry {
+    -atoms: Map
+    +register(AtomClass) Registry
+    +get(name) AtomClass
+    +has(name) boolean
+    +names() string[]
+    +atoms(task) AtomClass[]
+    +create(name, params) ExactSearchAtom
+    +clone() Registry
+  }
+  Registry o-- ExactSearchAtom : kayıtlı sınıflar
+
+  class ExactMatch {
+    +manifest$
+    +strategy: string
+    +record: Record
+    -atom: ExactSearchAtom
+    +constructor(options)
+    +estimate(shape) Estimates
+    +decide(firstEntry) Record
+    +run(entries)* Match
+  }
+  ExactMatch --> Registry : kullanır
+  ExactMatch --> ExactSearchAtom : seçilen strateji
+  ExactMatch ..> Shape : computeShape()
+
+  class Shape {
+    +n, sigma, k
+    +mMin, mMax, mAvg
+  }
+  class HitCollector {
+    +add(position, patternIndex)
+    +sorted()* pair
+  }
+  ExactSearchAtom ..> HitCollector
+
+  class Cli {
+    <<Facade: bin/ios.js>>
+    +run ExactMatch
+    +explain
+  }
+  Cli --> ExactMatch
+  Cli ..> Fasta : parseFasta()
+  class Fasta {
+    +parseFasta(text) Entry[]
+  }
