@@ -87,7 +87,7 @@ docs/              rapor.pdf, sapmalar.md, tasarim.md, sunum.md, figures/
 
 ## Grup üyelerinin katkıları
 
-- **[Ad Soyad 1]:** …
-- **[Ad Soyad 2]:** …
+- İlayda Arslan
+- Beyza Seray Seyrek
 
 Kodun, testlerin ve raporun hazırlanmasında yapay zekâ aracı (Claude, Anthropic) kullanılmıştır.
