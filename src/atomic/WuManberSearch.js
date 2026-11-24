@@ -17,11 +17,14 @@ export class WuManberSearch extends ExactSearchAtom {
   static selection = {
     // Metin bir kez, en kısa desen boyuna göre atlanarak geçilir. Kayma 0 olan konumlarda
     // o bloğa sahip desenler doğrulanır (beklenen aday ≈ k · σ^-B).
+    // Blok boyu B ve tablo, uygulamadaki gibi DESEN alfabesinden (σ_p) hesaplanır; bir metin bloğunun
+    // bir desen bloğuna denk gelme olasılığı ise metnin alfabesine (σ) bağlıdır.
     features(shape) {
-      const B = chooseQ(shape.mMin, shape.sigma, shape.k);
+      const sigmaP = shape.sigmaP ?? shape.sigma;
+      const B = chooseQ(shape.mMin, sigmaP, shape.k);
       const probes = shape.n / expectedQgramShift(shape.mMin, B, shape.sigma, shape.k);
       const verify = shape.n * Math.min(1, shape.k * Math.pow(Math.max(2, shape.sigma), -B));
-      const table = Math.min(65536, Math.pow(shape.sigma + 1, B));
+      const table = Math.min(65536, Math.pow(sigmaP + 1, B));
       return { probe: probes, hash: probes * B, verify, prep: table + shape.k * shape.mMin * B, text: shape.n, out: expectedMatches(shape) };
     },
     defaults: { probe: 2e-6, hash: 2e-6, verify: 1e-5, prep: 2e-6, text: 2e-6, out: 1e-4 },

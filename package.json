@@ -1,7 +1,7 @@
 {
   "name": "ios-exact-match",
-  "version": "1.0.0",
-  "description": "IoS sequence.pattern-match.exact: tam eşleştirme atomları ve seçici ExactMatch molekülü",
+  "version": "2.0.0",
+  "description": "IoS text.pattern-match.exact: tam eşleştirme atomları, seçici ExactMatch molekülü ve LLM benchmark kirlenmesi tespiti",
   "type": "module",
   "engines": {
     "node": ">=22"
@@ -13,8 +13,9 @@
     "test": "node --test \"tests/unit/*.test.js\"",
     "calibrate": "node bench/calibrate.js",
     "bench": "node tests/benchmarks/validate.js",
+    "contamination": "node bench/contamination.js",
     "mutation": "node bench/mutation.js",
-    "report": "node bench/report-data.js && python3 docs/figures/make_figures.py && node docs/rapor/build.mjs"
+    "report": "node bench/report-data.js && python docs/figures/make_figures.py && node docs/rapor/build.mjs"
   },
   "license": "MIT"
 }

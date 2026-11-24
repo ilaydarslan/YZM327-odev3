@@ -33,12 +33,12 @@ export function measure(fn, { reps = 3 } = {}) {
   return { ms: median(samples), samples, inner };
 }
 
-/** Bir atomun bütün işini (ön işleme + bütün kayıtlar) ölçer. */
-export function measureAtom(AtomClass, params, entries, options) {
+/** Bir atomun bütün işini (ön işleme + bütün belgeler) ölçer. */
+export function measureAtom(AtomClass, params, docs, options) {
   let sink = 0;
   const result = measure(() => {
     const atom = new AtomClass(params);
-    for (const entry of entries) for (const match of atom.process(entry)) sink += match.position & 1;
+    for (const doc of docs) for (const match of atom.process(doc)) sink += match.position & 1;
   }, options);
   result.sink = sink; // sonuç kullanılmış olsun, JIT işi atmasın
   return result;

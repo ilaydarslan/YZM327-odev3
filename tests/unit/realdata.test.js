@@ -1,95 +1,97 @@
-// Gerçek veri testleri (Görev 2): lambda faj genomu ve 126 E. coli proteini.
+// Gerçek veri testleri: GSM8K (OpenAI'ın matematik sorusu benchmark'ı, tests/data/KAYNAK.md).
 // Her atom ve molekül, NaiveSearch ile ELEMAN ELEMAN aynı sonucu vermeli.
+//   - ham korpus (1000 eğitim kaydı, çok belgeli akış): kısa, uzun, çok sayıda desen, ignoreCase
+//   - kirlenme taramasının gerçek iş yükü: normalize korpusta, test sorularından çıkan 13-gram desenleri
 
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { parseFasta } from '../../src/fasta.js';
+import { parseJsonl } from '../../src/corpus.js';
 import { NaiveSearch } from '../../src/atomic/NaiveSearch.js';
 import { ExactMatch } from '../../src/molecules/ExactMatch.js';
+import { normalizeText } from '../../src/contamination/normalize.js';
+import { NgramExtractor, SubstringSampleExtractor } from '../../src/contamination/extractors.js';
 import { REAL_ATOMS, runAtom } from './helpers.js';
 import { makeRandom, randomInt } from '../../bench/data.js';
 
 const dataPath = (name) => fileURLToPath(new URL(`../data/${name}`, import.meta.url));
-const lambda = parseFasta(readFileSync(dataPath('lambda_NC_001416.fa'), 'utf8'));
-const ecoli = parseFasta(readFileSync(dataPath('ecoli_k12_126_proteins.fasta'), 'utf8'));
+const test = parseJsonl(readFileSync(dataPath('gsm8k_test_200.jsonl'), 'utf8'));
+const train = parseJsonl(readFileSync(dataPath('gsm8k_train_1000.jsonl'), 'utf8'));
 
-/** Metinden kesilmiş desenler (kesin eşleşme olsun) + birkaç rastgele (eşleşmesin). */
-function cut(random, seq, count, minLen, maxLen) {
+/** Metinlerden kesilmiş desenler (kesin eşleşme olsun). */
+function cut(random, docs, count, minLen, maxLen) {
   const out = [];
-  for (let i = 0; i < count; i++) {
+  while (out.length < count) {
+    const text = docs[randomInt(random, 0, docs.length - 1)].text;
     const m = randomInt(random, minLen, maxLen);
-    const start = randomInt(random, 0, seq.length - m);
-    out.push(seq.slice(start, start + m));
+    if (text.length < m) continue;
+    const start = randomInt(random, 0, text.length - m);
+    out.push(text.slice(start, start + m));
   }
   return out;
 }
 
-function checkAll(entries, params) {
-  const expected = runAtom(new NaiveSearch(params), entries);
+function checkAll(docs, params) {
+  const expected = runAtom(new NaiveSearch(params), docs);
   for (const AtomClass of REAL_ATOMS) {
     const mMax = Math.max(...params.patterns.map((p) => p.length));
     if (AtomClass.selection.applicable({ mMax }) !== true) continue;
-    const got = runAtom(new AtomClass(params), entries);
+    const got = runAtom(new AtomClass(params), docs);
     assert.deepEqual(got, expected, AtomClass.manifest.name);
   }
   const em = new ExactMatch(params);
-  assert.deepEqual([...em.run(entries)], expected, `ExactMatch (${em.record.selected})`);
+  assert.deepEqual([...em.run(docs)], expected, `ExactMatch (${em.record.selected})`);
   return expected.length;
 }
 
-describe('Gerçek veri: lambda faj genomu (NC_001416.1)', () => {
-  const random = makeRandom(1416);
-  const seq = lambda[0].seq;
+describe('Gerçek veri: GSM8K eğitim korpusu (ham metin)', () => {
+  const random = makeRandom(8);
+  const docs = train.slice(0, 300);
 
-  it('veri beklendiği gibi: 1 kayıt, 48 502 baz', () => {
-    assert.equal(lambda.length, 1);
-    assert.equal(seq.length, 48502);
+  it('veri beklendiği gibi: 200 test sorusu, 1000 eğitim kaydı, benzersiz id', () => {
+    assert.equal(test.length, 200);
+    assert.equal(train.length, 1000);
+    assert.equal(new Set(train.map((d) => d.id)).size, 1000);
+    assert.ok(train.every((d) => d.text.length > 0));
   });
 
-  it('kısa desenler (1–12 baz)', () => {
-    const patterns = [...cut(random, seq, 20, 1, 12), 'A', 'GATC', 'GGATCC'];
-    assert.ok(checkAll(lambda, { patterns }) > 0);
+  it('kısa desenler (1–12 karakter) + sık geçen kelimeler', () => {
+    const patterns = [...cut(random, docs, 20, 1, 12), 'the', ' ', '$', '####'];
+    assert.ok(checkAll(docs, { patterns }) > 0);
   });
 
-  it('uzun desenler (50–500 baz)', () => {
-    const patterns = cut(random, seq, 12, 50, 500);
-    assert.ok(checkAll(lambda, { patterns }) >= 12);
+  it('uzun desenler (50–300 karakter)', () => {
+    const patterns = cut(random, docs, 12, 50, 300);
+    assert.ok(checkAll(docs, { patterns }) >= 12);
   });
 
   it('çok sayıda desen (300, karışık uzunluk, tekrar eden desen dahil)', () => {
-    const patterns = cut(random, seq, 300, 4, 40);
+    const patterns = cut(random, docs, 300, 4, 40);
     patterns.push(patterns[0], patterns[1]);
-    assert.ok(checkAll(lambda, { patterns }) >= 302);
+    assert.ok(checkAll(docs, { patterns }) >= 302);
   });
 
-  it('ignoreCase: küçük harfli genom, karışık harfli desenler', () => {
-    const lower = [{ header: lambda[0].header, seq: seq.toLowerCase() }];
-    const patterns = cut(random, seq, 10, 5, 60).map((p, i) => (i % 2 ? p.toLowerCase() : p));
-    assert.ok(checkAll(lower, { patterns, ignoreCase: true }) >= 10);
+  it('ignoreCase: büyük harfli korpus, karışık harfli desenler', () => {
+    const upper = docs.slice(0, 100).map((d) => ({ id: d.id, text: d.text.toUpperCase() }));
+    const patterns = cut(random, docs.slice(0, 100), 10, 5, 60).map((p, i) => (i % 2 ? p.toLowerCase() : p));
+    assert.ok(checkAll(upper, { patterns, ignoreCase: true }) >= 10);
   });
 });
 
-describe('Gerçek veri: 126 E. coli K-12 proteini', () => {
-  const random = makeRandom(83333);
+describe('Gerçek veri: kirlenme taraması iş yükü (normalize metin)', () => {
+  const corpus = [{ id: 'korpus', text: train.map((d) => normalizeText(d.text)).join('\n') }];
 
-  it('veri beklendiği gibi: 126 kayıt', () => {
-    assert.equal(ecoli.length, 126);
+  it('13-gram desenleri (son 20 sorudan; kirli test-0582, 0603, 0633 dahil)', () => {
+    const extractor = new NgramExtractor({ n: 13 });
+    const patterns = [...new Set(test.slice(-20).flatMap((q) => extractor.extract(normalizeText(q.text))))];
+    assert.ok(patterns.length > 500);
+    assert.ok(checkAll(corpus, { patterns }) >= 23); // tam taramadaki 3 kirli sorunun 23 eşleşmesi
   });
 
-  it('birden çok kayıtlı akış, protein desenleri (3–30 amino asit)', () => {
-    const patterns = [];
-    for (let i = 0; i < 40; i++) {
-      const entry = ecoli[randomInt(random, 0, ecoli.length - 1)];
-      patterns.push(...cut(random, entry.seq, 1, 3, 30));
-    }
-    patterns.push('M', 'KK', 'WW');
-    assert.ok(checkAll(ecoli, { patterns }) >= 40);
-  });
-
-  it('uzun protein desenleri (40–150 amino asit)', () => {
-    const patterns = ecoli.slice(0, 10).map((e) => e.seq.slice(5, 5 + Math.min(150, e.seq.length - 5)));
-    assert.ok(checkAll(ecoli, { patterns }) >= 10);
+  it('50 karakterlik parçalar (200 sorudan 3’er tane)', () => {
+    const extractor = new SubstringSampleExtractor({ length: 50, samples: 3 });
+    const patterns = [...new Set(test.flatMap((q) => extractor.extract(normalizeText(q.text))))];
+    assert.ok(checkAll(corpus, { patterns }) >= 1);
   });
 });

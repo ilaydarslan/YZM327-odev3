@@ -23,13 +23,13 @@ function measureGrid(cases) {
   const rows = [];
   const started = Date.now();
   cases.forEach((c, i) => {
-    const { entries, patterns } = buildCase(c);
-    const shape = computeShape(entries[0], patterns, false);
+    const { docs, patterns } = buildCase(c);
+    const shape = computeShape(docs[0], patterns, false);
     for (const AtomClass of ATOMS) {
       const name = AtomClass.manifest.name;
       const verdict = AtomClass.selection.applicable(shape);
       if (verdict !== true) continue;
-      const { ms, samples, inner } = measureAtom(AtomClass, { patterns }, entries);
+      const { ms, samples, inner } = measureAtom(AtomClass, { patterns }, docs);
       rows.push({ case: c.id, alphabet: c.alphabet, n: c.n, m: c.m, k: c.k, atom: name, ms, samples, inner,
         shape, features: AtomClass.selection.features(shape) });
     }
@@ -68,9 +68,17 @@ function main() {
   if (args.has('--fit')) {
     const saved = JSON.parse(readFileSync(RESULTS + 'calibration.json', 'utf8'));
     info = saved.machine;
-    // Özellikler, kaydedilmiş veri şeklinden GÜNCEL selection.features ile yeniden hesaplanır
-    // (model değişince yeniden ölçmek gerekmesin).
-    rows = saved.rows.map((r) => ({ ...r, features: registry.get(r.atom).selection.features(r.shape) }));
+    // Ölçülen süreler aynen kalır; veri şekli (tohumlu veriden) ve özellikler GÜNCEL koddan yeniden
+    // hesaplanır. Böylece model değişince (ör. yeni bir özellik) ızgarayı yeniden ölçmek gerekmez.
+    const shapes = new Map(calibrationCases().map((c) => {
+      const { docs, patterns } = buildCase(c);
+      return [c.id, computeShape(docs[0], patterns, false)];
+    }));
+    rows = saved.rows.map((r) => {
+      const shape = shapes.get(r.case);
+      return { ...r, shape, features: registry.get(r.atom).selection.features(shape) };
+    });
+    writeFileSync(RESULTS + 'calibration.json', JSON.stringify({ ...saved, rows }, null, 1));
   } else {
     info = machineInfo();
     const cases = calibrationCases().filter((c) => !args.has('--quick') || c.n === 1e4);

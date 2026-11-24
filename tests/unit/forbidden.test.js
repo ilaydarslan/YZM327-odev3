@@ -8,7 +8,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('../../src/', import.meta.url));
-const DIRS = ['functions', 'atomic'];
+const DIRS = ['functions', 'atomic', 'contamination'];
 const FORBIDDEN = [
   /\.indexOf\s*\(/, /\.lastIndexOf\s*\(/, /\.includes\s*\(/, /\.startsWith\s*\(/, /\.endsWith\s*\(/,
   /\bRegExp\b/, /\.match(All)?\s*\(/, /\.replace(All)?\s*\(\s*\//, /\/[^/\n*]+\/[gimsuy]*\.(test|exec)\s*\(/,
@@ -19,7 +19,7 @@ function stripComments(source) {
   return source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1');
 }
 
-describe('Yasaklı işlevler atomlarda ve çekirdeklerde yok', () => {
+describe('Yasaklı işlevler atomlarda, çekirdeklerde ve kirlenme modülünde yok', () => {
   for (const dir of DIRS) {
     for (const file of readdirSync(ROOT + dir).filter((f) => f.endsWith('.js'))) {
       it(`${dir}/${file}`, () => {

@@ -1,0 +1,5200 @@
+{
+ "machine": {
+  "cpu": "11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz",
+  "cores": 8,
+  "memoryGB": 16,
+  "platform": "win32 10.0.26200",
+  "node": "v24.14.0",
+  "date": "2026-11-24T13:03:05.127Z"
+ },
+ "results": [
+  {
+   "id": "val-0",
+   "alphabet": "labels",
+   "n": 30000,
+   "m": 150,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9000,
+   "shape": {
+    "n": 30000,
+    "sigma": 4,
+    "k": 32,
+    "mMin": 150,
+    "mMax": 150,
+    "mAvg": 150
+   },
+   "times": {
+    "HorspoolSearch": 2.590299999999999,
+    "KmpSearch": 7.158700000000003,
+    "AhoCorasickSearch": 1.7881500000000017,
+    "BoyerMooreSearch": 1.9352250000000026,
+    "Bm4DnaDsSearch": 1.9617400000000031,
+    "Bm4DnaHmbsSearch": 0.66327,
+    "WuManberSearch": 0.26469090909091103
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.4663781250000003,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.613898077385155,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1.8149823341716256,
+    "AhoCorasickSearch": 0.5070641729351579,
+    "BoyerMooreSearch": 2.0216712099023044,
+    "Bm4DnaDsSearch": 1.5588974406856142,
+    "Bm4DnaHmbsSearch": 0.39937397563536164,
+    "WuManberSearch": 0.3580608905766131
+   }
+  },
+  {
+   "id": "val-1",
+   "alphabet": "normalized",
+   "n": 500000,
+   "m": 50,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9001,
+   "shape": {
+    "n": 500000,
+    "sigma": 37,
+    "k": 3,
+    "mMin": 50,
+    "mMax": 50,
+    "mAvg": 50
+   },
+   "times": {
+    "HorspoolSearch": 2.2416444444444448,
+    "KmpSearch": 4.8065000000000095,
+    "AhoCorasickSearch": 3.570780000000002,
+    "BoyerMooreSearch": 2.05672222222222,
+    "Bm4DnaDsSearch": 2.264975000000007,
+    "Bm4DnaHmbsSearch": 2.0983625000000075,
+    "WuManberSearch": 2.047383333333338
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.065924999999993,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.0599862132307347,
+    "ShiftOrSearch": null,
+    "KmpSearch": 4.209306373153022,
+    "AhoCorasickSearch": 3.3002214691983296,
+    "BoyerMooreSearch": 2.0705738649282512,
+    "Bm4DnaDsSearch": 2.247937740233382,
+    "Bm4DnaHmbsSearch": 2.1642195914155797,
+    "WuManberSearch": 1.7230888397154858
+   }
+  },
+  {
+   "id": "val-2",
+   "alphabet": "printable",
+   "n": 200000,
+   "m": 80,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9002,
+   "shape": {
+    "n": 200000,
+    "sigma": 95,
+    "k": 1,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 0.639121739130434,
+    "KmpSearch": 0.9448307692307742,
+    "AhoCorasickSearch": 1.1854538461538526,
+    "BoyerMooreSearch": 0.6226760000000013,
+    "Bm4DnaDsSearch": 0.7630350000000021,
+    "Bm4DnaHmbsSearch": 1.1374304347826025,
+    "WuManberSearch": 0.6457880000000022
+   },
+   "fastest": "BoyerMooreSearch",
+   "decisionMs": 0.9020277777777765,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.7184288555280883,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1.0468951790345562,
+    "AhoCorasickSearch": 1.3906302555223276,
+    "BoyerMooreSearch": 0.7047556767081854,
+    "Bm4DnaDsSearch": 0.8035019071387037,
+    "Bm4DnaHmbsSearch": 0.7978920628800491,
+    "WuManberSearch": 0.6916641748633009
+   }
+  },
+  {
+   "id": "val-3",
+   "alphabet": "binary",
+   "n": 50000,
+   "m": 40,
+   "k": 200,
+   "mSpread": 0,
+   "seed": 9003,
+   "shape": {
+    "n": 50000,
+    "sigma": 2,
+    "k": 200,
+    "mMin": 40,
+    "mMax": 40,
+    "mAvg": 40
+   },
+   "times": {
+    "HorspoolSearch": 64.45879999999988,
+    "KmpSearch": 65.14390000000003,
+    "AhoCorasickSearch": 2.3782555555555467,
+    "BoyerMooreSearch": 24.327399999999898,
+    "Bm4DnaDsSearch": 63.38040000000001,
+    "Bm4DnaHmbsSearch": 7.527933333333294,
+    "WuManberSearch": 0.683040000000013
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.583640000000014,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 29.69278055046978,
+    "ShiftOrSearch": null,
+    "KmpSearch": 16.413750502380086,
+    "AhoCorasickSearch": 0.6360946068776628,
+    "BoyerMooreSearch": 35.1088205404983,
+    "Bm4DnaDsSearch": 27.144687055232087,
+    "Bm4DnaHmbsSearch": 6.822076760007654,
+    "WuManberSearch": 0.672202351111814
+   }
+  },
+  {
+   "id": "val-4",
+   "alphabet": "turkish",
+   "n": 500000,
+   "m": 24,
+   "k": 12,
+   "mSpread": 0,
+   "seed": 9004,
+   "shape": {
+    "n": 500000,
+    "sigma": 30,
+    "k": 12,
+    "mMin": 24,
+    "mMax": 24,
+    "mAvg": 24
+   },
+   "times": {
+    "HorspoolSearch": 4.097440000000006,
+    "ShiftOrSearch": 13.864000000000033,
+    "KmpSearch": 14.80015000000003,
+    "AhoCorasickSearch": 4.563950000000053,
+    "BoyerMooreSearch": 4.490199999999883,
+    "Bm4DnaDsSearch": 3.6322000000000116,
+    "Bm4DnaHmbsSearch": 4.389919999999984,
+    "WuManberSearch": 2.0179399999999985
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.822649999999991,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 3.8525364071188584,
+    "ShiftOrSearch": 10.30237162886797,
+    "KmpSearch": 11.38692874988842,
+    "AhoCorasickSearch": 3.3423897106422538,
+    "BoyerMooreSearch": 4.1817417610433605,
+    "Bm4DnaDsSearch": 3.879417724235716,
+    "Bm4DnaHmbsSearch": 4.0355265612913485,
+    "WuManberSearch": 1.9232336889878137
+   }
+  },
+  {
+   "id": "val-5",
+   "alphabet": "tokens",
+   "n": 30000,
+   "m": 3,
+   "k": 6,
+   "mSpread": 0,
+   "seed": 9005,
+   "shape": {
+    "n": 30000,
+    "sigma": 1000,
+    "k": 6,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 0.4804600000000028,
+    "ShiftOrSearch": 0.590816666666664,
+    "KmpSearch": 0.48370689655171345,
+    "AhoCorasickSearch": 0.2285316666666631,
+    "BoyerMooreSearch": 0.6177272727272793,
+    "Bm4DnaDsSearch": 0.43008285714284805,
+    "Bm4DnaHmbsSearch": 0.5669323529411807,
+    "WuManberSearch": 0.3846241379310335
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 0.26863111111110305,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.4572093832729302,
+    "ShiftOrSearch": 0.35949723077902057,
+    "KmpSearch": 0.39633987272530885,
+    "AhoCorasickSearch": 0.4289197036707128,
+    "BoyerMooreSearch": 0.5166348892852143,
+    "Bm4DnaDsSearch": 0.43826852628007207,
+    "Bm4DnaHmbsSearch": 0.48684535300367204,
+    "WuManberSearch": 0.1680113535240769
+   }
+  },
+  {
+   "id": "val-6",
+   "alphabet": "labels",
+   "n": 300000,
+   "m": 48,
+   "k": 2,
+   "mSpread": 0,
+   "seed": 9006,
+   "shape": {
+    "n": 300000,
+    "sigma": 4,
+    "k": 2,
+    "mMin": 48,
+    "mMax": 48,
+    "mAvg": 48
+   },
+   "times": {
+    "HorspoolSearch": 2.3729000000000156,
+    "KmpSearch": 4.776100000000042,
+    "AhoCorasickSearch": 2.1269999999999527,
+    "BoyerMooreSearch": 1.6314200000000256,
+    "Bm4DnaDsSearch": 2.0451333333333728,
+    "Bm4DnaHmbsSearch": 1.2755285714285622,
+    "WuManberSearch": 1.069326666666681
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.2317642857142996,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.925212880573108,
+    "ShiftOrSearch": null,
+    "KmpSearch": 2.047633185601521,
+    "AhoCorasickSearch": 1.9417268623600334,
+    "BoyerMooreSearch": 2.0526399389946306,
+    "Bm4DnaDsSearch": 1.975372960339376,
+    "Bm4DnaHmbsSearch": 1.3195264711662404,
+    "WuManberSearch": 1.0870901915586222
+   }
+  },
+  {
+   "id": "val-7",
+   "alphabet": "normalized",
+   "n": 20000,
+   "m": 6,
+   "k": 24,
+   "mSpread": 0.5,
+   "seed": 9007,
+   "shape": {
+    "n": 20000,
+    "sigma": 37,
+    "k": 24,
+    "mMin": 3,
+    "mMax": 9,
+    "mAvg": 5.708333333333333
+   },
+   "times": {
+    "HorspoolSearch": 0.5785230769230776,
+    "ShiftOrSearch": 1.2604750000000042,
+    "KmpSearch": 0.8797615384615151,
+    "AhoCorasickSearch": 0.2764224137931,
+    "BoyerMooreSearch": 0.7533086956521836,
+    "Bm4DnaDsSearch": 0.6321821428571509,
+    "Bm4DnaHmbsSearch": 0.656600000000016,
+    "WuManberSearch": 0.17264202898551984
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.23950273972602426,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.5986094951208911,
+    "ShiftOrSearch": 0.7632881181147478,
+    "KmpSearch": 0.8426166901519992,
+    "AhoCorasickSearch": 0.19703789377181746,
+    "BoyerMooreSearch": 0.6935629849821059,
+    "Bm4DnaDsSearch": 0.5610632271243522,
+    "Bm4DnaHmbsSearch": 0.6258635382079498,
+    "WuManberSearch": 0.14983753212454273
+   }
+  },
+  {
+   "id": "val-8",
+   "alphabet": "printable",
+   "n": 300000,
+   "m": 20,
+   "k": 12,
+   "mSpread": 0,
+   "seed": 9008,
+   "shape": {
+    "n": 300000,
+    "sigma": 95,
+    "k": 12,
+    "mMin": 20,
+    "mMax": 20,
+    "mAvg": 20
+   },
+   "times": {
+    "HorspoolSearch": 2.1998000000000197,
+    "ShiftOrSearch": 31.261250000000018,
+    "KmpSearch": 23.782799999999952,
+    "AhoCorasickSearch": 7.983766666666573,
+    "BoyerMooreSearch": 7.000433333333301,
+    "Bm4DnaDsSearch": 6.809733333333194,
+    "Bm4DnaHmbsSearch": 5.279533333333347,
+    "WuManberSearch": 2.51693750000004
+   },
+   "fastest": "HorspoolSearch",
+   "decisionMs": 4.934283333333345,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.21391595190449,
+    "ShiftOrSearch": 6.184788833930337,
+    "KmpSearch": 6.8346220758979825,
+    "AhoCorasickSearch": 2.2364342746818826,
+    "BoyerMooreSearch": 2.3963628343224874,
+    "Bm4DnaDsSearch": 2.2398957560746418,
+    "Bm4DnaHmbsSearch": 2.349932074068959,
+    "WuManberSearch": 1.1220404634927563
+   }
+  },
+  {
+   "id": "val-9",
+   "alphabet": "binary",
+   "n": 500000,
+   "m": 150,
+   "k": 100,
+   "mSpread": 0.5,
+   "seed": 9009,
+   "shape": {
+    "n": 500000,
+    "sigma": 2,
+    "k": 100,
+    "mMin": 76,
+    "mMax": 224,
+    "mAvg": 146.62
+   },
+   "times": {
+    "HorspoolSearch": 357.95710000000054,
+    "KmpSearch": 362.91209999999955,
+    "AhoCorasickSearch": 10.26130000000012,
+    "BoyerMooreSearch": 74.35079999999834,
+    "Bm4DnaDsSearch": 327.2963,
+    "Bm4DnaHmbsSearch": 14.669899999998961,
+    "WuManberSearch": 2.639757142857239
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 3.182750000000245,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 148.80078779700892,
+    "ShiftOrSearch": null,
+    "KmpSearch": 82.04585652158724,
+    "AhoCorasickSearch": 3.8003618942051696,
+    "BoyerMooreSearch": 174.99168854091263,
+    "Bm4DnaDsSearch": 135.8497952008668,
+    "Bm4DnaHmbsSearch": 13.903304384917739,
+    "WuManberSearch": 2.2916386719879798
+   }
+  },
+  {
+   "id": "val-10",
+   "alphabet": "turkish",
+   "n": 200000,
+   "m": 50,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9010,
+   "shape": {
+    "n": 200000,
+    "sigma": 30,
+    "k": 32,
+    "mMin": 50,
+    "mMax": 50,
+    "mAvg": 50
+   },
+   "times": {
+    "HorspoolSearch": 2.7536333333334064,
+    "KmpSearch": 13.506900000000314,
+    "AhoCorasickSearch": 2.781833333333452,
+    "BoyerMooreSearch": 3.333249999999983,
+    "Bm4DnaDsSearch": 2.6676166666666177,
+    "Bm4DnaHmbsSearch": 2.458962500000098,
+    "WuManberSearch": 1.4138882352940794
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.8148888888887693,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.2626186224929428,
+    "ShiftOrSearch": null,
+    "KmpSearch": 10.984841910342633,
+    "AhoCorasickSearch": 1.9382426103331394,
+    "BoyerMooreSearch": 2.566037839926736,
+    "Bm4DnaDsSearch": 2.229202588414958,
+    "Bm4DnaHmbsSearch": 1.885641073349859,
+    "WuManberSearch": 0.7774460216385911
+   }
+  },
+  {
+   "id": "val-11",
+   "alphabet": "tokens",
+   "n": 700000,
+   "m": 3,
+   "k": 12,
+   "mSpread": 0,
+   "seed": 9011,
+   "shape": {
+    "n": 700000,
+    "sigma": 1000,
+    "k": 12,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 17.10859999999957,
+    "ShiftOrSearch": 25.821899999999005,
+    "KmpSearch": 17.528000000000247,
+    "AhoCorasickSearch": 5.411224999999831,
+    "BoyerMooreSearch": 24.38040000000001,
+    "Bm4DnaDsSearch": 16.45720000000074,
+    "Bm4DnaHmbsSearch": 23.179299999999785,
+    "WuManberSearch": 5.354000000000269
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 3.193760000000111,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 18.88667106176707,
+    "ShiftOrSearch": 14.40492983864431,
+    "KmpSearch": 15.928239488581632,
+    "AhoCorasickSearch": 4.986814274244317,
+    "BoyerMooreSearch": 21.703132913507915,
+    "Bm4DnaDsSearch": 17.69154124050942,
+    "Bm4DnaHmbsSearch": 19.640191507161994,
+    "WuManberSearch": 3.9468308813347446
+   }
+  },
+  {
+   "id": "val-12",
+   "alphabet": "labels",
+   "n": 20000,
+   "m": 80,
+   "k": 100,
+   "mSpread": 0,
+   "seed": 9012,
+   "shape": {
+    "n": 20000,
+    "sigma": 4,
+    "k": 100,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 5.003133333333001,
+    "KmpSearch": 10.543499999999767,
+    "AhoCorasickSearch": 2.3263200000001234,
+    "BoyerMooreSearch": 4.2977249999999,
+    "Bm4DnaDsSearch": 4.356374999999844,
+    "Bm4DnaHmbsSearch": 0.910112500000082,
+    "WuManberSearch": 0.45010714285711273
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.5907631578946549,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 3.172584254221955,
+    "ShiftOrSearch": null,
+    "KmpSearch": 3.5537544481778616,
+    "AhoCorasickSearch": 0.6515613057034199,
+    "BoyerMooreSearch": 3.958201274422061,
+    "Bm4DnaDsSearch": 3.0146103763790753,
+    "Bm4DnaHmbsSearch": 0.5733696081812899,
+    "WuManberSearch": 0.3859089852021874
+   }
+  },
+  {
+   "id": "val-13",
+   "alphabet": "normalized",
+   "n": 20000,
+   "m": 100,
+   "k": 1,
+   "mSpread": 0.5,
+   "seed": 9013,
+   "shape": {
+    "n": 20000,
+    "sigma": 37,
+    "k": 1,
+    "mMin": 54,
+    "mMax": 54,
+    "mAvg": 54
+   },
+   "times": {
+    "HorspoolSearch": 0.11177894736841297,
+    "KmpSearch": 0.15039012345678876,
+    "AhoCorasickSearch": 0.34661282051283937,
+    "BoyerMooreSearch": 0.15863653846152095,
+    "Bm4DnaDsSearch": 0.17213653846154278,
+    "Bm4DnaHmbsSearch": 0.16217065217391713,
+    "WuManberSearch": 0.13752735849056819
+   },
+   "fastest": "HorspoolSearch",
+   "decisionMs": 0.29341041666668843,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.07475365799595478,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.10637674996278251,
+    "AhoCorasickSearch": 0.1558362665726784,
+    "BoyerMooreSearch": 0.0752961404990661,
+    "Bm4DnaDsSearch": 0.08366147870523108,
+    "Bm4DnaHmbsSearch": 0.08176003560651651,
+    "WuManberSearch": 0.07193109329838096
+   }
+  },
+  {
+   "id": "val-14",
+   "alphabet": "printable",
+   "n": 500000,
+   "m": 40,
+   "k": 3,
+   "mSpread": 0.5,
+   "seed": 9014,
+   "shape": {
+    "n": 500000,
+    "sigma": 95,
+    "k": 3,
+    "mMin": 35,
+    "mMax": 49,
+    "mAvg": 40.666666666666664
+   },
+   "times": {
+    "HorspoolSearch": 2.021949999999985,
+    "KmpSearch": 4.869050000000243,
+    "AhoCorasickSearch": 4.145959999999832,
+    "BoyerMooreSearch": 3.3995199999997565,
+    "Bm4DnaDsSearch": 2.7098799999999756,
+    "Bm4DnaHmbsSearch": 2.469228571428435,
+    "WuManberSearch": 1.9523999999997614
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 3.035083333333205,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.005383132854454,
+    "ShiftOrSearch": null,
+    "KmpSearch": 4.208279362334301,
+    "AhoCorasickSearch": 3.378757859396865,
+    "BoyerMooreSearch": 2.00554148949535,
+    "Bm4DnaDsSearch": 2.1978968678317194,
+    "Bm4DnaHmbsSearch": 2.1793290719968557,
+    "WuManberSearch": 1.7567884257276176
+   }
+  },
+  {
+   "id": "val-15",
+   "alphabet": "binary",
+   "n": 50000,
+   "m": 10,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9015,
+   "shape": {
+    "n": 50000,
+    "sigma": 2,
+    "k": 32,
+    "mMin": 10,
+    "mMax": 10,
+    "mAvg": 10
+   },
+   "times": {
+    "HorspoolSearch": 11.341149999999288,
+    "ShiftOrSearch": 5.583549999999832,
+    "KmpSearch": 11.587749999999687,
+    "AhoCorasickSearch": 0.7690769230768917,
+    "BoyerMooreSearch": 7.304733333333691,
+    "Bm4DnaDsSearch": 9.809400000000096,
+    "Bm4DnaHmbsSearch": 5.096674999999777,
+    "WuManberSearch": 1.4080545454544335
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 0.3722902439024371,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 5.493669979096209,
+    "ShiftOrSearch": 2.772144849464583,
+    "KmpSearch": 4.184993605629684,
+    "AhoCorasickSearch": 0.5328323180866571,
+    "BoyerMooreSearch": 6.507741570981287,
+    "Bm4DnaDsSearch": 5.041982386134029,
+    "Bm4DnaHmbsSearch": 4.541279983043365,
+    "WuManberSearch": 1.293390861020547
+   }
+  },
+  {
+   "id": "val-16",
+   "alphabet": "turkish",
+   "n": 20000,
+   "m": 10,
+   "k": 100,
+   "mSpread": 0.5,
+   "seed": 9016,
+   "shape": {
+    "n": 20000,
+    "sigma": 30,
+    "k": 100,
+    "mMin": 5,
+    "mMax": 15,
+    "mAvg": 9.38
+   },
+   "times": {
+    "HorspoolSearch": 1.7545250000000578,
+    "ShiftOrSearch": 5.236699999999928,
+    "KmpSearch": 4.232425000000148,
+    "AhoCorasickSearch": 0.8538611111111499,
+    "BoyerMooreSearch": 2.048999999999978,
+    "Bm4DnaDsSearch": 1.7693100000000412,
+    "Bm4DnaHmbsSearch": 2.3633142857142957,
+    "WuManberSearch": 0.41157352941177927
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.3848666666666571,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.526415179610145,
+    "ShiftOrSearch": 2.9878265381367433,
+    "KmpSearch": 3.2947276481391166,
+    "AhoCorasickSearch": 0.5088842508585801,
+    "BoyerMooreSearch": 1.8084742447560318,
+    "Bm4DnaDsSearch": 1.416052532512929,
+    "Bm4DnaHmbsSearch": 1.574471190307826,
+    "WuManberSearch": 0.20266731752932096
+   }
+  },
+  {
+   "id": "val-17",
+   "alphabet": "tokens",
+   "n": 500000,
+   "m": 100,
+   "k": 2,
+   "mSpread": 0,
+   "seed": 9017,
+   "shape": {
+    "n": 500000,
+    "sigma": 1000,
+    "k": 2,
+    "mMin": 100,
+    "mMax": 100,
+    "mAvg": 100
+   },
+   "times": {
+    "HorspoolSearch": 2.43037500000014,
+    "KmpSearch": 3.271066666666229,
+    "AhoCorasickSearch": 3.7475666666662923,
+    "BoyerMooreSearch": 1.9198222222221375,
+    "Bm4DnaDsSearch": 1.9880000000002838,
+    "Bm4DnaHmbsSearch": 3.0721833333333657,
+    "WuManberSearch": 1.7747000000003026
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.5002833333334515,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.80363160144026,
+    "ShiftOrSearch": null,
+    "KmpSearch": 3.414189134314993,
+    "AhoCorasickSearch": 5.841027838728455,
+    "BoyerMooreSearch": 1.7707746122964532,
+    "Bm4DnaDsSearch": 2.0156265552876786,
+    "Bm4DnaHmbsSearch": 1.975309088913629,
+    "WuManberSearch": 1.6763610822345427
+   }
+  },
+  {
+   "id": "val-18",
+   "alphabet": "labels",
+   "n": 500000,
+   "m": 80,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9018,
+   "shape": {
+    "n": 500000,
+    "sigma": 4,
+    "k": 3,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 6.233100000000074,
+    "KmpSearch": 12.701849999999467,
+    "AhoCorasickSearch": 4.482420000000275,
+    "BoyerMooreSearch": 4.802100000000337,
+    "Bm4DnaDsSearch": 5.758866666666411,
+    "Bm4DnaHmbsSearch": 2.2625000000000455,
+    "WuManberSearch": 1.6684000000002146
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.5781125000000884,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 3.9441421827951375,
+    "ShiftOrSearch": null,
+    "KmpSearch": 4.212607479356053,
+    "AhoCorasickSearch": 3.2414367459958333,
+    "BoyerMooreSearch": 4.287955454467189,
+    "Bm4DnaDsSearch": 3.961996001897946,
+    "Bm4DnaHmbsSearch": 2.1782759421131677,
+    "WuManberSearch": 1.7307869745151172
+   }
+  },
+  {
+   "id": "val-19",
+   "alphabet": "normalized",
+   "n": 300000,
+   "m": 12,
+   "k": 100,
+   "mSpread": 0,
+   "seed": 9019,
+   "shape": {
+    "n": 300000,
+    "sigma": 37,
+    "k": 100,
+    "mMin": 12,
+    "mMax": 12,
+    "mAvg": 12
+   },
+   "times": {
+    "HorspoolSearch": 16.905400000001464,
+    "ShiftOrSearch": 72.91439999999966,
+    "KmpSearch": 64.42369999999937,
+    "AhoCorasickSearch": 2.7484833333334486,
+    "BoyerMooreSearch": 20.802299999999377,
+    "Bm4DnaDsSearch": 16.02599999999984,
+    "Bm4DnaHmbsSearch": 21.351300000002084,
+    "WuManberSearch": 1.386136363636152
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.8021636363634819,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 18.054142021369977,
+    "ShiftOrSearch": 44.1727764266615,
+    "KmpSearch": 48.94885653466717,
+    "AhoCorasickSearch": 2.531141687003732,
+    "BoyerMooreSearch": 21.044225099908413,
+    "Bm4DnaDsSearch": 16.653040228607328,
+    "Bm4DnaHmbsSearch": 18.72602151389742,
+    "WuManberSearch": 1.3847507863525583
+   }
+  },
+  {
+   "id": "val-20",
+   "alphabet": "printable",
+   "n": 700000,
+   "m": 24,
+   "k": 1000,
+   "mSpread": 0,
+   "seed": 9020,
+   "shape": {
+    "n": 700000,
+    "sigma": 95,
+    "k": 1000,
+    "mMin": 24,
+    "mMax": 24,
+    "mAvg": 24
+   },
+   "times": {
+    "HorspoolSearch": 187.33859999999913,
+    "ShiftOrSearch": 1028.3136999999988,
+    "KmpSearch": 1187.3871,
+    "AhoCorasickSearch": 44.01369999999952,
+    "BoyerMooreSearch": 243.55419999999867,
+    "Bm4DnaDsSearch": 191.3827999999994,
+    "Bm4DnaHmbsSearch": 238.96899999999732,
+    "WuManberSearch": 6.287849999998798
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 4.919799999999668,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 195.78997240079644,
+    "ShiftOrSearch": 1009.5157302654544,
+    "KmpSearch": 1119.1500877645315,
+    "AhoCorasickSearch": 34.613843427410096,
+    "BoyerMooreSearch": 230.36487517361246,
+    "Bm4DnaDsSearch": 178.84875798569806,
+    "Bm4DnaHmbsSearch": 201.41962677118397,
+    "WuManberSearch": 2.906046649725667
+   }
+  },
+  {
+   "id": "val-21",
+   "alphabet": "binary",
+   "n": 700000,
+   "m": 40,
+   "k": 1000,
+   "mSpread": 0.5,
+   "seed": 9021,
+   "shape": {
+    "n": 700000,
+    "sigma": 2,
+    "k": 1000,
+    "mMin": 20,
+    "mMax": 60,
+    "mAvg": 40.395
+   },
+   "times": {
+    "HorspoolSearch": 4840.2062000000005,
+    "KmpSearch": 4342.794699999999,
+    "AhoCorasickSearch": 12.618899999994028,
+    "BoyerMooreSearch": 1384.614699999991,
+    "Bm4DnaDsSearch": 3914.934699999998,
+    "Bm4DnaHmbsSearch": 352.55839999999444,
+    "WuManberSearch": 8.012300000002142
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 11.759200000000419,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2057.853343576431,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1119.7514397246553,
+    "AhoCorasickSearch": 6.099137804849443,
+    "BoyerMooreSearch": 2419.5398061064366,
+    "Bm4DnaDsSearch": 1871.759597925059,
+    "Bm4DnaHmbsSearch": 414.12658616425824,
+    "WuManberSearch": 6.378830957975808
+   }
+  },
+  {
+   "id": "val-22",
+   "alphabet": "turkish",
+   "n": 20000,
+   "m": 6,
+   "k": 24,
+   "mSpread": 0,
+   "seed": 9022,
+   "shape": {
+    "n": 20000,
+    "sigma": 30,
+    "k": 24,
+    "mMin": 6,
+    "mMax": 6,
+    "mAvg": 6
+   },
+   "times": {
+    "HorspoolSearch": 0.48882307692278676,
+    "ShiftOrSearch": 0.6599434782610447,
+    "KmpSearch": 0.7680849999997008,
+    "AhoCorasickSearch": 0.18899032258054976,
+    "BoyerMooreSearch": 0.5733961538465407,
+    "Bm4DnaDsSearch": 0.4593290322579466,
+    "Bm4DnaHmbsSearch": 0.5435428571425811,
+    "WuManberSearch": 0.128262318840522
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.1546902439023564,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.5828327333461933,
+    "ShiftOrSearch": 0.7636387508426944,
+    "KmpSearch": 0.8428735554521366,
+    "AhoCorasickSearch": 0.1873449615205302,
+    "BoyerMooreSearch": 0.6752318542066077,
+    "Bm4DnaDsSearch": 0.5468229008455395,
+    "Bm4DnaHmbsSearch": 0.610257458914017,
+    "WuManberSearch": 0.1086025164479106
+   }
+  },
+  {
+   "id": "val-23",
+   "alphabet": "tokens",
+   "n": 50000,
+   "m": 10,
+   "k": 1000,
+   "mSpread": 0.5,
+   "seed": 9023,
+   "shape": {
+    "n": 50000,
+    "sigma": 1000,
+    "k": 1000,
+    "mMin": 5,
+    "mMax": 15,
+    "mAvg": 9.97
+   },
+   "times": {
+    "HorspoolSearch": 28.60809999999765,
+    "ShiftOrSearch": 62.83869999999297,
+    "KmpSearch": 58.18869999999879,
+    "AhoCorasickSearch": 49.34429999999702,
+    "BoyerMooreSearch": 45.04660000000149,
+    "Bm4DnaDsSearch": 26.93540000000212,
+    "Bm4DnaHmbsSearch": 32.73189999999886,
+    "WuManberSearch": 0.633678260869878
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.5521724137933203,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 29.954781185218067,
+    "ShiftOrSearch": 72.52177166323426,
+    "KmpSearch": 80.24210297916994,
+    "AhoCorasickSearch": 130.69363697514058,
+    "BoyerMooreSearch": 35.47670103846092,
+    "Bm4DnaDsSearch": 27.411346218595845,
+    "Bm4DnaHmbsSearch": 32.18604449190963,
+    "WuManberSearch": 0.4509101805398931
+   }
+  },
+  {
+   "id": "val-24",
+   "alphabet": "labels",
+   "n": 700000,
+   "m": 100,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9024,
+   "shape": {
+    "n": 700000,
+    "sigma": 4,
+    "k": 1,
+    "mMin": 100,
+    "mMax": 100,
+    "mAvg": 100
+   },
+   "times": {
+    "HorspoolSearch": 2.7522833333326466,
+    "KmpSearch": 4.939100000003236,
+    "AhoCorasickSearch": 3.6561000000016066,
+    "BoyerMooreSearch": 2.381100000000775,
+    "Bm4DnaDsSearch": 3.2812799999985147,
+    "Bm4DnaHmbsSearch": 2.217228571429067,
+    "WuManberSearch": 1.9550249999992957
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.5106428571432065,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 3.4622716284549657,
+    "ShiftOrSearch": null,
+    "KmpSearch": 3.657530914214885,
+    "AhoCorasickSearch": 4.52259678364329,
+    "BoyerMooreSearch": 3.5751827155088556,
+    "Bm4DnaDsSearch": 3.6712063924745726,
+    "Bm4DnaHmbsSearch": 2.7750615744257883,
+    "WuManberSearch": 2.3971669122915245
+   }
+  },
+  {
+   "id": "val-25",
+   "alphabet": "normalized",
+   "n": 200000,
+   "m": 40,
+   "k": 200,
+   "mSpread": 0.5,
+   "seed": 9025,
+   "shape": {
+    "n": 200000,
+    "sigma": 37,
+    "k": 200,
+    "mMin": 20,
+    "mMax": 60,
+    "mAvg": 39.14
+   },
+   "times": {
+    "HorspoolSearch": 9.941600000005565,
+    "KmpSearch": 56.9487999999983,
+    "AhoCorasickSearch": 6.237533333332976,
+    "BoyerMooreSearch": 11.730600000002596,
+    "Bm4DnaDsSearch": 10.023299999993469,
+    "Bm4DnaHmbsSearch": 9.438850000005914,
+    "WuManberSearch": 1.1248307692305668
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.0119785714289589,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 10.507080402572461,
+    "ShiftOrSearch": null,
+    "KmpSearch": 64.76839820775443,
+    "AhoCorasickSearch": 5.176157417413936,
+    "BoyerMooreSearch": 12.446053866650818,
+    "Bm4DnaDsSearch": 9.813752155298378,
+    "Bm4DnaHmbsSearch": 9.711446884667037,
+    "WuManberSearch": 0.9303302368300307
+   }
+  },
+  {
+   "id": "val-26",
+   "alphabet": "printable",
+   "n": 20000,
+   "m": 3,
+   "k": 1000,
+   "mSpread": 0,
+   "seed": 9026,
+   "shape": {
+    "n": 20000,
+    "sigma": 95,
+    "k": 1000,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 31.550300000002608,
+    "ShiftOrSearch": 27.467799999998533,
+    "KmpSearch": 24.987200000003213,
+    "AhoCorasickSearch": 2.18120000000012,
+    "BoyerMooreSearch": 37.02980000000389,
+    "Bm4DnaDsSearch": 27.387199999997392,
+    "Bm4DnaHmbsSearch": 35.066299999991315,
+    "WuManberSearch": 0.41114594594566023
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.2610428571430338,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 39.69120461918927,
+    "ShiftOrSearch": 28.963555456498167,
+    "KmpSearch": 32.08212792137209,
+    "AhoCorasickSearch": 3.89420470589629,
+    "BoyerMooreSearch": 46.731370958306535,
+    "Bm4DnaDsSearch": 36.13895157838194,
+    "Bm4DnaHmbsSearch": 41.16717358449051,
+    "WuManberSearch": 0.2270970782821061
+   }
+  },
+  {
+   "id": "val-27",
+   "alphabet": "binary",
+   "n": 200000,
+   "m": 80,
+   "k": 12,
+   "mSpread": 0,
+   "seed": 9027,
+   "shape": {
+    "n": 200000,
+    "sigma": 2,
+    "k": 12,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 13.572000000000116,
+    "KmpSearch": 14.061549999998533,
+    "AhoCorasickSearch": 1.2138749999988552,
+    "BoyerMooreSearch": 4.175899999998364,
+    "Bm4DnaDsSearch": 14.031949999996868,
+    "Bm4DnaHmbsSearch": 1.284591666666529,
+    "WuManberSearch": 0.47877187499989304
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.64754166666656,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 7.759514567976413,
+    "ShiftOrSearch": null,
+    "KmpSearch": 4.585757883514485,
+    "AhoCorasickSearch": 1.327926550772998,
+    "BoyerMooreSearch": 9.007642124939151,
+    "Bm4DnaDsSearch": 7.216796135213477,
+    "Bm4DnaHmbsSearch": 1.6301064116255244,
+    "WuManberSearch": 0.9191167755839297
+   }
+  },
+  {
+   "id": "val-28",
+   "alphabet": "turkish",
+   "n": 500000,
+   "m": 20,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9028,
+   "shape": {
+    "n": 500000,
+    "sigma": 30,
+    "k": 32,
+    "mMin": 20,
+    "mMax": 20,
+    "mAvg": 20
+   },
+   "times": {
+    "HorspoolSearch": 6.595933333335172,
+    "ShiftOrSearch": 20.62829999999667,
+    "KmpSearch": 25.06239999999525,
+    "AhoCorasickSearch": 3.1921000000002095,
+    "BoyerMooreSearch": 8.13969999999972,
+    "Bm4DnaDsSearch": 6.817299999995157,
+    "Bm4DnaHmbsSearch": 7.096566666664633,
+    "WuManberSearch": 1.7633777777777544
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.9203166666678346,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 8.109611517617305,
+    "ShiftOrSearch": 24.691178036225523,
+    "KmpSearch": 27.338863477610094,
+    "AhoCorasickSearch": 3.4849361327723964,
+    "BoyerMooreSearch": 9.196230933685452,
+    "Bm4DnaDsSearch": 7.754322886066334,
+    "Bm4DnaHmbsSearch": 8.749050538988875,
+    "WuManberSearch": 1.9452690240020114
+   }
+  },
+  {
+   "id": "val-29",
+   "alphabet": "tokens",
+   "n": 700000,
+   "m": 100,
+   "k": 100,
+   "mSpread": 0.5,
+   "seed": 9029,
+   "shape": {
+    "n": 700000,
+    "sigma": 1000,
+    "k": 100,
+    "mMin": 50,
+    "mMax": 150,
+    "mAvg": 99.3
+   },
+   "times": {
+    "HorspoolSearch": 6.788999999999457,
+    "KmpSearch": 84.02349999999569,
+    "AhoCorasickSearch": 55.963999999992666,
+    "BoyerMooreSearch": 7.499966666665084,
+    "Bm4DnaDsSearch": 6.30570000000201,
+    "Bm4DnaHmbsSearch": 7.560299999997369,
+    "WuManberSearch": 2.4300333333352078
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.640916666665968,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 6.986283584476549,
+    "ShiftOrSearch": null,
+    "KmpSearch": 114.47551955008574,
+    "AhoCorasickSearch": 134.36407263710763,
+    "BoyerMooreSearch": 8.016331013168735,
+    "Bm4DnaDsSearch": 7.016816025359365,
+    "Bm4DnaHmbsSearch": 7.310962456471782,
+    "WuManberSearch": 2.5713334771556493
+   }
+  },
+  {
+   "id": "val-30",
+   "alphabet": "labels",
+   "n": 20000,
+   "m": 80,
+   "k": 3,
+   "mSpread": 0.5,
+   "seed": 9030,
+   "shape": {
+    "n": 20000,
+    "sigma": 4,
+    "k": 3,
+    "mMin": 77,
+    "mMax": 82,
+    "mAvg": 79.33333333333333
+   },
+   "times": {
+    "HorspoolSearch": 0.14216027397256542,
+    "KmpSearch": 0.3298644444446028,
+    "AhoCorasickSearch": 0.15020882352944362,
+    "BoyerMooreSearch": 0.11768888888896485,
+    "Bm4DnaDsSearch": 0.11666202531645628,
+    "Bm4DnaHmbsSearch": 0.08504800000003472,
+    "WuManberSearch": 0.07758316326533309
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.13042923076920068,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.162561228627571,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.17688177313837822,
+    "AhoCorasickSearch": 0.14457572626144466,
+    "BoyerMooreSearch": 0.18410244636068465,
+    "Bm4DnaDsSearch": 0.1661425207488653,
+    "Bm4DnaHmbsSearch": 0.09131998600813321,
+    "WuManberSearch": 0.07998716634234562
+   }
+  },
+  {
+   "id": "val-31",
+   "alphabet": "normalized",
+   "n": 30000,
+   "m": 10,
+   "k": 3,
+   "mSpread": 0.5,
+   "seed": 9031,
+   "shape": {
+    "n": 30000,
+    "sigma": 37,
+    "k": 3,
+    "mMin": 8,
+    "mMax": 9,
+    "mAvg": 8.666666666666666
+   },
+   "times": {
+    "HorspoolSearch": 0.1438936842106111,
+    "ShiftOrSearch": 0.1912677419355943,
+    "KmpSearch": 0.2059828571428495,
+    "AhoCorasickSearch": 0.1746987500000614,
+    "BoyerMooreSearch": 0.16003956043965484,
+    "Bm4DnaDsSearch": 0.1357353535353505,
+    "Bm4DnaHmbsSearch": 0.15284315789482972,
+    "WuManberSearch": 0.11793253968258681
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.22656280991730995,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.17238755568570255,
+    "ShiftOrSearch": 0.23055731299058674,
+    "KmpSearch": 0.2531819246741052,
+    "AhoCorasickSearch": 0.2064521617497057,
+    "BoyerMooreSearch": 0.18209758936052625,
+    "Bm4DnaDsSearch": 0.17947230066063274,
+    "Bm4DnaHmbsSearch": 0.18491022454509368,
+    "WuManberSearch": 0.13401707192946288
+   }
+  },
+  {
+   "id": "val-32",
+   "alphabet": "printable",
+   "n": 30000,
+   "m": 80,
+   "k": 6,
+   "mSpread": 0,
+   "seed": 9032,
+   "shape": {
+    "n": 30000,
+    "sigma": 95,
+    "k": 6,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 0.10672881355929935,
+    "KmpSearch": 0.30777500000021973,
+    "AhoCorasickSearch": 0.486462500000016,
+    "BoyerMooreSearch": 0.11425913978503861,
+    "Bm4DnaDsSearch": 0.13433008130078536,
+    "Bm4DnaHmbsSearch": 0.1585436893204053,
+    "WuManberSearch": 0.1003192000000272
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.1531447368421747,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.13381975452519376,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.4132853851295246,
+    "AhoCorasickSearch": 0.7955012147820739,
+    "BoyerMooreSearch": 0.15057474316799752,
+    "Bm4DnaDsSearch": 0.150979236848139,
+    "Bm4DnaHmbsSearch": 0.21794073036201195,
+    "WuManberSearch": 0.12682859078140324
+   }
+  },
+  {
+   "id": "val-33",
+   "alphabet": "binary",
+   "n": 50000,
+   "m": 3,
+   "k": 12,
+   "mSpread": 0,
+   "seed": 9033,
+   "shape": {
+    "n": 50000,
+    "sigma": 2,
+    "k": 12,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 12.64035000000149,
+    "ShiftOrSearch": 10.886350000000675,
+    "KmpSearch": 13.133699999991222,
+    "AhoCorasickSearch": 8.946949999997742,
+    "BoyerMooreSearch": 15.50909999999567,
+    "Bm4DnaDsSearch": 13.597899999993388,
+    "Bm4DnaHmbsSearch": 14.987299999993411,
+    "WuManberSearch": 8.529600000001665
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.2879161290322607,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 31.58734386457899,
+    "ShiftOrSearch": 14.962375594821946,
+    "KmpSearch": 70.35108439303785,
+    "AhoCorasickSearch": 9.815659570150052,
+    "BoyerMooreSearch": 40.754342905308626,
+    "Bm4DnaDsSearch": 29.04547600124824,
+    "Bm4DnaHmbsSearch": 20.98883091170296,
+    "WuManberSearch": 11.513352479285507
+   }
+  },
+  {
+   "id": "val-34",
+   "alphabet": "turkish",
+   "n": 30000,
+   "m": 48,
+   "k": 32,
+   "mSpread": 0.5,
+   "seed": 9034,
+   "shape": {
+    "n": 30000,
+    "sigma": 30,
+    "k": 32,
+    "mMin": 24,
+    "mMax": 72,
+    "mAvg": 45.65625
+   },
+   "times": {
+    "HorspoolSearch": 0.341823076923342,
+    "KmpSearch": 1.5217900000003284,
+    "AhoCorasickSearch": 0.8761333333329984,
+    "BoyerMooreSearch": 0.41440400000021327,
+    "Bm4DnaDsSearch": 0.3538400000001275,
+    "Bm4DnaHmbsSearch": 0.31890212765961706,
+    "WuManberSearch": 0.13180952380949054
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.20672837837844635,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.37354994122773233,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1.6925112940391802,
+    "AhoCorasickSearch": 0.7851942933139029,
+    "BoyerMooreSearch": 0.4621948127991122,
+    "Bm4DnaDsSearch": 0.3830898104521111,
+    "Bm4DnaHmbsSearch": 0.34132515817585957,
+    "WuManberSearch": 0.19247543282390128
+   }
+  },
+  {
+   "id": "val-35",
+   "alphabet": "tokens",
+   "n": 200000,
+   "m": 3,
+   "k": 100,
+   "mSpread": 0,
+   "seed": 9035,
+   "shape": {
+    "n": 200000,
+    "sigma": 1000,
+    "k": 100,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 29.6990000000078,
+    "ShiftOrSearch": 24.153699999995297,
+    "KmpSearch": 24.498099999997066,
+    "AhoCorasickSearch": 1.6351777777777494,
+    "BoyerMooreSearch": 35.67130000000179,
+    "Bm4DnaDsSearch": 25.602399999988847,
+    "Bm4DnaHmbsSearch": 33.9372000000003,
+    "WuManberSearch": 1.261266666665809
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.8040294117646922,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 39.87528851866248,
+    "ShiftOrSearch": 29.4234777570626,
+    "KmpSearch": 32.61425000132675,
+    "AhoCorasickSearch": 5.213207387491976,
+    "BoyerMooreSearch": 46.73656739557776,
+    "Bm4DnaDsSearch": 36.40149133863584,
+    "Bm4DnaHmbsSearch": 41.272634895189015,
+    "WuManberSearch": 1.4881419321162963
+   }
+  },
+  {
+   "id": "val-36",
+   "alphabet": "labels",
+   "n": 30000,
+   "m": 80,
+   "k": 100,
+   "mSpread": 0.5,
+   "seed": 9036,
+   "shape": {
+    "n": 30000,
+    "sigma": 4,
+    "k": 100,
+    "mMin": 41,
+    "mMax": 120,
+    "mAvg": 82.16
+   },
+   "times": {
+    "HorspoolSearch": 6.1049666666658595,
+    "KmpSearch": 13.087949999993725,
+    "AhoCorasickSearch": 1.3574636363641317,
+    "BoyerMooreSearch": 4.828949999999168,
+    "Bm4DnaDsSearch": 5.348500000002484,
+    "Bm4DnaHmbsSearch": 0.7992105263164329,
+    "WuManberSearch": 0.29046379310351894
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.28687857142826295,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 4.679426607348041,
+    "ShiftOrSearch": null,
+    "KmpSearch": 5.191838495908249,
+    "AhoCorasickSearch": 0.730184855668189,
+    "BoyerMooreSearch": 5.7288136476801075,
+    "Bm4DnaDsSearch": 4.394964672702801,
+    "Bm4DnaHmbsSearch": 0.7771987356057637,
+    "WuManberSearch": 0.35597000892301434
+   }
+  },
+  {
+   "id": "val-37",
+   "alphabet": "normalized",
+   "n": 20000,
+   "m": 6,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9037,
+   "shape": {
+    "n": 20000,
+    "sigma": 37,
+    "k": 3,
+    "mMin": 6,
+    "mMax": 6,
+    "mAvg": 6
+   },
+   "times": {
+    "HorspoolSearch": 0.16049658119654617,
+    "ShiftOrSearch": 0.16297792207790604,
+    "KmpSearch": 0.1757583333332554,
+    "AhoCorasickSearch": 0.14944831460676408,
+    "BoyerMooreSearch": 0.11575299145307583,
+    "Bm4DnaDsSearch": 0.10264621212120277,
+    "Bm4DnaHmbsSearch": 0.11946750000000368,
+    "WuManberSearch": 0.08551100917441402
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.10665535714291591,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.13268411541551597,
+    "ShiftOrSearch": 0.15373827110444208,
+    "KmpSearch": 0.1688124239958431,
+    "AhoCorasickSearch": 0.13796571367802557,
+    "BoyerMooreSearch": 0.14229275967418012,
+    "Bm4DnaDsSearch": 0.13580139903436364,
+    "Bm4DnaHmbsSearch": 0.14194258380038535,
+    "WuManberSearch": 0.11944191796912124
+   }
+  },
+  {
+   "id": "val-38",
+   "alphabet": "printable",
+   "n": 200000,
+   "m": 20,
+   "k": 1,
+   "mSpread": 0.5,
+   "seed": 9038,
+   "shape": {
+    "n": 200000,
+    "sigma": 95,
+    "k": 1,
+    "mMin": 23,
+    "mMax": 23,
+    "mAvg": 23
+   },
+   "times": {
+    "HorspoolSearch": 0.6183111111113923,
+    "ShiftOrSearch": 0.8152631578950126,
+    "KmpSearch": 0.7394947368417266,
+    "AhoCorasickSearch": 1.024292857142947,
+    "BoyerMooreSearch": 0.56523703703715,
+    "Bm4DnaDsSearch": 0.5780346153847998,
+    "Bm4DnaHmbsSearch": 0.5934307692307181,
+    "WuManberSearch": 0.5718304347822635
+   },
+   "fastest": "BoyerMooreSearch",
+   "decisionMs": 0.7694909090906467,
+   "chosen": {
+    "auto": "BoyerMooreSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.7527988713341902,
+    "ShiftOrSearch": 0.9546719555660712,
+    "KmpSearch": 1.0448044784393034,
+    "AhoCorasickSearch": 1.319148032108092,
+    "BoyerMooreSearch": 0.7434204803931641,
+    "Bm4DnaDsSearch": 0.8339209244686159,
+    "Bm4DnaHmbsSearch": 0.8225097682413272,
+    "WuManberSearch": 0.7474948327424128
+   }
+  },
+  {
+   "id": "val-39",
+   "alphabet": "binary",
+   "n": 20000,
+   "m": 24,
+   "k": 6,
+   "mSpread": 0.5,
+   "seed": 9039,
+   "shape": {
+    "n": 20000,
+    "sigma": 2,
+    "k": 6,
+    "mMin": 17,
+    "mMax": 33,
+    "mAvg": 27.5
+   },
+   "times": {
+    "HorspoolSearch": 0.6533000000003085,
+    "KmpSearch": 0.7549812500001281,
+    "AhoCorasickSearch": 0.12866930693078504,
+    "BoyerMooreSearch": 0.2989227272727559,
+    "Bm4DnaDsSearch": 0.6370173913044551,
+    "Bm4DnaHmbsSearch": 0.1598152173912398,
+    "WuManberSearch": 0.10667355371901789
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.10528108108111475,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.4251880502365696,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.2698389345967715,
+    "AhoCorasickSearch": 0.1354968322926234,
+    "BoyerMooreSearch": 0.4905744885882541,
+    "Bm4DnaDsSearch": 0.4038226901401261,
+    "Bm4DnaHmbsSearch": 0.18305327182351977,
+    "WuManberSearch": 0.12065904283541988
+   }
+  },
+  {
+   "id": "val-40",
+   "alphabet": "turkish",
+   "n": 30000,
+   "m": 150,
+   "k": 6,
+   "mSpread": 0.5,
+   "seed": 9040,
+   "shape": {
+    "n": 30000,
+    "sigma": 30,
+    "k": 6,
+    "mMin": 80,
+    "mMax": 168,
+    "mAvg": 114.16666666666667
+   },
+   "times": {
+    "HorspoolSearch": 0.12679333333327944,
+    "KmpSearch": 0.3573404761905078,
+    "AhoCorasickSearch": 0.6299464285714619,
+    "BoyerMooreSearch": 0.17749000000003434,
+    "Bm4DnaDsSearch": 0.13752264150938368,
+    "Bm4DnaHmbsSearch": 0.12005818181814075,
+    "WuManberSearch": 0.12448992248053316
+   },
+   "fastest": "Bm4DnaHmbsSearch",
+   "decisionMs": 0.15554245283021614,
+   "chosen": {
+    "auto": "Bm4DnaHmbsSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.15462024193227603,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.4208045714808727,
+    "AhoCorasickSearch": 0.4709442263451795,
+    "BoyerMooreSearch": 0.18125945727920345,
+    "Bm4DnaDsSearch": 0.1728524752473076,
+    "Bm4DnaHmbsSearch": 0.13880598719197634,
+    "WuManberSearch": 0.18152213047730292
+   }
+  },
+  {
+   "id": "val-41",
+   "alphabet": "tokens",
+   "n": 30000,
+   "m": 40,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9041,
+   "shape": {
+    "n": 30000,
+    "sigma": 1000,
+    "k": 1,
+    "mMin": 40,
+    "mMax": 40,
+    "mAvg": 40
+   },
+   "times": {
+    "HorspoolSearch": 0.09062260273979157,
+    "KmpSearch": 0.11928363636358302,
+    "AhoCorasickSearch": 0.1897608695652562,
+    "BoyerMooreSearch": 0.10786808510632948,
+    "Bm4DnaDsSearch": 0.0948132812499125,
+    "Bm4DnaHmbsSearch": 0.10502907801417433,
+    "WuManberSearch": 0.09097777777787996
+   },
+   "fastest": "HorspoolSearch",
+   "decisionMs": 0.14603445378152707,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.10959547958884795,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.15806128767390415,
+    "AhoCorasickSearch": 0.7165990529725009,
+    "BoyerMooreSearch": 0.10871740485626975,
+    "Bm4DnaDsSearch": 0.12259482797398263,
+    "Bm4DnaHmbsSearch": 0.12071059315905662,
+    "WuManberSearch": 0.10538413570320279
+   }
+  },
+  {
+   "id": "val-42",
+   "alphabet": "labels",
+   "n": 30000,
+   "m": 100,
+   "k": 2,
+   "mSpread": 0.5,
+   "seed": 9042,
+   "shape": {
+    "n": 30000,
+    "sigma": 4,
+    "k": 2,
+    "mMin": 58,
+    "mMax": 142,
+    "mAvg": 100
+   },
+   "times": {
+    "HorspoolSearch": 0.14670238095242807,
+    "KmpSearch": 0.3847170731705108,
+    "AhoCorasickSearch": 0.2181745454544646,
+    "BoyerMooreSearch": 0.16071200000005775,
+    "Bm4DnaDsSearch": 0.13740689655175117,
+    "Bm4DnaHmbsSearch": 0.10193357142852619,
+    "WuManberSearch": 0.10665405405401347
+   },
+   "fastest": "Bm4DnaHmbsSearch",
+   "decisionMs": 0.1343510000000242,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.19651888358343023,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.21174699212745293,
+    "AhoCorasickSearch": 0.20660892101128706,
+    "BoyerMooreSearch": 0.215754419669424,
+    "Bm4DnaDsSearch": 0.20392501929900592,
+    "Bm4DnaHmbsSearch": 0.1263223430172106,
+    "WuManberSearch": 0.11015166564883154
+   }
+  },
+  {
+   "id": "val-43",
+   "alphabet": "normalized",
+   "n": 200000,
+   "m": 48,
+   "k": 32,
+   "mSpread": 0.5,
+   "seed": 9043,
+   "shape": {
+    "n": 200000,
+    "sigma": 37,
+    "k": 32,
+    "mMin": 24,
+    "mMax": 72,
+    "mAvg": 45.15625
+   },
+   "times": {
+    "HorspoolSearch": 2.1013428571438584,
+    "KmpSearch": 9.484949999998207,
+    "AhoCorasickSearch": 1.9648500000002969,
+    "BoyerMooreSearch": 2.258899999998643,
+    "Bm4DnaDsSearch": 1.9709375000002183,
+    "Bm4DnaHmbsSearch": 1.765333333332415,
+    "WuManberSearch": 0.6586190476193137
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.8376368421051762,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.1559749594837894,
+    "ShiftOrSearch": null,
+    "KmpSearch": 10.979156671881857,
+    "AhoCorasickSearch": 2.007608583712085,
+    "BoyerMooreSearch": 2.435973650511314,
+    "Bm4DnaDsSearch": 2.130018381967315,
+    "Bm4DnaHmbsSearch": 2.0131974518706084,
+    "WuManberSearch": 0.8743741320750396
+   }
+  },
+  {
+   "id": "val-44",
+   "alphabet": "printable",
+   "n": 20000,
+   "m": 12,
+   "k": 2,
+   "mSpread": 0,
+   "seed": 9044,
+   "shape": {
+    "n": 20000,
+    "sigma": 95,
+    "k": 2,
+    "mMin": 12,
+    "mMax": 12,
+    "mAvg": 12
+   },
+   "times": {
+    "HorspoolSearch": 0.0891465838509214,
+    "ShiftOrSearch": 0.10665755395684559,
+    "KmpSearch": 0.1066183823528691,
+    "AhoCorasickSearch": 0.11856936936938993,
+    "BoyerMooreSearch": 0.08648764705884626,
+    "Bm4DnaDsSearch": 0.08982303030303834,
+    "Bm4DnaHmbsSearch": 0.0979660000000149,
+    "WuManberSearch": 0.0698634999999922
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.11111854304638938,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.09074110301956494,
+    "ShiftOrSearch": 0.12529643821320016,
+    "KmpSearch": 0.137154428697583,
+    "AhoCorasickSearch": 0.15912821107201822,
+    "BoyerMooreSearch": 0.09317529507851477,
+    "Bm4DnaDsSearch": 0.09776067061041038,
+    "Bm4DnaHmbsSearch": 0.09809330148542528,
+    "WuManberSearch": 0.08445399988205626
+   }
+  },
+  {
+   "id": "val-45",
+   "alphabet": "binary",
+   "n": 300000,
+   "m": 50,
+   "k": 100,
+   "mSpread": 0.5,
+   "seed": 9045,
+   "shape": {
+    "n": 300000,
+    "sigma": 2,
+    "k": 100,
+    "mMin": 25,
+    "mMax": 75,
+    "mAvg": 47.96
+   },
+   "times": {
+    "HorspoolSearch": 171.0170999999973,
+    "KmpSearch": 170.95299999999406,
+    "AhoCorasickSearch": 2.0846571428555762,
+    "BoyerMooreSearch": 55.831099999995786,
+    "Bm4DnaDsSearch": 170.49809999999707,
+    "Bm4DnaHmbsSearch": 15.24840000000404,
+    "WuManberSearch": 1.710922222222305
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.1466714285717379,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 89.19646252104756,
+    "ShiftOrSearch": null,
+    "KmpSearch": 49.08075406705827,
+    "AhoCorasickSearch": 2.123410846885083,
+    "BoyerMooreSearch": 104.7745577227102,
+    "Bm4DnaDsSearch": 81.37563930137684,
+    "Bm4DnaHmbsSearch": 16.216621891312773,
+    "WuManberSearch": 1.7227015320810413
+   }
+  },
+  {
+   "id": "val-46",
+   "alphabet": "turkish",
+   "n": 200000,
+   "m": 40,
+   "k": 200,
+   "mSpread": 0,
+   "seed": 9046,
+   "shape": {
+    "n": 200000,
+    "sigma": 30,
+    "k": 200,
+    "mMin": 40,
+    "mMax": 40,
+    "mAvg": 40
+   },
+   "times": {
+    "HorspoolSearch": 10.807349999995495,
+    "KmpSearch": 59.481299999999464,
+    "AhoCorasickSearch": 5.058933333333698,
+    "BoyerMooreSearch": 12.261550000002899,
+    "Bm4DnaDsSearch": 11.551050000001851,
+    "Bm4DnaHmbsSearch": 7.972750000000815,
+    "WuManberSearch": 0.7744473684211507
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.0341647058829788,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 11.40687991705309,
+    "ShiftOrSearch": null,
+    "KmpSearch": 64.774706988498,
+    "AhoCorasickSearch": 4.529995739972096,
+    "BoyerMooreSearch": 13.5089135092028,
+    "Bm4DnaDsSearch": 10.63418565750538,
+    "Bm4DnaHmbsSearch": 9.44194298263222,
+    "WuManberSearch": 0.8627203332157167
+   }
+  },
+  {
+   "id": "val-47",
+   "alphabet": "tokens",
+   "n": 200000,
+   "m": 48,
+   "k": 1000,
+   "mSpread": 0.5,
+   "seed": 9047,
+   "shape": {
+    "n": 200000,
+    "sigma": 1000,
+    "k": 1000,
+    "mMin": 24,
+    "mMax": 72,
+    "mAvg": 48.609
+   },
+   "times": {
+    "HorspoolSearch": 24.39629999999306,
+    "KmpSearch": 227.01600000000326,
+    "AhoCorasickSearch": 278.08310000000347,
+    "BoyerMooreSearch": 29.879899999999907,
+    "Bm4DnaDsSearch": 23.252600000007078,
+    "Bm4DnaHmbsSearch": 30.310599999997066,
+    "WuManberSearch": 1.663966666667774
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.1414999999999833,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 26.448231978917796,
+    "ShiftOrSearch": null,
+    "KmpSearch": 321.288582539416,
+    "AhoCorasickSearch": 636.9178769413237,
+    "BoyerMooreSearch": 32.42382996240208,
+    "Bm4DnaDsSearch": 24.894578245834943,
+    "Bm4DnaHmbsSearch": 27.826967358180976,
+    "WuManberSearch": 1.0107393208592712
+   }
+  },
+  {
+   "id": "val-48",
+   "alphabet": "labels",
+   "n": 200000,
+   "m": 6,
+   "k": 24,
+   "mSpread": 0,
+   "seed": 9048,
+   "shape": {
+    "n": 200000,
+    "sigma": 4,
+    "k": 24,
+    "mMin": 6,
+    "mMax": 6,
+    "mAvg": 6
+   },
+   "times": {
+    "HorspoolSearch": 12.159249999996973,
+    "ShiftOrSearch": 6.470100000001064,
+    "KmpSearch": 22.296300000001793,
+    "AhoCorasickSearch": 1.374200000000061,
+    "BoyerMooreSearch": 14.87955000000511,
+    "Bm4DnaDsSearch": 12.35899999999674,
+    "Bm4DnaHmbsSearch": 9.729799999993702,
+    "WuManberSearch": 2.0047000000013213
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 1.430708333333314,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 9.726938932764606,
+    "ShiftOrSearch": 7.789160630279088,
+    "KmpSearch": 9.462649263565647,
+    "AhoCorasickSearch": 1.4480194935670092,
+    "BoyerMooreSearch": 11.352541118862693,
+    "Bm4DnaDsSearch": 8.998034362161837,
+    "Bm4DnaHmbsSearch": 9.884365771947047,
+    "WuManberSearch": 1.9296191556018945
+   }
+  },
+  {
+   "id": "val-49",
+   "alphabet": "normalized",
+   "n": 30000,
+   "m": 12,
+   "k": 24,
+   "mSpread": 0,
+   "seed": 9049,
+   "shape": {
+    "n": 30000,
+    "sigma": 37,
+    "k": 24,
+    "mMin": 12,
+    "mMax": 12,
+    "mAvg": 12
+   },
+   "times": {
+    "HorspoolSearch": 0.48295357142861967,
+    "ShiftOrSearch": 1.105826666666932,
+    "KmpSearch": 1.1889615384615564,
+    "AhoCorasickSearch": 0.41284444444479756,
+    "BoyerMooreSearch": 0.5737166666664658,
+    "Bm4DnaDsSearch": 0.4232677419354478,
+    "Bm4DnaHmbsSearch": 0.4982333333333372,
+    "WuManberSearch": 0.1249861386139234
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.14846111111115465,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.5179842016266569,
+    "ShiftOrSearch": 1.1490642177776378,
+    "KmpSearch": 1.2669503068966157,
+    "AhoCorasickSearch": 0.33651009601698145,
+    "BoyerMooreSearch": 0.5962827591612648,
+    "Bm4DnaDsSearch": 0.4974197832336505,
+    "Bm4DnaHmbsSearch": 0.5380875337717875,
+    "WuManberSearch": 0.13349010896078167
+   }
+  },
+  {
+   "id": "val-50",
+   "alphabet": "printable",
+   "n": 50000,
+   "m": 10,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9050,
+   "shape": {
+    "n": 50000,
+    "sigma": 95,
+    "k": 32,
+    "mMin": 10,
+    "mMax": 10,
+    "mAvg": 10
+   },
+   "times": {
+    "HorspoolSearch": 0.9139533333334839,
+    "ShiftOrSearch": 2.3312571428583135,
+    "KmpSearch": 2.1184250000005704,
+    "AhoCorasickSearch": 0.6337136363634438,
+    "BoyerMooreSearch": 1.123308333333019,
+    "Bm4DnaDsSearch": 0.9102647058830103,
+    "Bm4DnaHmbsSearch": 1.1107714285712322,
+    "WuManberSearch": 0.1914807692308573
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.21688999999993636,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.1650823692613599,
+    "ShiftOrSearch": 2.481940114516092,
+    "KmpSearch": 2.7432761609607414,
+    "AhoCorasickSearch": 0.7238797923765594,
+    "BoyerMooreSearch": 1.3436455667649794,
+    "Bm4DnaDsSearch": 1.1010420938523644,
+    "Bm4DnaHmbsSearch": 1.2142314696003411,
+    "WuManberSearch": 0.23219250694565635
+   }
+  },
+  {
+   "id": "val-51",
+   "alphabet": "binary",
+   "n": 20000,
+   "m": 20,
+   "k": 200,
+   "mSpread": 0,
+   "seed": 9051,
+   "shape": {
+    "n": 20000,
+    "sigma": 2,
+    "k": 200,
+    "mMin": 20,
+    "mMax": 20,
+    "mAvg": 20
+   },
+   "times": {
+    "HorspoolSearch": 22.60109999999986,
+    "ShiftOrSearch": 5.221450000000914,
+    "KmpSearch": 23.380000000004657,
+    "AhoCorasickSearch": 0.5246318181816605,
+    "BoyerMooreSearch": 10.484300000003714,
+    "Bm4DnaDsSearch": 21.756600000007893,
+    "Bm4DnaHmbsSearch": 4.763249999999971,
+    "WuManberSearch": 0.2412699999997858
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.5102360000001499,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 11.895414416676722,
+    "ShiftOrSearch": 6.016136505315113,
+    "KmpSearch": 6.598360471078823,
+    "AhoCorasickSearch": 0.2862720267623836,
+    "BoyerMooreSearch": 14.089561328984612,
+    "Bm4DnaDsSearch": 10.88609753922728,
+    "Bm4DnaHmbsSearch": 5.0214600843776696,
+    "WuManberSearch": 0.4261326631050947
+   }
+  },
+  {
+   "id": "val-52",
+   "alphabet": "turkish",
+   "n": 700000,
+   "m": 48,
+   "k": 1000,
+   "mSpread": 0,
+   "seed": 9052,
+   "shape": {
+    "n": 700000,
+    "sigma": 30,
+    "k": 1000,
+    "mMin": 48,
+    "mMax": 48,
+    "mAvg": 48
+   },
+   "times": {
+    "HorspoolSearch": 183.74460000000545,
+    "KmpSearch": 1026.106999999989,
+    "AhoCorasickSearch": 39.99360000000161,
+    "BoyerMooreSearch": 190.88120000000345,
+    "Bm4DnaDsSearch": 162.10890000000654,
+    "Bm4DnaHmbsSearch": 106.90950000000885,
+    "WuManberSearch": 3.6159400000004096
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 3.4610666666655256,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 173.90169391810025,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1120.0303827520065,
+    "AhoCorasickSearch": 23.95421362002407,
+    "BoyerMooreSearch": 205.3673493907533,
+    "Bm4DnaDsSearch": 159.29874539717983,
+    "Bm4DnaHmbsSearch": 126.2468767834495,
+    "WuManberSearch": 3.0981949481430586
+   }
+  },
+  {
+   "id": "val-53",
+   "alphabet": "tokens",
+   "n": 20000,
+   "m": 80,
+   "k": 100,
+   "mSpread": 0,
+   "seed": 9053,
+   "shape": {
+    "n": 20000,
+    "sigma": 1000,
+    "k": 100,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 0.35245806451571443,
+    "KmpSearch": 2.424700000000788,
+    "AhoCorasickSearch": 39.907600000005914,
+    "BoyerMooreSearch": 0.4697500000002037,
+    "Bm4DnaDsSearch": 0.4654875000001084,
+    "Bm4DnaHmbsSearch": 0.410806451612922,
+    "WuManberSearch": 0.24091232876725532
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.29656363636373,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.39011122996230535,
+    "ShiftOrSearch": null,
+    "KmpSearch": 3.5537544481778616,
+    "AhoCorasickSearch": 104.73971118959051,
+    "BoyerMooreSearch": 0.6876721157447342,
+    "Bm4DnaDsSearch": 0.48525556058598907,
+    "Bm4DnaHmbsSearch": 0.3971490757258044,
+    "WuManberSearch": 0.2780932737527715
+   }
+  },
+  {
+   "id": "val-54",
+   "alphabet": "labels",
+   "n": 700000,
+   "m": 50,
+   "k": 1,
+   "mSpread": 0.5,
+   "seed": 9054,
+   "shape": {
+    "n": 700000,
+    "sigma": 4,
+    "k": 1,
+    "mMin": 37,
+    "mMax": 37,
+    "mAvg": 37
+   },
+   "times": {
+    "HorspoolSearch": 2.887766666666721,
+    "KmpSearch": 4.953300000001036,
+    "AhoCorasickSearch": 3.7706000000005586,
+    "BoyerMooreSearch": 2.7955666666675825,
+    "Bm4DnaDsSearch": 2.9316999999980906,
+    "Bm4DnaHmbsSearch": 2.241371428573205,
+    "WuManberSearch": 2.028737500000716
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.482900000000622,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 3.4609733541657373,
+    "ShiftOrSearch": null,
+    "KmpSearch": 3.6552201398727635,
+    "AhoCorasickSearch": 4.518481853019115,
+    "BoyerMooreSearch": 3.5717403685630273,
+    "Bm4DnaDsSearch": 3.66911504204186,
+    "Bm4DnaHmbsSearch": 2.933367398635601,
+    "WuManberSearch": 2.519472753373884
+   }
+  },
+  {
+   "id": "val-55",
+   "alphabet": "normalized",
+   "n": 50000,
+   "m": 150,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9055,
+   "shape": {
+    "n": 50000,
+    "sigma": 37,
+    "k": 3,
+    "mMin": 150,
+    "mMax": 150,
+    "mAvg": 150
+   },
+   "times": {
+    "HorspoolSearch": 0.1609488095236884,
+    "KmpSearch": 0.352133333333075,
+    "AhoCorasickSearch": 0.5033517241375601,
+    "BoyerMooreSearch": 0.16824578313249533,
+    "Bm4DnaDsSearch": 0.16896097560976803,
+    "Bm4DnaHmbsSearch": 0.17914148936177568,
+    "WuManberSearch": 0.15390114942528763
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.2378489795920192,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.20742105385614787,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.4368859839632848,
+    "AhoCorasickSearch": 0.5459580301503367,
+    "BoyerMooreSearch": 0.2219612629863502,
+    "Bm4DnaDsSearch": 0.23237828078133738,
+    "Bm4DnaHmbsSearch": 0.20724339735993558,
+    "WuManberSearch": 0.172889767105122
+   }
+  },
+  {
+   "id": "val-56",
+   "alphabet": "printable",
+   "n": 500000,
+   "m": 20,
+   "k": 12,
+   "mSpread": 0.5,
+   "seed": 9056,
+   "shape": {
+    "n": 500000,
+    "sigma": 95,
+    "k": 12,
+    "mMin": 11,
+    "mMax": 29,
+    "mAvg": 23.666666666666668
+   },
+   "times": {
+    "HorspoolSearch": 2.7589166666657547,
+    "ShiftOrSearch": 8.459199999997509,
+    "KmpSearch": 8.70394999999553,
+    "AhoCorasickSearch": 2.8485249999976077,
+    "BoyerMooreSearch": 3.02949999999934,
+    "Bm4DnaDsSearch": 2.973960000000079,
+    "Bm4DnaHmbsSearch": 3.099900000001071,
+    "WuManberSearch": 1.775977777777977
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.692166666666809,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 3.417291146494658,
+    "ShiftOrSearch": 10.302171280260259,
+    "KmpSearch": 11.386782034057175,
+    "AhoCorasickSearch": 3.581917862784693,
+    "BoyerMooreSearch": 3.670031187173238,
+    "Bm4DnaDsSearch": 3.483708346378611,
+    "Bm4DnaHmbsSearch": 3.6339893455399204,
+    "WuManberSearch": 2.0270567166348044
+   }
+  },
+  {
+   "id": "val-57",
+   "alphabet": "binary",
+   "n": 500000,
+   "m": 50,
+   "k": 100,
+   "mSpread": 0.5,
+   "seed": 9057,
+   "shape": {
+    "n": 500000,
+    "sigma": 2,
+    "k": 100,
+    "mMin": 25,
+    "mMax": 75,
+    "mAvg": 51.36
+   },
+   "times": {
+    "HorspoolSearch": 279.86119999999937,
+    "KmpSearch": 284.1322999999975,
+    "AhoCorasickSearch": 3.375380000000587,
+    "BoyerMooreSearch": 88.1765999999916,
+    "Bm4DnaDsSearch": 254.25370000000112,
+    "Bm4DnaHmbsSearch": 21.08039999999164,
+    "WuManberSearch": 2.36412857142776
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.8220125000007101,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 148.6007776106973,
+    "ShiftOrSearch": null,
+    "KmpSearch": 81.69645276949129,
+    "AhoCorasickSearch": 3.4270397120560383,
+    "BoyerMooreSearch": 174.4668314584366,
+    "Bm4DnaDsSearch": 135.5302037119354,
+    "Bm4DnaHmbsSearch": 25.193737439908034,
+    "WuManberSearch": 2.7017465496388473
+   }
+  },
+  {
+   "id": "val-58",
+   "alphabet": "turkish",
+   "n": 50000,
+   "m": 10,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9058,
+   "shape": {
+    "n": 50000,
+    "sigma": 30,
+    "k": 32,
+    "mMin": 10,
+    "mMax": 10,
+    "mAvg": 10
+   },
+   "times": {
+    "HorspoolSearch": 1.002593333333304,
+    "ShiftOrSearch": 2.048812500001077,
+    "KmpSearch": 2.447599999999511,
+    "AhoCorasickSearch": 0.45282580645195386,
+    "BoyerMooreSearch": 1.2134307692310988,
+    "Bm4DnaDsSearch": 0.9858187500003623,
+    "Bm4DnaHmbsSearch": 1.1960384615376825,
+    "WuManberSearch": 0.19005070422537473
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.21985744680847696,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.2693538805241629,
+    "ShiftOrSearch": 2.481940114516595,
+    "KmpSearch": 2.7432761609632417,
+    "AhoCorasickSearch": 0.4521637384631408,
+    "BoyerMooreSearch": 1.4662066895616521,
+    "Bm4DnaDsSearch": 1.1958281517451625,
+    "Bm4DnaHmbsSearch": 1.32234175719757,
+    "WuManberSearch": 0.2440570026071033
+   }
+  },
+  {
+   "id": "val-59",
+   "alphabet": "tokens",
+   "n": 50000,
+   "m": 3,
+   "k": 12,
+   "mSpread": 0.5,
+   "seed": 9059,
+   "shape": {
+    "n": 50000,
+    "sigma": 1000,
+    "k": 12,
+    "mMin": 2,
+    "mMax": 5,
+    "mAvg": 3.5833333333333335
+   },
+   "times": {
+    "HorspoolSearch": 0.9631687499995678,
+    "ShiftOrSearch": 0.8618055555553938,
+    "KmpSearch": 0.8178526315789082,
+    "AhoCorasickSearch": 0.29232444444431976,
+    "BoyerMooreSearch": 1.1215785714282123,
+    "Bm4DnaDsSearch": 0.8485000000000582,
+    "Bm4DnaHmbsSearch": 1.0877214285719674,
+    "WuManberSearch": 0.48295937500006403
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 0.21648030303031468,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.1589026310635777,
+    "ShiftOrSearch": 1.0309484024261804,
+    "KmpSearch": 1.1392137260362418,
+    "AhoCorasickSearch": 0.884858492398975,
+    "BoyerMooreSearch": 1.327956021395935,
+    "Bm4DnaDsSearch": 1.091418225861371,
+    "Bm4DnaHmbsSearch": 1.2230197261012925,
+    "WuManberSearch": 0.3381024056236352
+   }
+  },
+  {
+   "id": "val-60",
+   "alphabet": "labels",
+   "n": 700000,
+   "m": 48,
+   "k": 32,
+   "mSpread": 0.5,
+   "seed": 9060,
+   "shape": {
+    "n": 700000,
+    "sigma": 4,
+    "k": 32,
+    "mMin": 24,
+    "mMax": 72,
+    "mAvg": 47.71875
+   },
+   "times": {
+    "HorspoolSearch": 52.03819999999541,
+    "KmpSearch": 98.10929999999644,
+    "AhoCorasickSearch": 3.911674999999377,
+    "BoyerMooreSearch": 41.92519999999786,
+    "Bm4DnaDsSearch": 46.193900000012945,
+    "Bm4DnaHmbsSearch": 7.725800000000163,
+    "WuManberSearch": 2.429771428572297
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.8659666666668877,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 35.33814033617175,
+    "ShiftOrSearch": null,
+    "KmpSearch": 38.29755329103316,
+    "AhoCorasickSearch": 4.6158032280988035,
+    "BoyerMooreSearch": 41.085604406451814,
+    "Bm4DnaDsSearch": 32.66800476320016,
+    "Bm4DnaHmbsSearch": 9.167933546840306,
+    "WuManberSearch": 2.8508493469978946
+   }
+  },
+  {
+   "id": "val-61",
+   "alphabet": "normalized",
+   "n": 50000,
+   "m": 48,
+   "k": 6,
+   "mSpread": 0.5,
+   "seed": 9061,
+   "shape": {
+    "n": 50000,
+    "sigma": 37,
+    "k": 6,
+    "mMin": 25,
+    "mMax": 58,
+    "mAvg": 40.666666666666664
+   },
+   "times": {
+    "HorspoolSearch": 0.20927258064517856,
+    "KmpSearch": 0.568266666666777,
+    "AhoCorasickSearch": 0.42450645161255623,
+    "BoyerMooreSearch": 0.22310746268655082,
+    "Bm4DnaDsSearch": 0.21498032786895818,
+    "Bm4DnaHmbsSearch": 0.20601690140848777,
+    "WuManberSearch": 0.1516666666666424
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.20239027777764326,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.24974919368372736,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.6684154746727059,
+    "AhoCorasickSearch": 0.44369873832163836,
+    "BoyerMooreSearch": 0.26544775424721645,
+    "Bm4DnaDsSearch": 0.26787647153452054,
+    "Bm4DnaHmbsSearch": 0.2659433199908356,
+    "WuManberSearch": 0.18648088415184558
+   }
+  },
+  {
+   "id": "val-62",
+   "alphabet": "printable",
+   "n": 300000,
+   "m": 10,
+   "k": 2,
+   "mSpread": 0,
+   "seed": 9062,
+   "shape": {
+    "n": 300000,
+    "sigma": 95,
+    "k": 2,
+    "mMin": 10,
+    "mMax": 10,
+    "mAvg": 10
+   },
+   "times": {
+    "HorspoolSearch": 1.0283933333334667,
+    "ShiftOrSearch": 1.4553454545450883,
+    "KmpSearch": 1.505172727272359,
+    "AhoCorasickSearch": 1.5322199999995063,
+    "BoyerMooreSearch": 1.083078571428944,
+    "Bm4DnaDsSearch": 1.0621749999991152,
+    "Bm4DnaHmbsSearch": 1.2273615384608723,
+    "WuManberSearch": 0.9656125000001339
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.0122799999992518,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.412305042326632,
+    "ShiftOrSearch": 1.8624169415425205,
+    "KmpSearch": 2.04484558480785,
+    "AhoCorasickSearch": 1.9605379737848323,
+    "BoyerMooreSearch": 1.4474543671911517,
+    "Bm4DnaDsSearch": 1.5080245287368133,
+    "Bm4DnaHmbsSearch": 1.5272684554840215,
+    "WuManberSearch": 1.2947103921281298
+   }
+  },
+  {
+   "id": "val-63",
+   "alphabet": "binary",
+   "n": 700000,
+   "m": 48,
+   "k": 12,
+   "mSpread": 0,
+   "seed": 9063,
+   "shape": {
+    "n": 700000,
+    "sigma": 2,
+    "k": 12,
+    "mMin": 48,
+    "mMax": 48,
+    "mAvg": 48
+   },
+   "times": {
+    "HorspoolSearch": 43.96379999999772,
+    "KmpSearch": 48.56789999999455,
+    "AhoCorasickSearch": 3.703979999999865,
+    "BoyerMooreSearch": 18.913300000000163,
+    "Bm4DnaDsSearch": 39.52169999999751,
+    "Bm4DnaHmbsSearch": 5.151100000002771,
+    "WuManberSearch": 2.268242857142468
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.4325500000001434,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 27.099847454577294,
+    "ShiftOrSearch": null,
+    "KmpSearch": 15.948038373781149,
+    "AhoCorasickSearch": 4.538638481445437,
+    "BoyerMooreSearch": 31.373356494867114,
+    "Bm4DnaDsSearch": 25.16538497155713,
+    "Bm4DnaHmbsSearch": 6.827458719424499,
+    "WuManberSearch": 2.8442941829958968
+   }
+  },
+  {
+   "id": "val-64",
+   "alphabet": "turkish",
+   "n": 300000,
+   "m": 80,
+   "k": 1000,
+   "mSpread": 0.5,
+   "seed": 9064,
+   "shape": {
+    "n": 300000,
+    "sigma": 30,
+    "k": 1000,
+    "mMin": 40,
+    "mMax": 120,
+    "mAvg": 80.535
+   },
+   "times": {
+    "HorspoolSearch": 65.31179999999586,
+    "KmpSearch": 441.04320000000007,
+    "AhoCorasickSearch": 52.49199999999837,
+    "BoyerMooreSearch": 74.43219999999565,
+    "Bm4DnaDsSearch": 61.89409999999043,
+    "Bm4DnaHmbsSearch": 34.56899999998859,
+    "WuManberSearch": 2.450183333331855
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 3.012850000001587,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 65.53076551942016,
+    "ShiftOrSearch": null,
+    "KmpSearch": 482.212422486084,
+    "AhoCorasickSearch": 34.549024975552804,
+    "BoyerMooreSearch": 79.2616580515966,
+    "Bm4DnaDsSearch": 60.9582068386957,
+    "Bm4DnaHmbsSearch": 34.278616445716516,
+    "WuManberSearch": 1.639571222500415
+   }
+  },
+  {
+   "id": "val-65",
+   "alphabet": "tokens",
+   "n": 500000,
+   "m": 80,
+   "k": 24,
+   "mSpread": 0,
+   "seed": 9065,
+   "shape": {
+    "n": 500000,
+    "sigma": 1000,
+    "k": 24,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 2.1591714285709065,
+    "KmpSearch": 14.830749999993714,
+    "AhoCorasickSearch": 10.073949999998149,
+    "BoyerMooreSearch": 2.410814285712799,
+    "Bm4DnaDsSearch": 2.323557142856381,
+    "Bm4DnaHmbsSearch": 2.6129333333325726,
+    "WuManberSearch": 1.7965333333332738
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.734677777777607,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.693870080758669,
+    "ShiftOrSearch": null,
+    "KmpSearch": 21.010203049779935,
+    "AhoCorasickSearch": 28.332324201440063,
+    "BoyerMooreSearch": 2.869483648164393,
+    "Bm4DnaDsSearch": 2.8497577377043943,
+    "Bm4DnaHmbsSearch": 2.8907283998566204,
+    "WuManberSearch": 1.8473346776158712
+   }
+  },
+  {
+   "id": "val-66",
+   "alphabet": "labels",
+   "n": 30000,
+   "m": 3,
+   "k": 100,
+   "mSpread": 0,
+   "seed": 9066,
+   "shape": {
+    "n": 30000,
+    "sigma": 4,
+    "k": 100,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 15.811800000010408,
+    "ShiftOrSearch": 10.437850000002072,
+    "KmpSearch": 18.941599999991013,
+    "AhoCorasickSearch": 4.9354999999995925,
+    "BoyerMooreSearch": 19.35429999999178,
+    "Bm4DnaDsSearch": 15.528100000010454,
+    "Bm4DnaHmbsSearch": 18.73430000001099,
+    "WuManberSearch": 5.463666666662903
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 0.16099895833334207,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 26.10058366676813,
+    "ShiftOrSearch": 13.133422252204,
+    "KmpSearch": 48.15791392774284,
+    "AhoCorasickSearch": 6.145277765308107,
+    "BoyerMooreSearch": 32.95452987066362,
+    "Bm4DnaDsSearch": 23.93656744702071,
+    "Bm4DnaHmbsSearch": 22.14150567848234,
+    "WuManberSearch": 7.1623033894406545
+   }
+  },
+  {
+   "id": "val-67",
+   "alphabet": "normalized",
+   "n": 500000,
+   "m": 24,
+   "k": 3,
+   "mSpread": 0.5,
+   "seed": 9067,
+   "shape": {
+    "n": 500000,
+    "sigma": 37,
+    "k": 3,
+    "mMin": 29,
+    "mMax": 32,
+    "mAvg": 31
+   },
+   "times": {
+    "HorspoolSearch": 1.6966222222221807,
+    "ShiftOrSearch": 3.036939999999595,
+    "KmpSearch": 3.3111800000013316,
+    "AhoCorasickSearch": 2.736249999999321,
+    "BoyerMooreSearch": 1.683933333333698,
+    "Bm4DnaDsSearch": 1.9442000000013246,
+    "Bm4DnaHmbsSearch": 1.8078111111115303,
+    "WuManberSearch": 1.5459300000002258
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.769322222223208,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.155550614380778,
+    "ShiftOrSearch": 3.8255755557965117,
+    "KmpSearch": 4.207215672557769,
+    "AhoCorasickSearch": 3.271926422430195,
+    "BoyerMooreSearch": 2.1811667771230865,
+    "Bm4DnaDsSearch": 2.3339843636244098,
+    "Bm4DnaHmbsSearch": 2.3187861530920504,
+    "WuManberSearch": 1.7790880057139544
+   }
+  },
+  {
+   "id": "val-68",
+   "alphabet": "printable",
+   "n": 30000,
+   "m": 80,
+   "k": 32,
+   "mSpread": 0.5,
+   "seed": 9068,
+   "shape": {
+    "n": 30000,
+    "sigma": 95,
+    "k": 32,
+    "mMin": 41,
+    "mMax": 120,
+    "mAvg": 77.34375
+   },
+   "times": {
+    "HorspoolSearch": 0.21470925925920406,
+    "KmpSearch": 1.2751000000001416,
+    "AhoCorasickSearch": 2.0416499999992084,
+    "BoyerMooreSearch": 0.26100392156855806,
+    "Bm4DnaDsSearch": 0.2445603448276384,
+    "Bm4DnaHmbsSearch": 0.5225181818183928,
+    "WuManberSearch": 0.1274261261262566
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.26276511627893767,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.26237229353910796,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1.7297037572599947,
+    "AhoCorasickSearch": 3.2973790342803238,
+    "BoyerMooreSearch": 0.362360309245356,
+    "Bm4DnaDsSearch": 0.29669149531755634,
+    "Bm4DnaHmbsSearch": 0.6692553459925512,
+    "WuManberSearch": 0.1356654010843085
+   }
+  },
+  {
+   "id": "val-69",
+   "alphabet": "binary",
+   "n": 300000,
+   "m": 40,
+   "k": 200,
+   "mSpread": 0.5,
+   "seed": 9069,
+   "shape": {
+    "n": 300000,
+    "sigma": 2,
+    "k": 200,
+    "mMin": 20,
+    "mMax": 60,
+    "mAvg": 40.455
+   },
+   "times": {
+    "HorspoolSearch": 331.5480999999854,
+    "KmpSearch": 342.8087999999989,
+    "AhoCorasickSearch": 3.148419999994803,
+    "BoyerMooreSearch": 117.7269999999844,
+    "Bm4DnaDsSearch": 329.9927000000025,
+    "Bm4DnaHmbsSearch": 30.528900000004796,
+    "WuManberSearch": 2.016750000002503
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.4762199999997392,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 177.31874433776503,
+    "ShiftOrSearch": null,
+    "KmpSearch": 97.01868247339817,
+    "AhoCorasickSearch": 2.2525412938773197,
+    "BoyerMooreSearch": 208.45404424060095,
+    "Bm4DnaDsSearch": 161.52919972139367,
+    "Bm4DnaHmbsSearch": 36.78633599412697,
+    "WuManberSearch": 2.1187452852673707
+   }
+  },
+  {
+   "id": "val-70",
+   "alphabet": "turkish",
+   "n": 700000,
+   "m": 40,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9070,
+   "shape": {
+    "n": 700000,
+    "sigma": 30,
+    "k": 3,
+    "mMin": 40,
+    "mMax": 40,
+    "mAvg": 40
+   },
+   "times": {
+    "HorspoolSearch": 2.553833333333993,
+    "KmpSearch": 5.544566666668591,
+    "AhoCorasickSearch": 3.97845000000234,
+    "BoyerMooreSearch": 2.6602833333357316,
+    "Bm4DnaDsSearch": 2.792166666666162,
+    "Bm4DnaHmbsSearch": 2.5587166666664416,
+    "WuManberSearch": 2.119699999999284
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.9452333333319984,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.988954883017619,
+    "ShiftOrSearch": null,
+    "KmpSearch": 5.889727816211201,
+    "AhoCorasickSearch": 4.564660518912632,
+    "BoyerMooreSearch": 3.019452814845347,
+    "Bm4DnaDsSearch": 3.2412359624213734,
+    "Bm4DnaHmbsSearch": 3.11571637902144,
+    "WuManberSearch": 2.452701885448131
+   }
+  },
+  {
+   "id": "val-71",
+   "alphabet": "tokens",
+   "n": 500000,
+   "m": 48,
+   "k": 12,
+   "mSpread": 0.5,
+   "seed": 9071,
+   "shape": {
+    "n": 500000,
+    "sigma": 1000,
+    "k": 12,
+    "mMin": 33,
+    "mMax": 72,
+    "mAvg": 52.416666666666664
+   },
+   "times": {
+    "HorspoolSearch": 2.036012500000652,
+    "KmpSearch": 8.182850000011967,
+    "AhoCorasickSearch": 5.019549999997253,
+    "BoyerMooreSearch": 2.0627874999991036,
+    "Bm4DnaDsSearch": 2.0323499999976775,
+    "Bm4DnaHmbsSearch": 2.215512499999022,
+    "WuManberSearch": 1.6138599999976577
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.7292000000015832,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.4403596450435865,
+    "ShiftOrSearch": null,
+    "KmpSearch": 11.399436274502127,
+    "AhoCorasickSearch": 11.450775594311757,
+    "BoyerMooreSearch": 2.532236561268533,
+    "Bm4DnaDsSearch": 2.600636910515089,
+    "Bm4DnaHmbsSearch": 2.637684471336253,
+    "WuManberSearch": 1.843875883927801
+   }
+  },
+  {
+   "id": "val-72",
+   "alphabet": "labels",
+   "n": 700000,
+   "m": 10,
+   "k": 2,
+   "mSpread": 0,
+   "seed": 9072,
+   "shape": {
+    "n": 700000,
+    "sigma": 4,
+    "k": 2,
+    "mMin": 10,
+    "mMax": 10,
+    "mAvg": 10
+   },
+   "times": {
+    "HorspoolSearch": 4.074549999997544,
+    "ShiftOrSearch": 4.347874999999476,
+    "KmpSearch": 7.783050000012736,
+    "AhoCorasickSearch": 3.8271999999997206,
+    "BoyerMooreSearch": 4.994466666675483,
+    "Bm4DnaDsSearch": 4.442200000000109,
+    "Bm4DnaHmbsSearch": 3.5139399999985472,
+    "WuManberSearch": 2.7494000000006054
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.456850000002305,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 4.611005957372462,
+    "ShiftOrSearch": 4.344551892015087,
+    "KmpSearch": 4.771560401249486,
+    "AhoCorasickSearch": 4.517540449503396,
+    "BoyerMooreSearch": 4.923041037065513,
+    "Bm4DnaDsSearch": 4.714289925102626,
+    "Bm4DnaHmbsSearch": 4.517490379701897,
+    "WuManberSearch": 3.459008152039157
+   }
+  },
+  {
+   "id": "val-73",
+   "alphabet": "normalized",
+   "n": 200000,
+   "m": 100,
+   "k": 2,
+   "mSpread": 0.5,
+   "seed": 9073,
+   "shape": {
+    "n": 200000,
+    "sigma": 37,
+    "k": 2,
+    "mMin": 55,
+    "mMax": 77,
+    "mAvg": 66
+   },
+   "times": {
+    "HorspoolSearch": 0.7117318181818436,
+    "KmpSearch": 1.1134714285705871,
+    "AhoCorasickSearch": 1.1547923076924724,
+    "BoyerMooreSearch": 0.582704347826581,
+    "Bm4DnaDsSearch": 0.592164000000339,
+    "Bm4DnaHmbsSearch": 0.5821807692308749,
+    "WuManberSearch": 0.5380964285712773
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.7058000000000572,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.7737862603599731,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1.3675829595321929,
+    "AhoCorasickSearch": 1.3558296993864498,
+    "BoyerMooreSearch": 0.7714047262057773,
+    "Bm4DnaDsSearch": 0.8545755996638809,
+    "Bm4DnaHmbsSearch": 0.8184571261595684,
+    "WuManberSearch": 0.6859190965799897
+   }
+  },
+  {
+   "id": "val-74",
+   "alphabet": "printable",
+   "n": 50000,
+   "m": 100,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9074,
+   "shape": {
+    "n": 50000,
+    "sigma": 95,
+    "k": 32,
+    "mMin": 100,
+    "mMax": 100,
+    "mAvg": 100
+   },
+   "times": {
+    "HorspoolSearch": 0.3163899999994707,
+    "KmpSearch": 2.142324999997072,
+    "AhoCorasickSearch": 3.5411000000021886,
+    "BoyerMooreSearch": 0.3891421052631861,
+    "Bm4DnaDsSearch": 0.3408952380947691,
+    "Bm4DnaHmbsSearch": 0.6856136363639962,
+    "WuManberSearch": 0.1890381578946529
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.3084687500004293,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.39238693211687503,
+    "ShiftOrSearch": null,
+    "KmpSearch": 2.8489115594577297,
+    "AhoCorasickSearch": 4.335613185937943,
+    "BoyerMooreSearch": 0.5230210660327572,
+    "Bm4DnaDsSearch": 0.44029170508796134,
+    "Bm4DnaHmbsSearch": 0.7767019656191206,
+    "WuManberSearch": 0.20994780768687368
+   }
+  },
+  {
+   "id": "val-75",
+   "alphabet": "binary",
+   "n": 30000,
+   "m": 80,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9075,
+   "shape": {
+    "n": 30000,
+    "sigma": 2,
+    "k": 1,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 0.2703686274511639,
+    "KmpSearch": 0.26160000000000483,
+    "AhoCorasickSearch": 0.19549154929577334,
+    "BoyerMooreSearch": 0.10361652173906687,
+    "Bm4DnaDsSearch": 0.25417692307662665,
+    "Bm4DnaHmbsSearch": 0.09885465116294231,
+    "WuManberSearch": 0.10416933333326597
+   },
+   "fastest": "Bm4DnaHmbsSearch",
+   "decisionMs": 0.15949999999997783,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.19399933473202555,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.15952844598636232,
+    "AhoCorasickSearch": 0.19668083442597653,
+    "BoyerMooreSearch": 0.20914274111614864,
+    "Bm4DnaDsSearch": 0.1998990925015292,
+    "Bm4DnaHmbsSearch": 0.13461062804951157,
+    "WuManberSearch": 0.12393930533287376
+   }
+  },
+  {
+   "id": "val-76",
+   "alphabet": "turkish",
+   "n": 20000,
+   "m": 3,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9076,
+   "shape": {
+    "n": 20000,
+    "sigma": 30,
+    "k": 3,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 0.15523750000019473,
+    "ShiftOrSearch": 0.1353654205607616,
+    "KmpSearch": 0.15496354166680248,
+    "AhoCorasickSearch": 0.11552105263169658,
+    "BoyerMooreSearch": 0.17756363636377123,
+    "Bm4DnaDsSearch": 0.14562409638577276,
+    "Bm4DnaHmbsSearch": 0.1826234567898935,
+    "WuManberSearch": 0.1312185185185323
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 0.09153076923282172,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.19197708907785122,
+    "ShiftOrSearch": 0.15370025104187188,
+    "KmpSearch": 0.17053289845246758,
+    "AhoCorasickSearch": 0.13295630350146287,
+    "BoyerMooreSearch": 0.2118206408127531,
+    "Bm4DnaDsSearch": 0.18957909744408508,
+    "Bm4DnaHmbsSearch": 0.2039671819450282,
+    "WuManberSearch": 0.14898328611688927
+   }
+  },
+  {
+   "id": "val-77",
+   "alphabet": "tokens",
+   "n": 700000,
+   "m": 24,
+   "k": 1000,
+   "mSpread": 0,
+   "seed": 9077,
+   "shape": {
+    "n": 700000,
+    "sigma": 1000,
+    "k": 1000,
+    "mMin": 24,
+    "mMax": 24,
+    "mAvg": 24
+   },
+   "times": {
+    "HorspoolSearch": 139.5333999999857,
+    "ShiftOrSearch": 867.101800000004,
+    "KmpSearch": 832.9357000000018,
+    "AhoCorasickSearch": 144.13140000001295,
+    "BoyerMooreSearch": 167.81769999998505,
+    "Bm4DnaDsSearch": 124.76850000000559,
+    "Bm4DnaHmbsSearch": 162.04149999999208,
+    "WuManberSearch": 4.327324999998382
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 5.504833333339775,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 176.12832833307152,
+    "ShiftOrSearch": 1009.5157302654544,
+    "KmpSearch": 1119.1500877645315,
+    "AhoCorasickSearch": 318.34810741812646,
+    "BoyerMooreSearch": 207.25450548794794,
+    "Bm4DnaDsSearch": 160.97570991819993,
+    "Bm4DnaHmbsSearch": 182.63850047454272,
+    "WuManberSearch": 2.801802848220526
+   }
+  },
+  {
+   "id": "val-78",
+   "alphabet": "labels",
+   "n": 20000,
+   "m": 12,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9078,
+   "shape": {
+    "n": 20000,
+    "sigma": 4,
+    "k": 3,
+    "mMin": 12,
+    "mMax": 12,
+    "mAvg": 12
+   },
+   "times": {
+    "HorspoolSearch": 0.22447413793094617,
+    "ShiftOrSearch": 0.19418400000004718,
+    "KmpSearch": 0.3128553191490937,
+    "AhoCorasickSearch": 0.12520900000003166,
+    "BoyerMooreSearch": 0.19340923076916414,
+    "Bm4DnaDsSearch": 0.15881756756759904,
+    "Bm4DnaHmbsSearch": 0.11665714285708181,
+    "WuManberSearch": 0.08431500000006054
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.11507210884358873,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.16120183213413977,
+    "ShiftOrSearch": 0.15464049947621017,
+    "KmpSearch": 0.16947592226866423,
+    "AhoCorasickSearch": 0.1313822740878271,
+    "BoyerMooreSearch": 0.17636029219847982,
+    "Bm4DnaDsSearch": 0.16198524417376908,
+    "Bm4DnaHmbsSearch": 0.1412565211701064,
+    "WuManberSearch": 0.09232693772429287
+   }
+  },
+  {
+   "id": "val-79",
+   "alphabet": "normalized",
+   "n": 300000,
+   "m": 80,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9079,
+   "shape": {
+    "n": 300000,
+    "sigma": 37,
+    "k": 1,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 0.8460789473687519,
+    "KmpSearch": 1.2071769230779654,
+    "AhoCorasickSearch": 1.6708299999998417,
+    "BoyerMooreSearch": 0.9306277777763575,
+    "Bm4DnaDsSearch": 0.9486277777775993,
+    "Bm4DnaHmbsSearch": 0.8555187500005559,
+    "WuManberSearch": 0.9336599999995088
+   },
+   "fastest": "HorspoolSearch",
+   "decisionMs": 1.1863692307692522,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.0979265025484997,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1.5688756102393762,
+    "AhoCorasickSearch": 1.9751688382263426,
+    "BoyerMooreSearch": 1.0797577560580254,
+    "Bm4DnaDsSearch": 1.2231124139336864,
+    "Bm4DnaHmbsSearch": 1.1787169363212806,
+    "WuManberSearch": 1.0090664293874245
+   }
+  },
+  {
+   "id": "val-80",
+   "alphabet": "printable",
+   "n": 30000,
+   "m": 20,
+   "k": 12,
+   "mSpread": 0.5,
+   "seed": 9080,
+   "shape": {
+    "n": 30000,
+    "sigma": 95,
+    "k": 12,
+    "mMin": 11,
+    "mMax": 29,
+    "mAvg": 19.666666666666668
+   },
+   "times": {
+    "HorspoolSearch": 0.19168333333355905,
+    "ShiftOrSearch": 0.8332499999992756,
+    "KmpSearch": 0.5707600000000093,
+    "AhoCorasickSearch": 0.3202228571429649,
+    "BoyerMooreSearch": 0.215490769230886,
+    "Bm4DnaDsSearch": 0.20317042253552411,
+    "Bm4DnaHmbsSearch": 0.2165999999997439,
+    "WuManberSearch": 0.10943482142855439
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.1981681034484264,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.22762411693908463,
+    "ShiftOrSearch": 0.629097359601746,
+    "KmpSearch": 0.6912381466458265,
+    "AhoCorasickSearch": 0.48950713560534564,
+    "BoyerMooreSearch": 0.2534106842706987,
+    "Bm4DnaDsSearch": 0.23272132064428866,
+    "Bm4DnaHmbsSearch": 0.23872925089298697,
+    "WuManberSearch": 0.1447234779878051
+   }
+  },
+  {
+   "id": "val-81",
+   "alphabet": "binary",
+   "n": 50000,
+   "m": 20,
+   "k": 1000,
+   "mSpread": 0,
+   "seed": 9081,
+   "shape": {
+    "n": 50000,
+    "sigma": 2,
+    "k": 1000,
+    "mMin": 20,
+    "mMax": 20,
+    "mAvg": 20
+   },
+   "times": {
+    "HorspoolSearch": 279.66580000001704,
+    "ShiftOrSearch": 65.12880000000587,
+    "KmpSearch": 296.4195999999938,
+    "AhoCorasickSearch": 2.7533200000005307,
+    "BoyerMooreSearch": 131.82149999999092,
+    "Bm4DnaDsSearch": 271.64420000000973,
+    "Bm4DnaHmbsSearch": 55.727799999993294,
+    "WuManberSearch": 0.9454249999998865
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 4.416700000001583,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 147.36769340849182,
+    "ShiftOrSearch": 73.033000371154,
+    "KmpSearch": 80.65398184964154,
+    "AhoCorasickSearch": 1.1124049824405446,
+    "BoyerMooreSearch": 173.79169739399703,
+    "Bm4DnaDsSearch": 134.28859982552453,
+    "Bm4DnaHmbsSearch": 60.07691327721269,
+    "WuManberSearch": 1.3900578660015133
+   }
+  },
+  {
+   "id": "val-82",
+   "alphabet": "turkish",
+   "n": 500000,
+   "m": 20,
+   "k": 6,
+   "mSpread": 0,
+   "seed": 9082,
+   "shape": {
+    "n": 500000,
+    "sigma": 30,
+    "k": 6,
+    "mMin": 20,
+    "mMax": 20,
+    "mAvg": 20
+   },
+   "times": {
+    "HorspoolSearch": 2.6538666666650292,
+    "ShiftOrSearch": 5.737299999998261,
+    "KmpSearch": 6.185900000001614,
+    "AhoCorasickSearch": 2.9909499999994296,
+    "BoyerMooreSearch": 2.942316666667466,
+    "Bm4DnaDsSearch": 2.7885000000009312,
+    "Bm4DnaHmbsSearch": 2.8243333333327123,
+    "WuManberSearch": 1.6517500000016299
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.872766666667303,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.932494838736985,
+    "ShiftOrSearch": 5.982604268380405,
+    "KmpSearch": 6.5990595646044845,
+    "AhoCorasickSearch": 3.274356190989231,
+    "BoyerMooreSearch": 3.095211205973336,
+    "Bm4DnaDsSearch": 3.0406414159175137,
+    "Bm4DnaHmbsSearch": 3.1911106335762547,
+    "WuManberSearch": 1.8868270924129484
+   }
+  },
+  {
+   "id": "val-83",
+   "alphabet": "tokens",
+   "n": 50000,
+   "m": 24,
+   "k": 6,
+   "mSpread": 0,
+   "seed": 9083,
+   "shape": {
+    "n": 50000,
+    "sigma": 1000,
+    "k": 6,
+    "mMin": 24,
+    "mMax": 24,
+    "mAvg": 24
+   },
+   "times": {
+    "HorspoolSearch": 0.22469374999991487,
+    "ShiftOrSearch": 0.76512631578953,
+    "KmpSearch": 0.5471625000003163,
+    "AhoCorasickSearch": 0.5228846153846601,
+    "BoyerMooreSearch": 0.2332362068966553,
+    "Bm4DnaDsSearch": 0.2080046153846734,
+    "Bm4DnaHmbsSearch": 0.22531384615397726,
+    "WuManberSearch": 0.16944750000002387
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.23792461538463472,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.2510259617289683,
+    "ShiftOrSearch": 0.6048719308925217,
+    "KmpSearch": 0.6647475788915604,
+    "AhoCorasickSearch": 2.205568335603217,
+    "BoyerMooreSearch": 0.263906645958392,
+    "Bm4DnaDsSearch": 0.2675907783167359,
+    "Bm4DnaHmbsSearch": 0.2766248452084309,
+    "WuManberSearch": 0.18457140521513518
+   }
+  },
+  {
+   "id": "val-84",
+   "alphabet": "labels",
+   "n": 50000,
+   "m": 150,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9084,
+   "shape": {
+    "n": 50000,
+    "sigma": 4,
+    "k": 3,
+    "mMin": 150,
+    "mMax": 150,
+    "mAvg": 150
+   },
+   "times": {
+    "HorspoolSearch": 0.5263580645166052,
+    "KmpSearch": 0.8276277777784142,
+    "AhoCorasickSearch": 0.3223974999993516,
+    "BoyerMooreSearch": 0.38479729729698264,
+    "Bm4DnaDsSearch": 0.42497586206922405,
+    "Bm4DnaHmbsSearch": 0.17152435897412197,
+    "WuManberSearch": 0.17345957446811186
+   },
+   "fastest": "Bm4DnaHmbsSearch",
+   "decisionMs": 0.24950652173910107,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.40335861667963724,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.4368859839632848,
+    "AhoCorasickSearch": 0.35196844358209833,
+    "BoyerMooreSearch": 0.45226700428456074,
+    "Bm4DnaDsSearch": 0.41049164030050805,
+    "Bm4DnaHmbsSearch": 0.2236281712873085,
+    "WuManberSearch": 0.182697418316204
+   }
+  },
+  {
+   "id": "val-85",
+   "alphabet": "normalized",
+   "n": 300000,
+   "m": 24,
+   "k": 3,
+   "mSpread": 0.5,
+   "seed": 9085,
+   "shape": {
+    "n": 300000,
+    "sigma": 37,
+    "k": 3,
+    "mMin": 19,
+    "mMax": 28,
+    "mAvg": 22.666666666666668
+   },
+   "times": {
+    "HorspoolSearch": 1.1605133333340443,
+    "ShiftOrSearch": 2.357842857142844,
+    "KmpSearch": 2.110228571429616,
+    "AhoCorasickSearch": 1.6746899999998277,
+    "BoyerMooreSearch": 1.16897142857072,
+    "Bm4DnaDsSearch": 1.1549642857155829,
+    "Bm4DnaHmbsSearch": 1.3171000000002095,
+    "WuManberSearch": 1.046156250000422
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.3863899999996647,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.3527778757251268,
+    "ShiftOrSearch": 2.295956396731427,
+    "KmpSearch": 2.524776886819961,
+    "AhoCorasickSearch": 1.9692119862751563,
+    "BoyerMooreSearch": 1.378945990381047,
+    "Bm4DnaDsSearch": 1.4546067078480363,
+    "Bm4DnaHmbsSearch": 1.4860234946131554,
+    "WuManberSearch": 1.11278233853658
+   }
+  },
+  {
+   "id": "val-86",
+   "alphabet": "printable",
+   "n": 500000,
+   "m": 20,
+   "k": 12,
+   "mSpread": 0.5,
+   "seed": 9086,
+   "shape": {
+    "n": 500000,
+    "sigma": 95,
+    "k": 12,
+    "mMin": 13,
+    "mMax": 26,
+    "mAvg": 18.333333333333332
+   },
+   "times": {
+    "HorspoolSearch": 3.2696599999966565,
+    "ShiftOrSearch": 12.317399999999907,
+    "KmpSearch": 9.68300000000454,
+    "AhoCorasickSearch": 3.090360000001965,
+    "BoyerMooreSearch": 3.7866250000006403,
+    "Bm4DnaDsSearch": 3.4584800000011455,
+    "Bm4DnaHmbsSearch": 4.167774999994435,
+    "WuManberSearch": 1.7721999999994296
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.1087750000006054,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 3.8449112978028808,
+    "ShiftOrSearch": 10.298965702536874,
+    "KmpSearch": 11.384434580757242,
+    "AhoCorasickSearch": 3.501657120705551,
+    "BoyerMooreSearch": 4.1707107373265,
+    "Bm4DnaDsSearch": 3.871502767551968,
+    "Bm4DnaHmbsSearch": 4.08008212703209,
+    "WuManberSearch": 1.965851441943087
+   }
+  },
+  {
+   "id": "val-87",
+   "alphabet": "binary",
+   "n": 300000,
+   "m": 6,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9087,
+   "shape": {
+    "n": 300000,
+    "sigma": 2,
+    "k": 32,
+    "mMin": 6,
+    "mMax": 6,
+    "mAvg": 6
+   },
+   "times": {
+    "HorspoolSearch": 77.16079999998328,
+    "ShiftOrSearch": 45.687799999985145,
+    "KmpSearch": 81.83830000000307,
+    "AhoCorasickSearch": 19.665700000012293,
+    "BoyerMooreSearch": 67.39079999999376,
+    "Bm4DnaDsSearch": 80.59479999999166,
+    "Bm4DnaHmbsSearch": 72.63959999999497,
+    "WuManberSearch": 24.57789999997476
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 1.1719384615381176,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 88.47265062602588,
+    "ShiftOrSearch": 42.669295873085595,
+    "KmpSearch": 154.823760614253,
+    "AhoCorasickSearch": 20.926769208522092,
+    "BoyerMooreSearch": 111.1057049484861,
+    "Bm4DnaDsSearch": 81.23860967826073,
+    "Bm4DnaHmbsSearch": 72.44019038313972,
+    "WuManberSearch": 27.012690627313937
+   }
+  },
+  {
+   "id": "val-88",
+   "alphabet": "turkish",
+   "n": 300000,
+   "m": 150,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9088,
+   "shape": {
+    "n": 300000,
+    "sigma": 30,
+    "k": 1,
+    "mMin": 150,
+    "mMax": 150,
+    "mAvg": 150
+   },
+   "times": {
+    "HorspoolSearch": 0.88187647058786,
+    "KmpSearch": 1.475136363638078,
+    "AhoCorasickSearch": 1.895342857144507,
+    "BoyerMooreSearch": 0.9865625000002183,
+    "Bm4DnaDsSearch": 1.0020562500012602,
+    "Bm4DnaHmbsSearch": 0.9981461538454124,
+    "WuManberSearch": 0.8955777777769577
+   },
+   "fastest": "HorspoolSearch",
+   "decisionMs": 1.2736857142839912,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.104882342561252,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1.5714431372861781,
+    "AhoCorasickSearch": 1.9962007058610136,
+    "BoyerMooreSearch": 1.0900629546666596,
+    "Bm4DnaDsSearch": 1.2304479102382655,
+    "Bm4DnaHmbsSearch": 1.164412067199232,
+    "WuManberSearch": 0.9974223495525445
+   }
+  },
+  {
+   "id": "val-89",
+   "alphabet": "tokens",
+   "n": 30000,
+   "m": 12,
+   "k": 1000,
+   "mSpread": 0.5,
+   "seed": 9089,
+   "shape": {
+    "n": 30000,
+    "sigma": 1000,
+    "k": 1000,
+    "mMin": 6,
+    "mMax": 18,
+    "mAvg": 11.946
+   },
+   "times": {
+    "HorspoolSearch": 18.243900000001304,
+    "ShiftOrSearch": 56.633700000005774,
+    "KmpSearch": 37.288200000009965,
+    "AhoCorasickSearch": 62.85040000002482,
+    "BoyerMooreSearch": 18.63850000000093,
+    "Bm4DnaDsSearch": 16.00360000001092,
+    "Bm4DnaHmbsSearch": 18.353200000012293,
+    "WuManberSearch": 0.4888161290324323
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.49107241379358035,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 15.17783037550004,
+    "ShiftOrSearch": 43.811782772038484,
+    "KmpSearch": 48.364015091889485,
+    "AhoCorasickSearch": 156.4034446892774,
+    "BoyerMooreSearch": 18.1821366655122,
+    "Bm4DnaDsSearch": 13.99228889471932,
+    "Bm4DnaHmbsSearch": 16.91830400161958,
+    "WuManberSearch": 0.34301460369085973
+   }
+  },
+  {
+   "id": "val-90",
+   "alphabet": "labels",
+   "n": 500000,
+   "m": 3,
+   "k": 6,
+   "mSpread": 0,
+   "seed": 9090,
+   "shape": {
+    "n": 500000,
+    "sigma": 4,
+    "k": 6,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 16.559299999993527,
+    "ShiftOrSearch": 12.135899999993853,
+    "KmpSearch": 21.7214999999851,
+    "AhoCorasickSearch": 9.128150000004098,
+    "BoyerMooreSearch": 25.3410000000149,
+    "Bm4DnaDsSearch": 18.140700000018114,
+    "Bm4DnaHmbsSearch": 22.070899999991525,
+    "WuManberSearch": 11.591199999995297
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 1.9113874999966356,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 27.729323348456518,
+    "ShiftOrSearch": 14.685169984199256,
+    "KmpSearch": 49.85445528953876,
+    "AhoCorasickSearch": 9.159445494707844,
+    "BoyerMooreSearch": 34.52653591810176,
+    "Bm4DnaDsSearch": 25.76386146508095,
+    "Bm4DnaHmbsSearch": 23.931674283292594,
+    "WuManberSearch": 12.861231531473631
+   }
+  },
+  {
+   "id": "val-91",
+   "alphabet": "normalized",
+   "n": 300000,
+   "m": 24,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9091,
+   "shape": {
+    "n": 300000,
+    "sigma": 37,
+    "k": 1,
+    "mMin": 24,
+    "mMax": 24,
+    "mAvg": 24
+   },
+   "times": {
+    "HorspoolSearch": 0.8931176470582346,
+    "ShiftOrSearch": 1.152214285715932,
+    "KmpSearch": 1.1957769230760347,
+    "AhoCorasickSearch": 1.571266666665906,
+    "BoyerMooreSearch": 0.8529111111112999,
+    "Bm4DnaDsSearch": 0.8898823529409984,
+    "Bm4DnaHmbsSearch": 0.8925882352940628,
+    "WuManberSearch": 0.9284611111118769
+   },
+   "fastest": "BoyerMooreSearch",
+   "decisionMs": 1.2896999999983774,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.141938446329947,
+    "ShiftOrSearch": 1.431482018253864,
+    "KmpSearch": 1.5668215886019348,
+    "AhoCorasickSearch": 1.9473701957874732,
+    "BoyerMooreSearch": 1.1297861360677974,
+    "Bm4DnaDsSearch": 1.262310707855229,
+    "Bm4DnaHmbsSearch": 1.2523424780824184,
+    "WuManberSearch": 1.0768228892718652
+   }
+  },
+  {
+   "id": "val-92",
+   "alphabet": "printable",
+   "n": 50000,
+   "m": 80,
+   "k": 1000,
+   "mSpread": 0,
+   "seed": 9092,
+   "shape": {
+    "n": 50000,
+    "sigma": 95,
+    "k": 1000,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 9.693050000001676,
+    "KmpSearch": 81.48080000001937,
+    "AhoCorasickSearch": 106.101399999985,
+    "BoyerMooreSearch": 10.508050000004005,
+    "Bm4DnaDsSearch": 8.711049999998068,
+    "Bm4DnaHmbsSearch": 28.528200000000652,
+    "WuManberSearch": 1.8687777777797439
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.399914285712709,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 7.263205353303326,
+    "ShiftOrSearch": null,
+    "KmpSearch": 82.81073039470608,
+    "AhoCorasickSearch": 100.64850368090818,
+    "BoyerMooreSearch": 10.93512916118664,
+    "Bm4DnaDsSearch": 7.796850164288138,
+    "Bm4DnaHmbsSearch": 19.45863270991097,
+    "WuManberSearch": 0.9606361408583448
+   }
+  },
+  {
+   "id": "val-93",
+   "alphabet": "binary",
+   "n": 500000,
+   "m": 48,
+   "k": 32,
+   "mSpread": 0.5,
+   "seed": 9093,
+   "shape": {
+    "n": 500000,
+    "sigma": 2,
+    "k": 32,
+    "mMin": 26,
+    "mMax": 70,
+    "mAvg": 45.125
+   },
+   "times": {
+    "HorspoolSearch": 110.10759999998845,
+    "KmpSearch": 102.30389999999898,
+    "AhoCorasickSearch": 3.570675000002666,
+    "BoyerMooreSearch": 35.77049999998417,
+    "Bm4DnaDsSearch": 93.44769999998971,
+    "Bm4DnaHmbsSearch": 8.233599999992293,
+    "WuManberSearch": 2.0470249999998487
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.7310875000002852,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 48.72974707719691,
+    "ShiftOrSearch": null,
+    "KmpSearch": 27.36835336007532,
+    "AhoCorasickSearch": 3.2823509133975444,
+    "BoyerMooreSearch": 56.965745881390546,
+    "Bm4DnaDsSearch": 44.69092217657299,
+    "Bm4DnaHmbsSearch": 10.353582870080018,
+    "WuManberSearch": 2.4954821482049168
+   }
+  },
+  {
+   "id": "val-94",
+   "alphabet": "turkish",
+   "n": 500000,
+   "m": 80,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9094,
+   "shape": {
+    "n": 500000,
+    "sigma": 30,
+    "k": 1,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 1.4866454545434946,
+    "KmpSearch": 2.032149999999092,
+    "AhoCorasickSearch": 2.6821000000005975,
+    "BoyerMooreSearch": 1.4465299999981653,
+    "Bm4DnaDsSearch": 1.854189999998198,
+    "Bm4DnaHmbsSearch": 1.6621666666663562,
+    "WuManberSearch": 1.3789727272735697
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.8173999999999069,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.8442499897463533,
+    "ShiftOrSearch": null,
+    "KmpSearch": 2.612836472649016,
+    "AhoCorasickSearch": 3.2581577339289876,
+    "BoyerMooreSearch": 1.8148674257863042,
+    "Bm4DnaDsSearch": 2.0508143596356203,
+    "Bm4DnaHmbsSearch": 1.962937363739264,
+    "WuManberSearch": 1.6817147889489252
+   }
+  },
+  {
+   "id": "val-95",
+   "alphabet": "tokens",
+   "n": 700000,
+   "m": 150,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9095,
+   "shape": {
+    "n": 700000,
+    "sigma": 1000,
+    "k": 32,
+    "mMin": 150,
+    "mMax": 150,
+    "mAvg": 150
+   },
+   "times": {
+    "HorspoolSearch": 3.329780000000028,
+    "KmpSearch": 27.421200000011595,
+    "AhoCorasickSearch": 27.777999999991152,
+    "BoyerMooreSearch": 3.310759999998845,
+    "Bm4DnaDsSearch": 3.205800000001909,
+    "Bm4DnaHmbsSearch": 3.376025000005029,
+    "WuManberSearch": 2.264200000000918
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.585516666668506,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 3.4772371175519474,
+    "ShiftOrSearch": null,
+    "KmpSearch": 38.41760351995005,
+    "AhoCorasickSearch": 67.2824736018108,
+    "BoyerMooreSearch": 3.7357390388161837,
+    "Bm4DnaDsSearch": 3.75278730430779,
+    "Bm4DnaHmbsSearch": 3.697925326618022,
+    "WuManberSearch": 2.4987442729598266
+   }
+  },
+  {
+   "id": "val-96",
+   "alphabet": "labels",
+   "n": 500000,
+   "m": 150,
+   "k": 6,
+   "mSpread": 0.5,
+   "seed": 9096,
+   "shape": {
+    "n": 500000,
+    "sigma": 4,
+    "k": 6,
+    "mMin": 75,
+    "mMax": 204,
+    "mAvg": 143.5
+   },
+   "times": {
+    "HorspoolSearch": 7.4572499999922,
+    "KmpSearch": 15.242350000000442,
+    "AhoCorasickSearch": 2.798866666664253,
+    "BoyerMooreSearch": 5.876333333338455,
+    "Bm4DnaDsSearch": 6.819233333333007,
+    "Bm4DnaHmbsSearch": 2.200457142857236,
+    "WuManberSearch": 1.4312416666677261
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.7145555555568233,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 6.1585083275989145,
+    "ShiftOrSearch": null,
+    "KmpSearch": 6.626238672342772,
+    "AhoCorasickSearch": 3.281998205005556,
+    "BoyerMooreSearch": 6.9096194113162515,
+    "Bm4DnaDsSearch": 5.983905552012949,
+    "Bm4DnaHmbsSearch": 2.260184930161925,
+    "WuManberSearch": 1.7705095489470426
+   }
+  },
+  {
+   "id": "val-97",
+   "alphabet": "normalized",
+   "n": 200000,
+   "m": 24,
+   "k": 24,
+   "mSpread": 0.5,
+   "seed": 9097,
+   "shape": {
+    "n": 200000,
+    "sigma": 37,
+    "k": 24,
+    "mMin": 12,
+    "mMax": 36,
+    "mAvg": 24.666666666666668
+   },
+   "times": {
+    "HorspoolSearch": 1.926362500002142,
+    "KmpSearch": 7.202333333339387,
+    "AhoCorasickSearch": 1.3076454545450609,
+    "BoyerMooreSearch": 2.211342857140283,
+    "Bm4DnaDsSearch": 1.9692500000019209,
+    "Bm4DnaHmbsSearch": 2.1457249999984924,
+    "WuManberSearch": 0.7411416666654986
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.8264076923078392,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.2578148879298245,
+    "ShiftOrSearch": null,
+    "KmpSearch": 8.39762572333716,
+    "AhoCorasickSearch": 1.5841756908485916,
+    "BoyerMooreSearch": 2.529729904271364,
+    "Bm4DnaDsSearch": 2.2102569863935715,
+    "Bm4DnaHmbsSearch": 2.450394114770332,
+    "WuManberSearch": 0.8602614165050524
+   }
+  },
+  {
+   "id": "val-98",
+   "alphabet": "printable",
+   "n": 700000,
+   "m": 20,
+   "k": 6,
+   "mSpread": 0.5,
+   "seed": 9098,
+   "shape": {
+    "n": 700000,
+    "sigma": 95,
+    "k": 6,
+    "mMin": 19,
+    "mMax": 27,
+    "mAvg": 23.166666666666668
+   },
+   "times": {
+    "HorspoolSearch": 3.3135499999989406,
+    "ShiftOrSearch": 7.338033333333442,
+    "KmpSearch": 7.292600000000675,
+    "AhoCorasickSearch": 3.7944250000000466,
+    "BoyerMooreSearch": 3.1348599999968427,
+    "Bm4DnaDsSearch": 3.054320000001462,
+    "Bm4DnaHmbsSearch": 3.1997399999992924,
+    "WuManberSearch": 2.103328571430341
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 2.8241999999978966,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 3.6295245049716502,
+    "ShiftOrSearch": 8.374193448326658,
+    "KmpSearch": 9.237619700669747,
+    "AhoCorasickSearch": 4.690381446935038,
+    "BoyerMooreSearch": 3.7729586818789356,
+    "Bm4DnaDsSearch": 3.823808539870117,
+    "Bm4DnaHmbsSearch": 3.902490134466934,
+    "WuManberSearch": 2.589304990449936
+   }
+  },
+  {
+   "id": "val-99",
+   "alphabet": "binary",
+   "n": 20000,
+   "m": 20,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9099,
+   "shape": {
+    "n": 20000,
+    "sigma": 2,
+    "k": 3,
+    "mMin": 20,
+    "mMax": 20,
+    "mAvg": 20
+   },
+   "times": {
+    "HorspoolSearch": 0.47285625000040454,
+    "ShiftOrSearch": 0.1376285714285011,
+    "KmpSearch": 0.4036705882351859,
+    "AhoCorasickSearch": 0.12394505494515985,
+    "BoyerMooreSearch": 0.20189508196724135,
+    "Bm4DnaDsSearch": 0.4437375000006796,
+    "Bm4DnaHmbsSearch": 0.12049745762709851,
+    "WuManberSearch": 0.08720754716986844
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.10530890410942223,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.24689957509303007,
+    "ShiftOrSearch": 0.15585254657243058,
+    "KmpSearch": 0.17040567525642494,
+    "AhoCorasickSearch": 0.1313890567018907,
+    "BoyerMooreSearch": 0.27782239284892074,
+    "Bm4DnaDsSearch": 0.24023449258543683,
+    "Bm4DnaHmbsSearch": 0.1505171604732024,
+    "WuManberSearch": 0.0994410216548804
+   }
+  },
+  {
+   "id": "val-100",
+   "alphabet": "turkish",
+   "n": 50000,
+   "m": 48,
+   "k": 100,
+   "mSpread": 0.5,
+   "seed": 9100,
+   "shape": {
+    "n": 50000,
+    "sigma": 30,
+    "k": 100,
+    "mMin": 24,
+    "mMax": 71,
+    "mAvg": 46.3
+   },
+   "times": {
+    "HorspoolSearch": 1.5970000000001163,
+    "KmpSearch": 8.396399999997811,
+    "AhoCorasickSearch": 3.0504999999975553,
+    "BoyerMooreSearch": 1.882762500001263,
+    "Bm4DnaDsSearch": 1.6396100000012666,
+    "Bm4DnaHmbsSearch": 1.314191666666981,
+    "WuManberSearch": 0.3120782608697798
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.4420222222227797,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.506528746347158,
+    "ShiftOrSearch": null,
+    "KmpSearch": 8.320630538882602,
+    "AhoCorasickSearch": 2.197547486704032,
+    "BoyerMooreSearch": 1.8760856199000315,
+    "Bm4DnaDsSearch": 1.4737636924923119,
+    "Bm4DnaHmbsSearch": 1.2534668017707848,
+    "WuManberSearch": 0.2806968179817826
+   }
+  },
+  {
+   "id": "val-101",
+   "alphabet": "tokens",
+   "n": 30000,
+   "m": 100,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9101,
+   "shape": {
+    "n": 30000,
+    "sigma": 1000,
+    "k": 32,
+    "mMin": 100,
+    "mMax": 100,
+    "mAvg": 100
+   },
+   "times": {
+    "HorspoolSearch": 0.25382083333352057,
+    "KmpSearch": 1.6327818181836682,
+    "AhoCorasickSearch": 21.50899999999092,
+    "BoyerMooreSearch": 0.2816819999995641,
+    "Bm4DnaDsSearch": 0.2736473684214472,
+    "Bm4DnaHmbsSearch": 0.30248627451011073,
+    "WuManberSearch": 0.2605471698109298
+   },
+   "fastest": "HorspoolSearch",
+   "decisionMs": 0.3343800000002375,
+   "chosen": {
+    "auto": "Bm4DnaHmbsSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.2306449839561896,
+    "ShiftOrSearch": null,
+    "KmpSearch": 1.756296001673299,
+    "AhoCorasickSearch": 42.037817951907776,
+    "BoyerMooreSearch": 0.3471211513546881,
+    "Bm4DnaDsSearch": 0.2783361660681943,
+    "Bm4DnaHmbsSearch": 0.22877566574622693,
+    "WuManberSearch": 0.28596630382497024
+   }
+  },
+  {
+   "id": "val-102",
+   "alphabet": "labels",
+   "n": 50000,
+   "m": 12,
+   "k": 32,
+   "mSpread": 0,
+   "seed": 9102,
+   "shape": {
+    "n": 50000,
+    "sigma": 4,
+    "k": 32,
+    "mMin": 12,
+    "mMax": 12,
+    "mAvg": 12
+   },
+   "times": {
+    "HorspoolSearch": 3.6183200000028592,
+    "ShiftOrSearch": 2.340000000000665,
+    "KmpSearch": 7.436749999993481,
+    "AhoCorasickSearch": 0.3289542857141766,
+    "BoyerMooreSearch": 3.8592250000001513,
+    "Bm4DnaDsSearch": 3.278320000000531,
+    "Bm4DnaHmbsSearch": 1.9784125000005588,
+    "WuManberSearch": 0.32676603773582447
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.3128790697671722,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.606771949783503,
+    "ShiftOrSearch": 2.4851634042221833,
+    "KmpSearch": 2.745711606189727,
+    "AhoCorasickSearch": 0.34766963099393106,
+    "BoyerMooreSearch": 3.0401642936568365,
+    "Bm4DnaDsSearch": 2.4125089306829097,
+    "Bm4DnaHmbsSearch": 1.9102490788501079,
+    "WuManberSearch": 0.2729017907741922
+   }
+  },
+  {
+   "id": "val-103",
+   "alphabet": "normalized",
+   "n": 50000,
+   "m": 100,
+   "k": 24,
+   "mSpread": 0.5,
+   "seed": 9103,
+   "shape": {
+    "n": 50000,
+    "sigma": 37,
+    "k": 24,
+    "mMin": 55,
+    "mMax": 148,
+    "mAvg": 105.75
+   },
+   "times": {
+    "HorspoolSearch": 0.3900194444447859,
+    "KmpSearch": 2.0976250000021537,
+    "AhoCorasickSearch": 1.5721000000000156,
+    "BoyerMooreSearch": 0.428679411764332,
+    "Bm4DnaDsSearch": 0.38267631578951533,
+    "Bm4DnaHmbsSearch": 0.3481119999999646,
+    "WuManberSearch": 0.20986363636382685
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.3209512820512128,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.42856754989268864,
+    "ShiftOrSearch": null,
+    "KmpSearch": 2.1870691400036653,
+    "AhoCorasickSearch": 1.5824502696567546,
+    "BoyerMooreSearch": 0.545411009473542,
+    "Bm4DnaDsSearch": 0.463606409052267,
+    "Bm4DnaHmbsSearch": 0.34593055471339085,
+    "WuManberSearch": 0.32288220331303474
+   }
+  },
+  {
+   "id": "val-104",
+   "alphabet": "printable",
+   "n": 50000,
+   "m": 48,
+   "k": 2,
+   "mSpread": 0.5,
+   "seed": 9104,
+   "shape": {
+    "n": 50000,
+    "sigma": 95,
+    "k": 2,
+    "mMin": 48,
+    "mMax": 58,
+    "mAvg": 53
+   },
+   "times": {
+    "HorspoolSearch": 0.16995662650589954,
+    "KmpSearch": 0.2849714285709654,
+    "AhoCorasickSearch": 0.35800800000084565,
+    "BoyerMooreSearch": 0.16543506493515261,
+    "Bm4DnaDsSearch": 0.16244022988502857,
+    "Bm4DnaHmbsSearch": 0.19795061728412597,
+    "WuManberSearch": 0.15067319587633954
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.21976376811600884,
+   "chosen": {
+    "auto": "HorspoolSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.19039750597848665,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.3445733038032843,
+    "AhoCorasickSearch": 0.45550793604942874,
+    "BoyerMooreSearch": 0.19148783924285076,
+    "Bm4DnaDsSearch": 0.21192802013545606,
+    "Bm4DnaHmbsSearch": 0.23446869614949628,
+    "WuManberSearch": 0.19451440468915393
+   }
+  },
+  {
+   "id": "val-105",
+   "alphabet": "binary",
+   "n": 300000,
+   "m": 3,
+   "k": 2,
+   "mSpread": 0,
+   "seed": 9105,
+   "shape": {
+    "n": 300000,
+    "sigma": 2,
+    "k": 2,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 13.852149999991525,
+    "ShiftOrSearch": 12.333399999988615,
+    "KmpSearch": 13.474499999996624,
+    "AhoCorasickSearch": 10.415200000003097,
+    "BoyerMooreSearch": 14.062799999999697,
+    "Bm4DnaDsSearch": 13.718399999997928,
+    "Bm4DnaHmbsSearch": 16.08859999998822,
+    "WuManberSearch": 11.250450000006822
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 0.9641133333323524,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 32.45658182474829,
+    "ShiftOrSearch": 15.793957937026727,
+    "KmpSearch": 71.2587666721521,
+    "AhoCorasickSearch": 11.427680687334815,
+    "BoyerMooreSearch": 41.597605757007805,
+    "Bm4DnaDsSearch": 30.0218045876134,
+    "Bm4DnaHmbsSearch": 21.943035373187477,
+    "WuManberSearch": 14.820339897747074
+   }
+  },
+  {
+   "id": "val-106",
+   "alphabet": "turkish",
+   "n": 20000,
+   "m": 12,
+   "k": 100,
+   "mSpread": 0,
+   "seed": 9106,
+   "shape": {
+    "n": 20000,
+    "sigma": 30,
+    "k": 100,
+    "mMin": 12,
+    "mMax": 12,
+    "mAvg": 12
+   },
+   "times": {
+    "HorspoolSearch": 1.1562714285724465,
+    "ShiftOrSearch": 2.8757800000021234,
+    "KmpSearch": 3.180620000005001,
+    "AhoCorasickSearch": 0.7320363636350852,
+    "BoyerMooreSearch": 1.3141333333333023,
+    "Bm4DnaDsSearch": 1.0452333333339388,
+    "Bm4DnaHmbsSearch": 1.277184615384053,
+    "WuManberSearch": 0.11024757281558371
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.17500666666670614,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.2655803956027272,
+    "ShiftOrSearch": 3.0009493719366684,
+    "KmpSearch": 3.304337535059977,
+    "AhoCorasickSearch": 0.6149841445996447,
+    "BoyerMooreSearch": 1.5098576525645815,
+    "Bm4DnaDsSearch": 1.182734919462383,
+    "Bm4DnaHmbsSearch": 1.2924072313363022,
+    "WuManberSearch": 0.16950543047651354
+   }
+  },
+  {
+   "id": "val-107",
+   "alphabet": "tokens",
+   "n": 50000,
+   "m": 6,
+   "k": 1000,
+   "mSpread": 0,
+   "seed": 9107,
+   "shape": {
+    "n": 50000,
+    "sigma": 1000,
+    "k": 1000,
+    "mMin": 6,
+    "mMax": 6,
+    "mAvg": 6
+   },
+   "times": {
+    "HorspoolSearch": 44.3011000000115,
+    "ShiftOrSearch": 65.95709999999963,
+    "KmpSearch": 57.7613999999885,
+    "AhoCorasickSearch": 34.124600000010105,
+    "BoyerMooreSearch": 47.37900000001537,
+    "Bm4DnaDsSearch": 36.134499999985565,
+    "Bm4DnaHmbsSearch": 45.6021999999939,
+    "WuManberSearch": 0.6415565217397196
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.5139866666664602,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 49.3405821623452,
+    "ShiftOrSearch": 72.32292567008056,
+    "KmpSearch": 80.09648751665851,
+    "AhoCorasickSearch": 78.78058664957949,
+    "BoyerMooreSearch": 58.14208322742961,
+    "Bm4DnaDsSearch": 44.976225593987614,
+    "Bm4DnaHmbsSearch": 52.23747329713683,
+    "WuManberSearch": 0.4376957780936632
+   }
+  },
+  {
+   "id": "val-108",
+   "alphabet": "labels",
+   "n": 30000,
+   "m": 150,
+   "k": 1000,
+   "mSpread": 0.5,
+   "seed": 9108,
+   "shape": {
+    "n": 30000,
+    "sigma": 4,
+    "k": 1000,
+    "mMin": 75,
+    "mMax": 225,
+    "mAvg": 146.477
+   },
+   "times": {
+    "HorspoolSearch": 64.13120000000345,
+    "KmpSearch": 140.9200000000128,
+    "AhoCorasickSearch": 55.31460000001243,
+    "BoyerMooreSearch": 48.333500000007916,
+    "Bm4DnaDsSearch": 62.966500000009546,
+    "Bm4DnaHmbsSearch": 10.245750000001863,
+    "WuManberSearch": 2.656771428571249
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 3.4405399999988733,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 47.20628243991193,
+    "ShiftOrSearch": null,
+    "KmpSearch": 53.29847196522222,
+    "AhoCorasickSearch": 9.760889983113039,
+    "BoyerMooreSearch": 59.9206977552382,
+    "Bm4DnaDsSearch": 45.052893704867714,
+    "Bm4DnaHmbsSearch": 9.05991445627905,
+    "WuManberSearch": 2.0257965497401487
+   }
+  },
+  {
+   "id": "val-109",
+   "alphabet": "normalized",
+   "n": 500000,
+   "m": 3,
+   "k": 12,
+   "mSpread": 0.5,
+   "seed": 9109,
+   "shape": {
+    "n": 500000,
+    "sigma": 37,
+    "k": 12,
+    "mMin": 2,
+    "mMax": 4,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 12.845000000001164,
+    "ShiftOrSearch": 9.252399999997579,
+    "KmpSearch": 9.91600000001199,
+    "AhoCorasickSearch": 2.831400000000334,
+    "BoyerMooreSearch": 15.832749999986845,
+    "Bm4DnaDsSearch": 10.809299999993527,
+    "Bm4DnaHmbsSearch": 14.108299999992596,
+    "WuManberSearch": 4.888000000006286
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 1.9902624999995169,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 13.848483994083265,
+    "ShiftOrSearch": 10.311753981798498,
+    "KmpSearch": 11.48700159841945,
+    "AhoCorasickSearch": 3.258622840495813,
+    "BoyerMooreSearch": 15.929132534534407,
+    "Bm4DnaDsSearch": 12.962865293254293,
+    "Bm4DnaHmbsSearch": 14.518291106789047,
+    "WuManberSearch": 5.3953379170788045
+   }
+  },
+  {
+   "id": "val-110",
+   "alphabet": "printable",
+   "n": 700000,
+   "m": 48,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9110,
+   "shape": {
+    "n": 700000,
+    "sigma": 95,
+    "k": 1,
+    "mMin": 48,
+    "mMax": 48,
+    "mAvg": 48
+   },
+   "times": {
+    "HorspoolSearch": 2.1619857142837384,
+    "KmpSearch": 3.105566666665254,
+    "AhoCorasickSearch": 3.9862750000029337,
+    "BoyerMooreSearch": 2.0431375000007392,
+    "Bm4DnaDsSearch": 2.3202714285705173,
+    "Bm4DnaHmbsSearch": 2.2740285714265025,
+    "WuManberSearch": 2.0515999999988708
+   },
+   "fastest": "BoyerMooreSearch",
+   "decisionMs": 3.1115833333315095,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.542499620634771,
+    "ShiftOrSearch": null,
+    "KmpSearch": 3.6556236084086895,
+    "AhoCorasickSearch": 4.576260704291258,
+    "BoyerMooreSearch": 2.492497521325916,
+    "Bm4DnaDsSearch": 2.8343528487711067,
+    "Bm4DnaHmbsSearch": 2.8051895874566903,
+    "WuManberSearch": 2.4042955165241686
+   }
+  },
+  {
+   "id": "val-111",
+   "alphabet": "binary",
+   "n": 700000,
+   "m": 80,
+   "k": 3,
+   "mSpread": 0,
+   "seed": 9111,
+   "shape": {
+    "n": 700000,
+    "sigma": 2,
+    "k": 3,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 16.308600000018487,
+    "KmpSearch": 14.709749999994528,
+    "AhoCorasickSearch": 4.011474999999336,
+    "BoyerMooreSearch": 6.22416666666201,
+    "Bm4DnaDsSearch": 18.433799999998882,
+    "Bm4DnaHmbsSearch": 2.8238166666657585,
+    "WuManberSearch": 2.3203833333342723
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 3.094549999999193,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 8.601641888129159,
+    "ShiftOrSearch": null,
+    "KmpSearch": 5.894129291148575,
+    "AhoCorasickSearch": 4.525470703444301,
+    "BoyerMooreSearch": 9.620276221881921,
+    "Bm4DnaDsSearch": 8.345079191732635,
+    "Bm4DnaHmbsSearch": 3.348516243500115,
+    "WuManberSearch": 2.5573437052981536
+   }
+  },
+  {
+   "id": "val-112",
+   "alphabet": "turkish",
+   "n": 20000,
+   "m": 24,
+   "k": 1000,
+   "mSpread": 0,
+   "seed": 9112,
+   "shape": {
+    "n": 20000,
+    "sigma": 30,
+    "k": 1000,
+    "mMin": 24,
+    "mMax": 24,
+    "mAvg": 24
+   },
+   "times": {
+    "HorspoolSearch": 6.812366666660334,
+    "ShiftOrSearch": 28.774700000009034,
+    "KmpSearch": 30.039300000004005,
+    "AhoCorasickSearch": 15.802499999990687,
+    "BoyerMooreSearch": 8.845600000000559,
+    "Bm4DnaDsSearch": 6.873866666671044,
+    "Bm4DnaHmbsSearch": 8.731550000011339,
+    "WuManberSearch": 0.5808592592592403
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.6234799999999814,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 7.602467076902386,
+    "ShiftOrSearch": 30.011052749674597,
+    "KmpSearch": 32.8308604953908,
+    "AhoCorasickSearch": 9.848104668938426,
+    "BoyerMooreSearch": 9.651794240422726,
+    "Bm4DnaDsSearch": 7.2729225467877505,
+    "Bm4DnaHmbsSearch": 8.632813375635129,
+    "WuManberSearch": 0.4928533913129608
+   }
+  },
+  {
+   "id": "val-113",
+   "alphabet": "tokens",
+   "n": 300000,
+   "m": 10,
+   "k": 1,
+   "mSpread": 0,
+   "seed": 9113,
+   "shape": {
+    "n": 300000,
+    "sigma": 1000,
+    "k": 1,
+    "mMin": 10,
+    "mMax": 10,
+    "mAvg": 10
+   },
+   "times": {
+    "HorspoolSearch": 0.9470562499991502,
+    "ShiftOrSearch": 1.178346153845688,
+    "KmpSearch": 1.308246153845595,
+    "AhoCorasickSearch": 1.7606249999989814,
+    "BoyerMooreSearch": 1.074978571428801,
+    "Bm4DnaDsSearch": 1.0545999999992395,
+    "Bm4DnaHmbsSearch": 1.1556307692304613,
+    "WuManberSearch": 1.1447399999985162
+   },
+   "fastest": "HorspoolSearch",
+   "decisionMs": 1.2110249999993055,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.219775455364765,
+    "ShiftOrSearch": 1.4307807981268734,
+    "KmpSearch": 1.5663080831925744,
+    "AhoCorasickSearch": 2.066219842831098,
+    "BoyerMooreSearch": 1.2208501907963605,
+    "Bm4DnaDsSearch": 1.3328644941118992,
+    "Bm4DnaHmbsSearch": 1.3288785446312545,
+    "WuManberSearch": 1.1745231456102339
+   }
+  },
+  {
+   "id": "val-114",
+   "alphabet": "labels",
+   "n": 20000,
+   "m": 48,
+   "k": 1,
+   "mSpread": 0.5,
+   "seed": 9114,
+   "shape": {
+    "n": 20000,
+    "sigma": 4,
+    "k": 1,
+    "mMin": 58,
+    "mMax": 58,
+    "mAvg": 58
+   },
+   "times": {
+    "HorspoolSearch": 0.11852522522524662,
+    "KmpSearch": 0.14644479166660554,
+    "AhoCorasickSearch": 0.13758137254911823,
+    "BoyerMooreSearch": 0.08578412698411811,
+    "Bm4DnaDsSearch": 0.09266666666655687,
+    "Bm4DnaHmbsSearch": 0.06894646464633013,
+    "WuManberSearch": 0.07313124999988456
+   },
+   "fastest": "Bm4DnaHmbsSearch",
+   "decisionMs": 0.10908695652166067,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.10007984087783074,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.10652346579402833,
+    "AhoCorasickSearch": 0.13281878162094535,
+    "BoyerMooreSearch": 0.10518630325806602,
+    "Bm4DnaDsSearch": 0.10674162194508871,
+    "Bm4DnaHmbsSearch": 0.08241079630657684,
+    "WuManberSearch": 0.07208529595943199
+   }
+  },
+  {
+   "id": "val-115",
+   "alphabet": "normalized",
+   "n": 200000,
+   "m": 12,
+   "k": 6,
+   "mSpread": 0,
+   "seed": 9115,
+   "shape": {
+    "n": 200000,
+    "sigma": 37,
+    "k": 6,
+    "mMin": 12,
+    "mMax": 12,
+    "mAvg": 12
+   },
+   "times": {
+    "HorspoolSearch": 1.1234222222216583,
+    "ShiftOrSearch": 2.026574999999866,
+    "KmpSearch": 2.1843285714276135,
+    "AhoCorasickSearch": 1.1144142857145718,
+    "BoyerMooreSearch": 1.2130000000000178,
+    "Bm4DnaDsSearch": 1.0491857142852885,
+    "Bm4DnaHmbsSearch": 1.184853846153531,
+    "WuManberSearch": 0.6332083333339446
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.7306347826088313,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 1.3760732181611806,
+    "ShiftOrSearch": 2.3942437989984313,
+    "KmpSearch": 2.6405041208292688,
+    "AhoCorasickSearch": 1.3260454396305181,
+    "BoyerMooreSearch": 1.4775099644714773,
+    "Bm4DnaDsSearch": 1.4012054516327785,
+    "Bm4DnaHmbsSearch": 1.4667916775731253,
+    "WuManberSearch": 0.8044393712038698
+   }
+  },
+  {
+   "id": "val-116",
+   "alphabet": "printable",
+   "n": 20000,
+   "m": 80,
+   "k": 12,
+   "mSpread": 0,
+   "seed": 9116,
+   "shape": {
+    "n": 20000,
+    "sigma": 95,
+    "k": 12,
+    "mMin": 80,
+    "mMax": 80,
+    "mAvg": 80
+   },
+   "times": {
+    "HorspoolSearch": 0.09457459016373862,
+    "KmpSearch": 0.372580487804953,
+    "AhoCorasickSearch": 0.845594736842414,
+    "BoyerMooreSearch": 0.1297379032257595,
+    "Bm4DnaDsSearch": 0.16295619047623838,
+    "Bm4DnaHmbsSearch": 0.2554440476188098,
+    "WuManberSearch": 0.23003166666652153
+   },
+   "fastest": "HorspoolSearch",
+   "decisionMs": 0.30279512195095487,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 0.1156341120979602,
+    "ShiftOrSearch": null,
+    "KmpSearch": 0.4902664079005448,
+    "AhoCorasickSearch": 1.3329415639794677,
+    "BoyerMooreSearch": 0.15090612397259023,
+    "Bm4DnaDsSearch": 0.13392670316565108,
+    "Bm4DnaHmbsSearch": 0.27102422392477543,
+    "WuManberSearch": 0.09611057078349716
+   }
+  },
+  {
+   "id": "val-117",
+   "alphabet": "binary",
+   "n": 30000,
+   "m": 3,
+   "k": 12,
+   "mSpread": 0,
+   "seed": 9117,
+   "shape": {
+    "n": 30000,
+    "sigma": 2,
+    "k": 12,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 11.384200000000419,
+    "ShiftOrSearch": 10.96060000002035,
+    "KmpSearch": 10.748399999996764,
+    "AhoCorasickSearch": 5.839100000002266,
+    "BoyerMooreSearch": 10.544349999996484,
+    "Bm4DnaDsSearch": 9.062400000009802,
+    "Bm4DnaHmbsSearch": 10.938800000003539,
+    "WuManberSearch": 5.499699999995452
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 0.23732388059698992,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 18.952238243101945,
+    "ShiftOrSearch": 8.977923694519363,
+    "KmpSearch": 42.21007137447879,
+    "AhoCorasickSearch": 5.889808202595385,
+    "BoyerMooreSearch": 24.452787632729883,
+    "Bm4DnaDsSearch": 17.427336383844093,
+    "Bm4DnaHmbsSearch": 12.593322593575422,
+    "WuManberSearch": 6.9079901745091865
+   }
+  },
+  {
+   "id": "val-118",
+   "alphabet": "turkish",
+   "n": 200000,
+   "m": 3,
+   "k": 1000,
+   "mSpread": 0,
+   "seed": 9118,
+   "shape": {
+    "n": 200000,
+    "sigma": 30,
+    "k": 1000,
+    "mMin": 3,
+    "mMax": 3,
+    "mAvg": 3
+   },
+   "times": {
+    "HorspoolSearch": 340.1128000000026,
+    "ShiftOrSearch": 260.4078000000154,
+    "KmpSearch": 300.9058999999834,
+    "AhoCorasickSearch": 3.317099999997299,
+    "BoyerMooreSearch": 409.0969000000041,
+    "Bm4DnaDsSearch": 289.8237000000081,
+    "Bm4DnaHmbsSearch": 381.2558999999892,
+    "WuManberSearch": 3.501159999996889
+   },
+   "fastest": "AhoCorasickSearch",
+   "decisionMs": 1.9033249999993131,
+   "chosen": {
+    "auto": "AhoCorasickSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 408.3486893353902,
+    "ShiftOrSearch": 289.6158918255891,
+    "KmpSearch": 326.4516627058214,
+    "AhoCorasickSearch": 3.4426658831337544,
+    "BoyerMooreSearch": 480.28528466061334,
+    "Bm4DnaDsSearch": 371.42337644605135,
+    "Bm4DnaHmbsSearch": 425.72300936221046,
+    "WuManberSearch": 3.5259153910140486
+   }
+  },
+  {
+   "id": "val-119",
+   "alphabet": "tokens",
+   "n": 300000,
+   "m": 150,
+   "k": 100,
+   "mSpread": 0.5,
+   "seed": 9119,
+   "shape": {
+    "n": 300000,
+    "sigma": 1000,
+    "k": 100,
+    "mMin": 76,
+    "mMax": 223,
+    "mAvg": 147.07
+   },
+   "times": {
+    "HorspoolSearch": 2.367285714285182,
+    "KmpSearch": 35.41370000000461,
+    "AhoCorasickSearch": 124.93510000000242,
+    "BoyerMooreSearch": 2.7176399999996645,
+    "Bm4DnaDsSearch": 2.496471428570138,
+    "Bm4DnaHmbsSearch": 3.144433333334746,
+    "WuManberSearch": 1.256783333332957
+   },
+   "fastest": "WuManberSearch",
+   "decisionMs": 1.6940090909086971,
+   "chosen": {
+    "auto": "WuManberSearch"
+   },
+   "estimates": {
+    "NaiveSearch": null,
+    "HorspoolSearch": 2.6385013927848524,
+    "ShiftOrSearch": null,
+    "KmpSearch": 49.44427921782648,
+    "AhoCorasickSearch": 194.24911672816395,
+    "BoyerMooreSearch": 3.3354831404885914,
+    "Bm4DnaDsSearch": 2.8350955949270817,
+    "Bm4DnaHmbsSearch": 2.642447512039151,
+    "WuManberSearch": 1.2117499544069998
+   }
+  }
+ ],
+ "table": [
+  {
+   "policy": "ExactMatch (auto)",
+   "fastestRate": 0.8,
+   "within10Rate": 0.8916666666666667,
+   "geoMeanSlowdown": 1.0583478332579606,
+   "worstSlowdown": 3.4818686395460023,
+   "worstCase": "val-3",
+   "totalRatio": 1.0538459149258073
+  },
+  {
+   "policy": "Allmer 2016 kuralı",
+   "fastestRate": 0.041666666666666664,
+   "within10Rate": 0.1,
+   "geoMeanSlowdown": 3.7522518483298892,
+   "worstSlowdown": 488.6155910286623,
+   "worstCase": "val-21",
+   "totalRatio": 32.67600311728344
+  },
+  {
+   "policy": "hep HorspoolSearch",
+   "fastestRate": 0.06666666666666667,
+   "within10Rate": 0.16666666666666666,
+   "geoMeanSlowdown": 4.401054804158563,
+   "worstSlowdown": 604.096975899393,
+   "worstCase": "val-21",
+   "totalRatio": 41.80955198481555
+  },
+  {
+   "policy": "hep ShiftOrSearch",
+   "fastestRate": 0,
+   "within10Rate": 0,
+   "geoMeanSlowdown": 9.719728072373693,
+   "worstSlowdown": 604.096975899393,
+   "worstCase": "val-21",
+   "totalRatio": 60.69708388132669
+  },
+  {
+   "policy": "hep KmpSearch",
+   "fastestRate": 0,
+   "within10Rate": 0,
+   "geoMeanSlowdown": 9.306920798548587,
+   "worstSlowdown": 542.0159879184301,
+   "worstCase": "val-21",
+   "totalRatio": 59.20548000825319
+  },
+  {
+   "policy": "hep AhoCorasickSearch",
+   "fastestRate": 0.09166666666666666,
+   "within10Rate": 0.125,
+   "geoMeanSlowdown": 3.2535811990853247,
+   "worstSlowdown": 167.12059536438136,
+   "worstCase": "val-47",
+   "totalRatio": 7.376261244943692
+  },
+  {
+   "policy": "hep BoyerMooreSearch",
+   "fastestRate": 0.03333333333333333,
+   "within10Rate": 0.10833333333333334,
+   "geoMeanSlowdown": 4.136706283585023,
+   "worstSlowdown": 172.8111403716312,
+   "worstCase": "val-21",
+   "totalRatio": 19.335964231111472
+  },
+  {
+   "policy": "hep Bm4DnaDsSearch",
+   "fastestRate": 0,
+   "within10Rate": 0.05,
+   "geoMeanSlowdown": 4.349309029016534,
+   "worstSlowdown": 488.6155910286623,
+   "worstCase": "val-21",
+   "totalRatio": 36.016889940377624
+  },
+  {
+   "policy": "hep Bm4DnaHmbsSearch",
+   "fastestRate": 0.041666666666666664,
+   "within10Rate": 0.09166666666666666,
+   "geoMeanSlowdown": 3.2239715578590924,
+   "worstSlowdown": 114.93651080772351,
+   "worstCase": "val-118",
+   "totalRatio": 10.581977055589185
+  },
+  {
+   "policy": "hep WuManberSearch",
+   "fastestRate": 0.7666666666666667,
+   "within10Rate": 0.8833333333333333,
+   "geoMeanSlowdown": 1.0449700390147938,
+   "worstSlowdown": 2.4322777002603315,
+   "worstCase": "val-116",
+   "totalRatio": 1.0696130298726538
+  }
+ ],
+ "set": "küme 1 (tohum 20261124), ilk model"
+}

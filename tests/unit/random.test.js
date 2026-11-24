@@ -1,6 +1,6 @@
 // Tohumlu rastgele testler: her atom ve molekül, NaiveSearch ile ELEMAN ELEMAN aynı sonucu vermeli.
 // 420 rastgele vaka: farklı alfabeler, çok tekrarlı metinler, karışık uzunlukta desenler,
-// aynı desenin iki kez verilmesi, birden çok kayıt, ignoreCase.
+// aynı desenin iki kez verilmesi, birden çok belge, ignoreCase.
 
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
@@ -17,17 +17,17 @@ const SEED = 20261124;
 function makeCase(random, index) {
   const alphabetNames = Object.keys(ALPHABETS);
   const alphabet = ALPHABETS[alphabetNames[index % alphabetNames.length]];
-  const entryCount = randomInt(random, 1, 3);
-  const entries = [];
-  for (let e = 0; e < entryCount; e++) {
+  const docCount = randomInt(random, 1, 3);
+  const docs = [];
+  for (let e = 0; e < docCount; e++) {
     const n = randomInt(random, 0, 600);
-    let seq;
+    let text;
     const kind = random();
-    if (kind < 0.15) seq = repetitiveText(randomText(random, alphabet, randomInt(random, 1, 3)), n);
-    else seq = randomText(random, alphabet, n);
-    entries.push({ header: `>rec${e} case${index}`, seq });
+    if (kind < 0.15) text = repetitiveText(randomText(random, alphabet, randomInt(random, 1, 3)), n);
+    else text = randomText(random, alphabet, n);
+    docs.push({ id: `doc${e}-case${index}`, text });
   }
-  const sample = entries[0].seq;
+  const sample = docs[0].text;
   const k = randomInt(random, 1, random() < 0.2 ? 40 : 6);
   const patterns = randomPatterns(random, sample, alphabet, k, 1, random() < 0.2 ? 60 : 12);
   if (random() < 0.15) patterns.push(patterns[0]); // aynı desen iki kez
@@ -38,7 +38,7 @@ function makeCase(random, index) {
       patterns[i] = [...patterns[i]].map((ch) => (random() < 0.5 ? ch.toUpperCase() : ch.toLowerCase())).join('');
     }
   }
-  return { entries, patterns, ignoreCase };
+  return { docs, patterns, ignoreCase };
 }
 
 describe(`Rastgele vakalar (${CASES}, tohum ${SEED})`, () => {
@@ -51,8 +51,8 @@ describe(`Rastgele vakalar (${CASES}, tohum ${SEED})`, () => {
       for (const [i, c] of cases.entries()) {
         const verdict = AtomClass.selection.applicable({ mMax: Math.max(...c.patterns.map((p) => p.length)) });
         if (verdict !== true) continue; // ör. Shift-Or uzun desende uygulanamaz
-        const expected = runAtom(new NaiveSearch(c), c.entries);
-        const got = runAtom(new AtomClass(c), c.entries);
+        const expected = runAtom(new NaiveSearch(c), c.docs);
+        const got = runAtom(new AtomClass(c), c.docs);
         assert.deepEqual(got, expected, `vaka ${i} farklı: ${JSON.stringify(c.patterns)}`);
         compared++;
       }
@@ -62,9 +62,9 @@ describe(`Rastgele vakalar (${CASES}, tohum ${SEED})`, () => {
 
   it('ExactMatch (auto) = NaiveSearch', () => {
     for (const [i, c] of cases.entries()) {
-      const expected = runAtom(new NaiveSearch(c), c.entries);
+      const expected = runAtom(new NaiveSearch(c), c.docs);
       const molecule = new ExactMatch({ ...c, strategy: 'auto' });
-      const got = [...molecule.run(c.entries)];
+      const got = [...molecule.run(c.docs)];
       assert.deepEqual(got, expected, `vaka ${i}, seçilen ${molecule.record.selected}`);
     }
   });

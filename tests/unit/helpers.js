@@ -2,17 +2,17 @@
 
 import { registry } from '../../src/registry.js';
 
-/** Bir atomun (veya molekülün) bir akış için bütün eşleşmeleri. */
-export function runAtom(atom, entries) {
+/** Bir atomun bir belge akışı için bütün eşleşmeleri. */
+export function runAtom(atom, docs) {
   const out = [];
-  for (const entry of entries) for (const match of atom.process(entry)) out.push(match);
+  for (const doc of docs) for (const match of atom.process(doc)) out.push(match);
   return out;
 }
 
 /** Tek metin için kısa yol. */
-export function search(AtomClass, seq, patterns, ignoreCase = false) {
+export function search(AtomClass, text, patterns, ignoreCase = false) {
   const atom = new AtomClass({ patterns, ignoreCase });
-  return runAtom(atom, [{ header: '>t', seq }]);
+  return runAtom(atom, [{ id: 't', text }]);
 }
 
 /** Yalnızca [desen, konum] çiftleri: beklenen değerleri yazmak kolay olsun. */

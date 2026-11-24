@@ -1,0 +1,234 @@
+{
+ "machine": {
+  "cpu": "11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz",
+  "cores": 8,
+  "memoryGB": 16,
+  "platform": "win32 10.0.26200",
+  "node": "v24.14.0",
+  "date": "2026-11-24T13:11:45.582Z"
+ },
+ "repo": [
+  {
+   "method": "13 kelimelik n-gram (GPT-3 yöntemi)",
+   "summary": {
+    "items": 200,
+    "contaminated": 3,
+    "rate": 0.015,
+    "patterns": 7026,
+    "corpusDocs": 1000,
+    "corpusChars": 483038,
+    "matches": 30
+   },
+   "shape": {
+    "n": 483038,
+    "sigma": 39,
+    "sigmaP": 37,
+    "k": 7026,
+    "mMin": 43,
+    "mMax": 90,
+    "mAvg": 63.639624252775405
+   },
+   "selected": "WuManberSearch",
+   "fastest": "WuManberSearch",
+   "slowdown": 1,
+   "times": {
+    "HorspoolSearch": 935.9155999999998,
+    "KmpSearch": 6481.7631,
+    "AhoCorasickSearch": 462.92649999999776,
+    "BoyerMooreSearch": 1089.6679000000004,
+    "Bm4DnaDsSearch": 865.890800000001,
+    "Bm4DnaHmbsSearch": 591.2166999999972,
+    "WuManberSearch": 16.62109999999666
+   },
+   "contaminated": [
+    {
+     "id": "test-0582",
+     "matched": 3,
+     "patterns": 29,
+     "docs": [
+      "train-0407"
+     ]
+    },
+    {
+     "id": "test-0603",
+     "matched": 7,
+     "patterns": 13,
+     "docs": [
+      "train-1315",
+      "train-5163"
+     ]
+    },
+    {
+     "id": "test-0633",
+     "matched": 13,
+     "patterns": 44,
+     "docs": [
+      "train-0021"
+     ]
+    }
+   ]
+  },
+  {
+   "method": "soru başına 3 rastgele 50 karakterlik parça (GPT-4 yöntemi)",
+   "summary": {
+    "items": 200,
+    "contaminated": 3,
+    "rate": 0.015,
+    "patterns": 596,
+    "corpusDocs": 1000,
+    "corpusChars": 483038,
+    "matches": 6
+   },
+   "shape": {
+    "n": 483038,
+    "sigma": 39,
+    "sigmaP": 37,
+    "k": 596,
+    "mMin": 50,
+    "mMax": 50,
+    "mAvg": 50
+   },
+   "selected": "WuManberSearch",
+   "fastest": "WuManberSearch",
+   "slowdown": 1,
+   "times": {
+    "HorspoolSearch": 88.80330000000686,
+    "KmpSearch": 675.7290999999968,
+    "AhoCorasickSearch": 30.236799999998766,
+    "BoyerMooreSearch": 105.52109999999811,
+    "Bm4DnaDsSearch": 85.40140000000247,
+    "Bm4DnaHmbsSearch": 58.84580000000278,
+    "WuManberSearch": 3.212724999999409
+   },
+   "contaminated": [
+    {
+     "id": "test-0603",
+     "matched": 2,
+     "patterns": 3,
+     "docs": [
+      "train-1315",
+      "train-5163"
+     ]
+    },
+    {
+     "id": "test-0633",
+     "matched": 1,
+     "patterns": 3,
+     "docs": [
+      "train-0021"
+     ]
+    },
+    {
+     "id": "test-0919",
+     "matched": 1,
+     "patterns": 3,
+     "docs": [
+      "train-7286"
+     ]
+    }
+   ]
+  }
+ ],
+ "full": [
+  {
+   "method": "13 kelimelik n-gram (GPT-3 yöntemi)",
+   "summary": {
+    "items": 1319,
+    "contaminated": 3,
+    "rate": 0.002274450341167551,
+    "patterns": 46281,
+    "corpusDocs": 7473,
+    "corpusChars": 3642045,
+    "matches": 30
+   },
+   "selected": "WuManberSearch",
+   "shape": {
+    "n": 3642045,
+    "sigma": 43,
+    "sigmaP": 37,
+    "k": 46281,
+    "mMin": 36,
+    "mMax": 98,
+    "mAvg": 63.1983103217303
+   },
+   "totalMs": 1133.3544000000038,
+   "contaminated": [
+    {
+     "id": "test-0582",
+     "matched": 3,
+     "patterns": 29,
+     "docs": [
+      "train-0407"
+     ]
+    },
+    {
+     "id": "test-0603",
+     "matched": 7,
+     "patterns": 13,
+     "docs": [
+      "train-1315",
+      "train-5163"
+     ]
+    },
+    {
+     "id": "test-0633",
+     "matched": 13,
+     "patterns": 44,
+     "docs": [
+      "train-0021"
+     ]
+    }
+   ]
+  },
+  {
+   "method": "soru başına 3 rastgele 50 karakterlik parça (GPT-4 yöntemi)",
+   "summary": {
+    "items": 1319,
+    "contaminated": 3,
+    "rate": 0.002274450341167551,
+    "patterns": 3926,
+    "corpusDocs": 7473,
+    "corpusChars": 3642045,
+    "matches": 6
+   },
+   "selected": "WuManberSearch",
+   "shape": {
+    "n": 3642045,
+    "sigma": 43,
+    "sigmaP": 37,
+    "k": 3926,
+    "mMin": 50,
+    "mMax": 50,
+    "mAvg": 50
+   },
+   "totalMs": 426.41270000000077,
+   "contaminated": [
+    {
+     "id": "test-0603",
+     "matched": 2,
+     "patterns": 3,
+     "docs": [
+      "train-1315",
+      "train-5163"
+     ]
+    },
+    {
+     "id": "test-0633",
+     "matched": 1,
+     "patterns": 3,
+     "docs": [
+      "train-0021"
+     ]
+    },
+    {
+     "id": "test-0919",
+     "matched": 1,
+     "patterns": 3,
+     "docs": [
+      "train-7286"
+     ]
+    }
+   ]
+  }
+ ]
+}

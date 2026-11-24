@@ -7,7 +7,8 @@
 // Ölçütler: en hızlıyı seçme oranı, %10 içinde kalma oranı, yavaşlamanın geometrik ortalaması,
 // en kötü yavaşlama, toplam sürenin en iyiye oranı.
 //
-//   npm run bench   → bench/results/validation.json ve bench/results/validation.md
+//   npm run bench           → küme 2 (raporlanan): bench/results/validation.json ve validation.md
+//   npm run bench -- --set1 → küme 1 (ilk modelin hatalarını bulmak için kullanılan küme): validation_v1.*
 
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -30,17 +31,17 @@ function runCases(cases) {
   const out = [];
   const started = Date.now();
   cases.forEach((c, i) => {
-    const { entries, patterns } = buildCase(c);
-    const shape = computeShape(entries[0], patterns, false);
+    const { docs, patterns } = buildCase(c);
+    const shape = computeShape(docs[0], patterns, false);
     const times = {};
     for (const AtomClass of ATOMS) {
       const name = AtomClass.manifest.name;
       if (AtomClass.selection.applicable(shape) !== true) continue;
-      times[name] = measureAtom(AtomClass, { patterns }, entries).ms;
+      times[name] = measureAtom(AtomClass, { patterns }, docs).ms;
     }
     const em = new ExactMatch({ patterns });
-    const record = em.decide(entries[0]);
-    const decisionMs = measure(() => new ExactMatch({ patterns }).decide(entries[0])).ms;
+    const record = em.decide(docs[0]);
+    const decisionMs = measure(() => new ExactMatch({ patterns }).decide(docs[0])).ms;
     const fastest = Object.entries(times).sort((a, b) => a[1] - b[1])[0][0];
     out.push({ ...c, shape, times, fastest, decisionMs, chosen: { auto: record.selected },
       estimates: Object.fromEntries(Object.entries(record.estimates).map(([n, e]) => [n, e.applicable ? e.cost : null])) });
@@ -84,11 +85,11 @@ function evaluate(results) {
 function pct(x) { return `${(x * 100).toFixed(1)}%`; }
 function num(x) { return x.toFixed(3); }
 
-function markdown(info, results, table) {
+function markdown(info, results, table, label) {
   const lines = [];
   lines.push(`# Doğrulama sonuçları`, '');
   lines.push(`Makine: ${info.cpu} (${info.cores} çekirdek), ${info.platform}, Node ${info.node}, ${info.date}.`);
-  lines.push(`Vaka sayısı: ${results.length} (kalibrasyonda kullanılmayan tohumlar, ızgara arası değerler, yeni alfabeler).`, '');
+  lines.push(`Vaka sayısı: ${results.length}, ${label} (kalibrasyonda kullanılmayan tohumlar, ızgara arası ve dışı değerler, yeni alfabeler).`, '');
   lines.push('| Politika | En hızlıyı seçme | %10 içinde | Geometrik ort. yavaşlama | En kötü yavaşlama | Toplam / en iyi |');
   lines.push('| --- | --- | --- | --- | --- | --- |');
   for (const r of [...table].sort((a, b) => a.geoMeanSlowdown - b.geoMeanSlowdown)) {
@@ -110,13 +111,16 @@ function markdown(info, results, table) {
 }
 
 function main() {
+  const set1 = process.argv.includes('--set1');
+  const label = set1 ? 'küme 1 (tohum 20261124)' : 'küme 2 (tohum 20261125)';
+  const suffix = set1 ? '_v1' : '';
   mkdirSync(RESULTS, { recursive: true });
   const info = machineInfo();
-  const results = runCases(validationCases());
+  const results = runCases(set1 ? validationCases(120, { seed: 20261124, base: 9000 }) : validationCases());
   const table = evaluate(results);
-  writeFileSync(RESULTS + 'validation.json', JSON.stringify({ machine: info, results, table }, null, 1));
-  const md = markdown(info, results, table);
-  writeFileSync(RESULTS + 'validation.md', md);
+  writeFileSync(`${RESULTS}validation${suffix}.json`, JSON.stringify({ machine: info, set: label, results, table }, null, 1));
+  const md = markdown(info, results, table, label);
+  writeFileSync(`${RESULTS}validation${suffix}.md`, md);
   console.log(md);
 }
 

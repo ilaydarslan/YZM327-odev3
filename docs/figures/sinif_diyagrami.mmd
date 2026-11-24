@@ -1,88 +1,71 @@
 classDiagram
   direction LR
-  class ExactSearchAtom {
-    <<abstract>>
-    +manifest$
-    +patterns: string[]
-    +ignoreCase: boolean
-    #keys: Uint16Array[]
-    #alphabet: Alphabet
-    +constructor(params)
-    #prepare()
-    #search(text, collector)
-    #searchOne(text, patternIndex, collector)
-    +process(entry)* Match
-  }
-  class NaiveSearch
-  class HorspoolSearch
-  class ShiftOrSearch
-  class KmpSearch
-  class BoyerMooreSearch
-  class Bm4DnaDsSearch
-  class Bm4DnaHmbsSearch
-  class AhoCorasickSearch
-  class WuManberSearch
-  ExactSearchAtom <|-- NaiveSearch
-  ExactSearchAtom <|-- HorspoolSearch
-  ExactSearchAtom <|-- ShiftOrSearch
-  ExactSearchAtom <|-- KmpSearch
-  ExactSearchAtom <|-- BoyerMooreSearch
-  ExactSearchAtom <|-- Bm4DnaDsSearch
-  ExactSearchAtom <|-- Bm4DnaHmbsSearch
-  ExactSearchAtom <|-- AhoCorasickSearch
-  ExactSearchAtom <|-- WuManberSearch
-
-  class Selection {
-    <<interface>>
-    +features(shape) Features
-    +defaults: Coefficients
-    +applicable(shape) true|string
-  }
-  ExactSearchAtom ..> Selection : static selection
-
-  class Registry {
-    -atoms: Map
-    +register(AtomClass) Registry
-    +get(name) AtomClass
-    +has(name) boolean
-    +names() string[]
-    +atoms(task) AtomClass[]
-    +create(name, params) ExactSearchAtom
-    +clone() Registry
-  }
-  Registry o-- ExactSearchAtom : kayıtlı sınıflar
-
-  class ExactMatch {
-    +manifest$
-    +strategy: string
-    +record: Record
-    -atom: ExactSearchAtom
-    +constructor(options)
-    +estimate(shape) Estimates
-    +decide(firstEntry) Record
-    +run(entries)* Match
-  }
-  ExactMatch --> Registry : kullanır
-  ExactMatch --> ExactSearchAtom : seçilen strateji
-  ExactMatch ..> Shape : computeShape()
-
-  class Shape {
-    +n, sigma, k
-    +mMin, mMax, mAvg
-  }
-  class HitCollector {
-    +add(position, patternIndex)
-    +sorted()* pair
-  }
-  ExactSearchAtom ..> HitCollector
-
   class Cli {
     <<Facade: bin/ios.js>>
+    +contamination
     +run ExactMatch
     +explain
   }
-  Cli --> ExactMatch
-  Cli ..> Fasta : parseFasta()
-  class Fasta {
-    +parseFasta(text) Entry[]
+  class ContaminationDetector {
+    <<Facade>>
+    -extractor: PatternExtractor
+    +detect(benchmark, corpus) Report
+    +buildPatterns(benchmark)
   }
+  class PatternExtractor {
+    <<interface>>
+    +extract(text) string[]
+    +describe() string
+  }
+  class NgramExtractor {
+    +n = 13
+  }
+  class SubstringSampleExtractor {
+    +length = 50
+    +samples = 3
+  }
+  class ExactMatch {
+    <<Context>>
+    +strategy: string
+    +record: Record
+    +estimate(shape) Estimates
+    +decide(firstDoc) Record
+    +run(docs)* Match
+  }
+  class Registry {
+    +register(AtomClass) Registry
+    +create(name, params) ExactSearchAtom
+    +atoms(task) AtomClass[]
+  }
+  class ExactSearchAtom {
+    <<abstract>>
+    +process(doc)* Match
+    #prepare()
+    #search(text, collector)
+    #searchOne(text, i, collector)
+  }
+  class Selection {
+    <<interface>>
+    +features(shape)
+    +defaults
+    +applicable(shape)
+  }
+  Cli --> ContaminationDetector
+  Cli --> ExactMatch
+  ContaminationDetector --> PatternExtractor : Strategy
+  ContaminationDetector --> ExactMatch : arama
+  PatternExtractor <|.. NgramExtractor
+  PatternExtractor <|.. SubstringSampleExtractor
+  ExactMatch --> Registry : Factory Method
+  ExactMatch --> ExactSearchAtom : seçilen strateji
+  Registry o-- ExactSearchAtom
+  ExactSearchAtom ..> Selection : static selection
+  ExactSearchAtom <|-- HorspoolSearch
+  ExactSearchAtom <|-- ShiftOrSearch
+  ExactSearchAtom <|-- Bm4DnaDsSearch
+  ExactSearchAtom <|-- Bm4DnaHmbsSearch
+  ExactSearchAtom <|-- KmpSearch
+  ExactSearchAtom <|-- AhoCorasickSearch
+  ExactSearchAtom <|-- WuManberSearch
+  ExactSearchAtom <|-- BoyerMooreSearch
+  ExactSearchAtom <|-- NaiveSearch

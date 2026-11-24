@@ -1,140 +1,128 @@
 # Tasarım: desenler, SOLID ve sınıf diyagramı
 
 Bu belge sunumda "hangi deseni nerede, neden kullandınız?" sorusuna cevaptır.
-Diyagramın görüntüsü: `docs/figures/sinif_diyagrami.png` (kaynak: `docs/figures/sinif_diyagrami.mmd`).
+Diyagramın görüntüsü: `docs/figures/sinif_diyagrami.png` (`docs/figures/make_figures.py` çizer; metin hâli: `docs/figures/sinif_diyagrami.mmd`).
+
+Proje iki katmandır:
+
+1. **Arama çekirdeği (IoS atom/molekül modeli):** aynı işi yapan 9 tam eşleştirme algoritması (atom) ve girdiye bakıp
+   en hızlısını seçen `ExactMatch` molekülü. Alana bağlı değildir; her metinde çalışır.
+2. **Yapay zekâ uygulaması (kirlenme tespiti):** `ContaminationDetector`, bir LLM benchmark'ının test sorularının eğitim
+   verisinde birebir geçip geçmediğini bu çekirdekle bulur.
 
 ## Tasarım desenleri
 
 | Desen (GoF) | Nerede | Neden |
 | --- | --- | --- |
-| **Strategy** | Her atom (`HorspoolSearch`, `WuManberSearch`, …) bir *ConcreteStrategy*; `ExactMatch` *Context*; ortak arayüz `ExactSearchAtom` (`process`) + `selection`. | Aynı işi (tam eşleştirme) yapan birbirinin yerine geçebilen algoritmalar. Molekül çalışma anında birini seçer ya da kullanıcı `strategy` ile zorlar. Büyük `if/else` bloğu yok. Hocanın slaytındaki "Navigasyon → Otobüs/Taksi/Bisiklet" örneğinin aynısı. |
-| **Template Method** | `ExactSearchAtom.process()`: kod çevirme → `search()` → sıralı çıktı. Alt sınıf yalnızca `prepare()` ve `search()`/`searchOne()` yazar. | Sözleşme kuralları (sıralama, ignoreCase, parametre denetimi) tek yerde kalır; her atom aynı kuralları otomatik uygular. Bir atom sıralamayı unutamaz. |
-| **Factory Method** | `Registry.create(name, params)`; molekül atomu adıyla ürettirir. | Molekül somut sınıfları `new HorspoolSearch(...)` diye bilmez; adı bilmesi yeter. |
+| **Strategy** (1) | Her atom (`HorspoolSearch`, `WuManberSearch`, …) bir *ConcreteStrategy*; `ExactMatch` *Context*; ortak arayüz `ExactSearchAtom` (`process`) + `selection`. | Aynı işi yapan, birbirinin yerine geçebilen algoritmalar. Molekül çalışma anında birini seçer ya da kullanıcı `strategy` ile zorlar. Büyük `if/else` bloğu yok. Hocanın slaytındaki "Navigasyon → Otobüs/Taksi/Bisiklet" örneğinin aynısı. |
+| **Strategy** (2) | Desen çıkarıcılar: `NgramExtractor` (GPT-3 yöntemi) ve `SubstringSampleExtractor` (GPT-4 yöntemi); ortak arayüz `extract(metin)` + `describe()`; *Context* `ContaminationDetector`. | Kirlenme literatüründe iki farklı yöntem var. Dedektör hangisinin kullanıldığını bilmez; yapıcıya verilen çıkarıcıyı çağırır. |
+| **Template Method** | `ExactSearchAtom.process()`: koda çevirme → `search()` → sıralı çıktı. Alt sınıf yalnızca `prepare()` ve `search()`/`searchOne()` yazar. | Sözleşme kuralları (sıralama, ignoreCase, parametre denetimi) tek yerde kalır; her atom aynı kuralları otomatik uygular. |
+| **Factory Method** | `Registry.create(name, params)` atomları, `createExtractor(method, options)` çıkarıcıları adıyla üretir. | Molekül `new HorspoolSearch(...)`, komut satırı `new NgramExtractor(...)` yazmaz; adı bilmesi yeter. |
 | **Registry** | `src/registry.js`: `register`, `get`, `atoms(task)`, `clone`. | Yeni atom = tek satır. Test içinde sahte atom `clone().register(...)` ile eklenir, varsayılan defter kirlenmez. |
-| **Facade** | `bin/ios.js`: FASTA okuma, molekül kurma, karar, JSONL yazma tek komutun arkasında. | Kullanıcı iç yapıyı bilmeden `run` / `explain` ile çalışır. |
+| **Facade** | `ContaminationDetector.detect()`: normalleştirme, desen çıkarma, korpusu birleştirme, `ExactMatch` ile arama ve soru bazında özet tek çağrıda. `bin/ios.js`: JSONL okuma, molekül/dedektör kurma, çıktı yazma tek komutta. | Kullanıcı iç yapıyı bilmeden `contamination`, `run`, `explain` ile çalışır. |
 
 ## SOLID
 
 | İlke | Nasıl sağlandı | Kanıt |
 | --- | --- | --- |
-| **S** Tek sorumluluk | `functions/` yalnızca algoritma çekirdeği (saf hesap), `atomic/` yalnızca sözleşme ve seçim bilgisi, `molecules/` yalnızca karar, `shape.js` yalnızca veri şekli, `bin/` yalnızca giriş/çıkış. | Dosya yapısı |
-| **O** Açık/kapalı | Yeni atom eklemek molekülün kodunu değiştirmez. | `molecule.test.js`: "sahte atom … molekül kodu değişmeden seçilebilir" |
-| **L** Liskov | Her atom diğerinin yerine kullanılabilir: hepsi aynı sözleşme testlerinden geçer ve aynı sonucu verir. | `contract.test.js`, `random.test.js` ("zorla seçilen her strateji aynı sonucu verir") |
-| **I** Arayüz ayrımı | Atomdan istenen yalnızca `manifest`, `selection` (`features`, `defaults`, `applicable`) ve `process`. Çok desenli atom `search`'ü, tek desenli `searchOne`'ı yazar; ikisini birden yazmak zorunda değil. | `ExactSearchAtom.js` |
-| **D** Bağımlılığın ters çevrilmesi | `ExactMatch` somut atomlara değil, kayıt defterine ve `selection` arayüzüne bağlı; kayıt defteri yapıcıya parametre olarak da verilebilir. | `new ExactMatch({ patterns, registry })` |
+| **S** Tek sorumluluk | `functions/` yalnızca algoritma çekirdeği, `atomic/` sözleşme ve seçim bilgisi, `molecules/` karar, `shape.js` veri şekli, `corpus.js` JSONL okuma, `contamination/normalize.js` yalnızca normalleştirme, `extractors.js` yalnızca desen çıkarma, `ContaminationDetector` yalnızca adımları birleştirme, `bin/` giriş/çıkış. | Dosya yapısı |
+| **O** Açık/kapalı | Yeni atom eklemek molekülü, yeni bir kirlenme yöntemi eklemek dedektörü değiştirmez. | `molecule.test.js`: "sahte atom … molekül kodu değişmeden seçilebilir" |
+| **L** Liskov | Her atom diğerinin yerine kullanılabilir: hepsi aynı sözleşme testlerinden geçer, dedektör hangi atomla çalışırsa çalışsın aynı kirli soruları bulur. | `contract.test.js`, `random.test.js`, `contamination.test.js` ("zorla seçilen her atom aynı sonucu verir") |
+| **I** Arayüz ayrımı | Atomdan istenen yalnızca `manifest`, `selection` ve `process`; çıkarıcıdan yalnızca `extract` ve `describe`. Çok desenli atom `search`'ü, tek desenli `searchOne`'ı yazar. | `ExactSearchAtom.js`, `extractors.js` |
+| **D** Bağımlılığın ters çevrilmesi | `ExactMatch` somut atomlara değil kayıt defterine ve `selection` arayüzüne; `ContaminationDetector` somut algoritmaya değil `ExactMatch`'e ve çıkarıcı arayüzüne bağlı. İkisi de yapıcıdan verilebilir. | `new ExactMatch({ patterns, registry })`, `new ContaminationDetector({ extractor, strategy })` |
 
-## Sınıf diyagramı (tam)
+## Sınıf diyagramı (metin hâli)
 
 ```mermaid
 classDiagram
   direction LR
-  class ExactSearchAtom {
-    <<abstract>>
-    +manifest$
-    +patterns: string[]
-    +ignoreCase: boolean
-    #keys: Uint16Array[]
-    #alphabet: Alphabet
-    +constructor(params)
-    #prepare()
-    #search(text, collector)
-    #searchOne(text, patternIndex, collector)
-    +process(entry)* Match
-  }
-  class NaiveSearch
-  class HorspoolSearch
-  class ShiftOrSearch
-  class KmpSearch
-  class BoyerMooreSearch
-  class Bm4DnaDsSearch
-  class Bm4DnaHmbsSearch
-  class AhoCorasickSearch
-  class WuManberSearch
-  ExactSearchAtom <|-- NaiveSearch
-  ExactSearchAtom <|-- HorspoolSearch
-  ExactSearchAtom <|-- ShiftOrSearch
-  ExactSearchAtom <|-- KmpSearch
-  ExactSearchAtom <|-- BoyerMooreSearch
-  ExactSearchAtom <|-- Bm4DnaDsSearch
-  ExactSearchAtom <|-- Bm4DnaHmbsSearch
-  ExactSearchAtom <|-- AhoCorasickSearch
-  ExactSearchAtom <|-- WuManberSearch
-
-  class Selection {
-    <<interface>>
-    +features(shape) Features
-    +defaults: Coefficients
-    +applicable(shape) true|string
-  }
-  ExactSearchAtom ..> Selection : static selection
-
-  class Registry {
-    -atoms: Map
-    +register(AtomClass) Registry
-    +get(name) AtomClass
-    +has(name) boolean
-    +names() string[]
-    +atoms(task) AtomClass[]
-    +create(name, params) ExactSearchAtom
-    +clone() Registry
-  }
-  Registry o-- ExactSearchAtom : kayıtlı sınıflar
-
-  class ExactMatch {
-    +manifest$
-    +strategy: string
-    +record: Record
-    -atom: ExactSearchAtom
-    +constructor(options)
-    +estimate(shape) Estimates
-    +decide(firstEntry) Record
-    +run(entries)* Match
-  }
-  ExactMatch --> Registry : kullanır
-  ExactMatch --> ExactSearchAtom : seçilen strateji
-  ExactMatch ..> Shape : computeShape()
-
-  class Shape {
-    +n, sigma, k
-    +mMin, mMax, mAvg
-  }
-  class HitCollector {
-    +add(position, patternIndex)
-    +sorted()* pair
-  }
-  ExactSearchAtom ..> HitCollector
-
   class Cli {
     <<Facade: bin/ios.js>>
+    +contamination
     +run ExactMatch
     +explain
   }
-  Cli --> ExactMatch
-  Cli ..> Fasta : parseFasta()
-  class Fasta {
-    +parseFasta(text) Entry[]
+  class ContaminationDetector {
+    <<Facade>>
+    -extractor: PatternExtractor
+    +detect(benchmark, corpus) Report
+    +buildPatterns(benchmark)
   }
+  class PatternExtractor {
+    <<interface>>
+    +extract(text) string[]
+    +describe() string
+  }
+  class NgramExtractor {
+    +n = 13
+  }
+  class SubstringSampleExtractor {
+    +length = 50
+    +samples = 3
+  }
+  class ExactMatch {
+    <<Context>>
+    +strategy: string
+    +record: Record
+    +estimate(shape) Estimates
+    +decide(firstDoc) Record
+    +run(docs)* Match
+  }
+  class Registry {
+    +register(AtomClass) Registry
+    +create(name, params) ExactSearchAtom
+    +atoms(task) AtomClass[]
+  }
+  class ExactSearchAtom {
+    <<abstract>>
+    +process(doc)* Match
+    #prepare()
+    #search(text, collector)
+    #searchOne(text, i, collector)
+  }
+  class Selection {
+    <<interface>>
+    +features(shape)
+    +defaults
+    +applicable(shape)
+  }
+  Cli --> ContaminationDetector
+  Cli --> ExactMatch
+  ContaminationDetector --> PatternExtractor : Strategy
+  ContaminationDetector --> ExactMatch : arama
+  PatternExtractor <|.. NgramExtractor
+  PatternExtractor <|.. SubstringSampleExtractor
+  ExactMatch --> Registry : Factory Method
+  ExactMatch --> ExactSearchAtom : seçilen strateji
+  Registry o-- ExactSearchAtom
+  ExactSearchAtom ..> Selection : static selection
+  ExactSearchAtom <|-- HorspoolSearch
+  ExactSearchAtom <|-- ShiftOrSearch
+  ExactSearchAtom <|-- Bm4DnaDsSearch
+  ExactSearchAtom <|-- Bm4DnaHmbsSearch
+  ExactSearchAtom <|-- KmpSearch
+  ExactSearchAtom <|-- AhoCorasickSearch
+  ExactSearchAtom <|-- WuManberSearch
+  ExactSearchAtom <|-- BoyerMooreSearch
+  ExactSearchAtom <|-- NaiveSearch
 ```
 
 ## Kâğıda çizilecek sade hâli
 
-Sınav/sunumda elle çizmek için yalnızca kutular ve ana metotlar:
-
 ```
-                 «Facade» bin/ios.js  (run, explain)
-                          │
-                          ▼
-   ┌───────────────── ExactMatch (Context) ──────────────────┐
-   │ strategy, record                                         │
-   │ decide(firstEntry), estimate(shape), run(entries)        │
-   └──────────┬───────────────────────────────┬───────────────┘
-              │ kullanır                      │ seçilen atom
-              ▼                               ▼
-   Registry (Factory)              «abstract» ExactSearchAtom (Template Method)
-   register, get, create           process(entry)  ← iskelet, sabit
-                                    prepare(), search()  ← alt sınıflar doldurur
-                                              ▲ kalıtım
-          ┌──────────┬──────────┬─────────────┼─────────────┬──────────┬───────────┐
-       Horspool   ShiftOr     KMP     Bm4DnaDs / Bm4DnaHmbs   BoyerMoore  AhoCorasick  WuManber
-                         (hepsi: static manifest + static selection)
+          «Facade» bin/ios.js  (contamination, run, explain)
+                │                         │
+                ▼                         │
+   «Facade» ContaminationDetector         │
+     detect(benchmark, corpus)            │
+       │                  │               │
+       ▼                  ▼               ▼
+ «Strategy» PatternExtractor     ExactMatch (Context) ──► Registry (Factory)
+   NgramExtractor (GPT-3)          decide(), run()          register, create
+   SubstringSampleExtractor (GPT-4)        │ seçilen atom
+                                           ▼
+                         «abstract» ExactSearchAtom (Template Method)
+                           process(doc) ← iskelet; prepare(), search() ← alt sınıflar
+                                           ▲ kalıtım
+     Horspool  ShiftOr  bm4DNADS  bm4DNAHMbs  KMP  Aho-Corasick  Wu-Manber  Boyer-Moore
 ```

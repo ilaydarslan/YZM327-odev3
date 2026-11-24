@@ -18,10 +18,12 @@ export class Bm4DnaHmbsSearch extends ExactSearchAtom {
   static selection = {
     // Adım sayısı ≈ k · n / (beklenen q-gram kayması). Her adımın sabit bir maliyeti (probe: tablo
     // okuma, döngü) ve q ile orantılı bir maliyeti (hash: q karakterlik özet) vardır; ayrı ölçülür.
+    // q ve tablo, uygulamadaki gibi desen alfabesinden (σ_p); kayma olasılığı metnin alfabesinden (σ).
     features(shape) {
-      const q = chooseQ(shape.mAvg, shape.sigma);
+      const sigmaP = shape.sigmaP ?? shape.sigma;
+      const q = chooseQ(shape.mAvg, sigmaP);
       const steps = (shape.k * shape.n) / expectedQgramShift(shape.mAvg, q, shape.sigma);
-      const table = Math.min(65536, Math.pow(shape.sigma + 1, q));
+      const table = Math.min(65536, Math.pow(sigmaP + 1, q));
       return { probe: steps, hash: steps * q, prep: shape.k * (table + shape.mAvg * q), text: shape.n, out: expectedMatches(shape) };
     },
     defaults: { probe: 2e-6, hash: 2e-6, prep: 2e-6, text: 3e-6, out: 1e-4 },

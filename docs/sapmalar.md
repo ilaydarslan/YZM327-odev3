@@ -6,6 +6,10 @@ PeerJ PrePrints 4:e1758v1, ve çevrimiçi ekindeki sözde kod (OnlineSupplement.
 şekilde uygulandı. Her sapma kodda da (`src/functions/bm4dnaDs.js`, `src/functions/bm4dnaHmbs.js`)
 yorum olarak yazılıdır.
 
+Allmer'in algoritmaları DNA (σ = 4) için tasarlanmıştır; adları öyle kalsa da uygulamamız her alfabede
+çalışır (normalize metin, ham metin, Türkçe, 1000 sembollü token alfabesi). Aşağıdaki sapmaların
+çoğu tam da bu genellemenin gerektirdiği düzeltmelerdir (ör. 128'den büyük karakter kodları).
+
 ## bm4DNADS (`Bm4DnaDsSearch`)
 
 | # | Makale | Bizim uygulama | Gerekçe |

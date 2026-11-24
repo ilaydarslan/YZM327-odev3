@@ -1,51 +1,66 @@
 # Sunum (5 dakika demo + 3 dakika soru)
 
 Şartnamenin istediği üç şey: **canlı bir `explain` örneği**, **doğrulama tablosu**, **bir yanlış seçimin analizi**.
-Her konuşmacı kodun her bölümünü açıklayabilmeli (şartname 10. bölüm): aşağıdaki "olası sorular" kısmına iki kişi de çalışsın.
+Slaytlar ayrı bir sunum dosyasında; bu belge konuşma akışı, demo komutları ve olası sorulardır.
+Her konuşmacı kodun her bölümünü açıklayabilmeli: aşağıdaki "olası sorular" kısmına iki kişi de çalışsın.
 
 ## Akış
 
-| Süre | Konuşmacı | Ne gösterilir | Ne söylenir |
+| Süre | Konuşmacı | Slayt | Ne söylenir |
 | --- | --- | --- | --- |
-| 0:00–0:40 | 1 | README'nin ilk paragrafı | Problem: tek bir "en hızlı" arama algoritması yok. Biz 8 atom yazdık; molekül girdiye bakıp en ucuzunu seçiyor. |
-| 0:40–1:40 | 1 | Terminal: `npm test` | 249 test, bağımlılık yok. Her atom NaiveSearch ile eleman eleman aynı: lambda genomu, 126 E. coli proteini, 420 rastgele vaka. |
-| 1:40–2:50 | 2 | Terminal: canlı `explain` (aşağıda) | Veri şekli (n, σ, k, m), her atomun tahmini maliyeti, seçim nedeni. Desen sayısını değiştirip kararın değiştiğini göster. |
-| 2:50–3:50 | 2 | `bench/results/validation.md` tablosu | 120 görülmemiş vaka: %81,7 en hızlı, %89,2 %10 içinde, geom. ort. 1,031. Hep Wu-Manber 1,066; Allmer kuralı 3,446. |
-| 3:50–4:40 | 1 | Raporun Şekil 1'i + val-3 satırı | Yanlış seçim analizi (aşağıda). |
-| 4:40–5:00 | 2 | `docs/tasarim.md` diyagramı | Strategy + Template Method + Registry: yeni atom = tek satır, molekül değişmez (testi var). |
+| 0:00–0:30 | 1 | Kapak | Tek cümle: LLM benchmark sorularının eğitim verisine sızıp sızmadığını bulan, aramayı yapan 8 algoritmadan en hızlısını kendisi seçen bir sistem. Hocanın biyoloji örneğini YZ mühendisliğine uyarladık. |
+| 0:30–1:00 | 1 | Problem | Kirlenme = sınav soruları önceden sızmış. GPT-3 13-gram, GPT-4 50 karakterlik parça ile kontrol etti. Asıl iş: binlerce deseni büyük bir metinde bulmak. |
+| 1:00–1:20 | 1 | Tek en hızlı yok | Strategy slaytındaki navigasyon örneği: tek sorgu ≠ binlerce n-gram. |
+| 1:20–1:50 | 2 | Çözüm akışı | Normalize → desen çıkar (Strategy) → ExactMatch seçer → rapor. Dedektör Facade. |
+| 1:50–2:50 | 2 | **Canlı demo** (terminal) | `contamination` komutu: 3 kirli soru, seçilen atom ve nedeni. Sonra `explain` ile tek desen: seçimin değiştiğini göster. |
+| 2:50–3:20 | 2 | Gerçek bulgu | Tam GSM8K: 1319 sorudan 3'ü (13-gram), test-0633 ↔ train-0021 şablonu. |
+| 3:20–4:00 | 1 | **Doğrulama tablosu** | Hiç görülmemiş 120 vaka: %92,5 en hızlı, %95 %10 içinde, toplam süre en iyinin 1,021 katı; hep Wu-Manber 1,158, Allmer kuralı 9,28. |
+| 4:00–4:35 | 1 | **Yanlış seçim analizi** | val-103 (aşağıda). |
+| 4:35–5:00 | 2 | Tasarım | Strategy ×2, Template Method, Factory Method + Registry, Facade; yeni atom = tek satır. |
 
 ## Canlı demo komutları
 
 ```bash
 npm test
-# 1) Az sayıda kısa DNA deseni
-node bin/ios.js explain --patterns GGATCC,GAATTC,AAGCTT < tests/data/lambda_NC_001416.fa
-# 2) Tek uzun desen: seçim değişir mi?
-node bin/ios.js explain --patterns GCGGCGACCTCGCGGGTTTTCGCTATTTATGAAAATTTTCCGGTTTAAGGCGTTTCCG < tests/data/lambda_NC_001416.fa
-# 3) Çalıştırma: JSONL çıktı + stderr'de karar
-node bin/ios.js run ExactMatch --patterns GGATCC,GAATTC < tests/data/lambda_NC_001416.fa | head -3
+# 1) Kirlenme taraması (200 test sorusu × 1000 eğitim kaydı): kirli sorular + molekülün kararı
+node bin/ios.js contamination --benchmark tests/data/gsm8k_test_200.jsonl < tests/data/gsm8k_train_1000.jsonl
+# 2) GPT-4 yöntemi: başka bir kirli soru (test-0919) da çıkar
+node bin/ios.js contamination --benchmark tests/data/gsm8k_test_200.jsonl --method substring < tests/data/gsm8k_train_1000.jsonl
+# 3) explain: tek kısa sorgu → seçim değişir (binlerce desende Wu-Manber, tek desende başka bir atom)
+node bin/ios.js explain --patterns "how many" < tests/data/gsm8k_train_1000.jsonl
 # 4) Zorla strateji + bilinmeyen ad hatası
-node bin/ios.js run ExactMatch --patterns GGATCC --strategy Bm4DnaDsSearch < tests/data/lambda_NC_001416.fa | wc -l
-node bin/ios.js run ExactMatch --patterns GGATCC --strategy Yok < tests/data/lambda_NC_001416.fa
+node bin/ios.js run ExactMatch --patterns "post office" --strategy KmpSearch < tests/data/gsm8k_train_1000.jsonl
+node bin/ios.js run ExactMatch --patterns "post office" --strategy Yok < tests/data/gsm8k_train_1000.jsonl
 ```
 
-## Yanlış seçim analizi (val-3)
+Windows PowerShell'de `<` yönlendirmesi çalışmaz; bu komutları **Komut İstemi (cmd)** ya da Git Bash'te çalıştırın, veya
+PowerShell'de `Get-Content tests/data/gsm8k_train_1000.jsonl | node bin/ios.js contamination --benchmark tests/data/gsm8k_test_200.jsonl` yazın.
 
-İkili alfabe (`ab`, σ = 2), n = 50 000, 48 desen, m = 40. Model Aho-Corasick'i 0,506 ms, Wu-Manber'i 0,507 ms tahmin etti:
-**modelde başa baş**. Ölçümde Wu-Manber 0,48 ms, Aho-Corasick 0,81 ms → 1,70 kat yavaşlama. Neden: σ = 2 kalibrasyonda yoktu
-(en küçük alfabe DNA, σ = 4). İkili alfabede Wu-Manber'in blok boyu büyüyor ve kayma modeli (rastgele bloğun desende bulunma
-olasılığı) bu bölgede fazla kötümser kaldı. Ders: görülmemiş alfabelerde başa baş kararlar güvenilmez; ızgaraya σ = 2 eklemek düzeltir.
+## Yanlış seçim analizi (val-103)
+
+Normalize metin (σ = 37), n = 20 000, 24 desen, uzunluklar karışık (42–116). Model bm4DNAHMbs'i 0,18 ms, Wu-Manber'i 0,22 ms
+tahmin etti ve bm4DNAHMbs'i seçti; ölçümde Wu-Manber 0,12 ms, bm4DNAHMbs 0,22 ms → **1,78 kat yavaşlama** (en kötü vaka).
+Neden: metin kısa olduğu için ön işleme baskın. Wu-Manber'in blok boyu B = 3, tablosu 38³ ≈ 55 bin hücre; model bu tabloyu
+hücre başına kalibrasyondaki katsayıyla pahalı tahmin etti (0,14 ms), oysa tabloyu doldurmak çok ucuz. Kalibrasyonda tablo boyu
+diğer ön işleme işleriyle birlikte büyüdüğü için katsayı onların maliyetini de üstlenmiş. Çözüm önerisi: Aho-Corasick'te yaptığımız
+gibi Wu-Manber'in ön işlemesini iki özelliğe ayırmak (tablo hücreleri ve desen blokları).
 
 ## Olası sorular ve cevaplar
 
+- **Biyoloji projesini nasıl uyarladınız?** Atom/molekül mimarisi aynı kaldı; FASTA/genom yerine JSONL eğitim korpusu, motif yerine benchmark
+  sorularından çıkan n-gram'lar. Üstüne kirlenme dedektörünü (normalleştirme, iki çıkarma yöntemi, soru bazında rapor) ekledik.
 - **Neden maliyet modeli, kural değil?** Yeni atom eklenince molekül değişmesin diye: atom kendi özelliklerini getirir, kalibrasyon katsayıyı bulur.
-- **Strategy deseni nerede?** Atomlar ConcreteStrategy, `ExactMatch` Context, ortak arayüz `ExactSearchAtom` + `selection`. Seçim çalışma anında.
+- **Strategy deseni nerede?** İki yerde: atomlar (ConcreteStrategy) + `ExactMatch` (Context); desen çıkarıcılar + `ContaminationDetector`.
 - **Template Method nerede?** `ExactSearchAtom.process()`: koda çevir → `search()` → sırala. Alt sınıf yalnızca `prepare()`/`search()` yazar.
-- **Yeni atom eklemek molekülü değiştirmiyor, kanıt?** `molecule.test.js` "sahte atom" testi: kayıt defterinin kopyasına atom eklenir, molekül onu seçer.
-- **Makaleden nerede ayrıldınız?** Desende olmayan q-gram için m − w yerine m − q + 1 (güvenli en büyük kayma); özet döngüsündeki 0..w hatası;
-  ·128 özetinin taşması; q formülü; sentinel'i metnin kopyasına eklemek (`docs/sapmalar.md`).
-- **m − q + 1 neden güvenli?** Pencerenin son q karakteri desende hiç yoksa desenin hiçbir hizalaması o bloğu kapsayamaz; desenin başı bloğun hemen sonrasına gelebilir.
-- **Bm4DNA algoritmaları neden hiç kazanmıyor?** Açılmış döngü ve sentinel C'de dal ve sınır denetimini kaldırıyordu; JIT'li JavaScript'te Horspool zaten hızlı, kopyalama ek maliyet.
+- **Facade?** `ContaminationDetector.detect()` dört adımı tek çağrıya saklar; `bin/ios.js` komut satırını.
+- **Yeni atom eklemek molekülü değiştirmiyor, kanıt?** `molecule.test.js` "sahte atom" testi.
+- **Korpusu neden tek metne birleştiriyorsunuz?** Molekül kararı ilk belgeye bakarak verir; tek tek belgelerde n ≈ 500 olur ve yanlış
+  atom seçilir. Birleştirince n = korpusun tamamı. Ayraç `\n` normalize metinde hiç geçmediği için desen belge sınırını aşamaz (testi var).
+- **13-gram ile 50 karakter yöntemi neden farklı sorular buluyor?** 13-gram bütün parçalara bakar ama 13 kelimelik ortak parça ister;
+  50 karakter yöntemi her sorudan yalnızca 3 parça seçer ama 50 karakter ~9 kelimedir, daha kısa ortak kalıpları yakalayabilir.
+- **İki doğrulama kümesi neden?** İlk kümede modelin iki hatasını bulduk (tablo boyu desen alfabesine bağlı; Aho-Corasick'te düğüm başına maliyet).
+  Düzelttikten sonra aynı kümede ölçmek kopya olurdu; o yüzden sonuçları hiç görülmemiş ikinci kümede raporladık.
+- **Bm4DNA algoritmaları neden nadiren kazanıyor?** Açılmış döngü ve sentinel C'de dal ve sınır denetimini kaldırıyordu; JIT'li JavaScript'te
+  Horspool zaten hızlı, sentinel için metnin kopyalanması ek maliyet.
 - **Ölçüm nasıl?** Her ölçümden önce ısınma, en az 3 tekrarın medyanı, kısa işler en az 15 ms'lik gruplar halinde. Makine bilgisi sonuç dosyalarında.
-- **Doğrulama kümesi neden adil?** Farklı tohumlar, ızgara arası değerler, kalibrasyonda olmayan 3 alfabe; model doğrulama verisine bakılmadan sabitlendi.
-- **Negatif kontrol?** `npm run mutation`: koda 12 bilinçli hata sokulur, testlerin her birini yakaladığı gösterilir.
+- **Negatif kontrol?** `npm run mutation`: koda bilinçli hatalar sokulur, testlerin her birini yakaladığı gösterilir.

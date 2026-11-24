@@ -13,14 +13,23 @@ export function makeRandom(seed) {
   };
 }
 
+/** Unicode'da ardışık `count` karakter (ör. token kimliklerini karaktere eşlemek için). */
+function charRange(from, count) {
+  let out = '';
+  for (let i = 0; i < count; i++) out += String.fromCharCode(from + i);
+  return out;
+}
+
 export const ALPHABETS = {
-  binary: 'ab',
-  dna: 'ACGT',
-  protein: 'ACDEFGHIKLMNPQRSTVWY',
-  text: 'abcdefghijklmnopqrstuvwxyz ',
-  // Kalibrasyonda kullanılmayan, doğrulama için ek alfabe:
-  rna: 'ACGU',
-  mixedCase: 'acgtACGT',
+  // Kalibrasyon ızgarasının üç alfabesi: küçük, orta ve büyük σ.
+  labels: 'ABCD', // σ = 4: etiket / eylem dizileri (ör. sınıf etiketleri, ajan eylemleri)
+  normalized: 'abcdefghijklmnopqrstuvwxyz0123456789 ', // σ = 37: normalize metin (kirlenme taramasının alfabesi)
+  printable: charRange(32, 95), // σ = 95: ham metin ve kaynak kod (yazdırılabilir ASCII)
+  // Kalibrasyonda kullanılmayan, doğrulama için ek alfabeler:
+  binary: 'ab', // σ = 2
+  turkish: 'abcçdefgğhıijklmnoöprsştuüvyz ', // σ = 30: normalize Türkçe metin
+  tokens: charRange(0x4e00, 1000), // σ = 1000: token kimlikleri (her token bir UTF-16 karakteri)
+  mixedCase: 'abcxyzABCXYZ', // ignoreCase testleri için
 };
 
 export function randomInt(random, min, max) {
@@ -34,7 +43,7 @@ export function randomText(random, alphabet, length) {
   return out;
 }
 
-/** Çok tekrarlı metin: ör. "AT" tohumundan ATATAT... */
+/** Çok tekrarlı metin: ör. "AB" tohumundan ABABAB... */
 export function repetitiveText(unit, length) {
   let out = '';
   while (out.length < length) out += unit;

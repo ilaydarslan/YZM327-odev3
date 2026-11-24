@@ -15,11 +15,15 @@ export class AhoCorasickSearch extends ExactSearchAtom {
   };
 
   static selection = {
-    // Desen sayısından bağımsız tek geçiş: n. Ön işleme: otomat (toplam desen uzunluğu × alfabe).
+    // Desen sayısından bağımsız tek geçiş: n. Ön işleme iki parçadır:
+    //   nodes = k·m   trie düğümü başına sabit iş (her düğüm için ayrı bir tablo satırı ayrılır)
+    //   cells = k·m·(σ_p + 1)  tam geçiş tablosunun hücreleri; genişlik DESEN alfabesidir (σ_p), metninki değil
     features(shape) {
-      return { scan: shape.n, prep: shape.k * shape.mAvg * (shape.sigma + 1), text: shape.n, out: expectedMatches(shape) };
+      const nodes = shape.k * shape.mAvg;
+      const sigmaP = shape.sigmaP ?? shape.sigma;
+      return { scan: shape.n, nodes, cells: nodes * (sigmaP + 1), text: shape.n, out: expectedMatches(shape) };
     },
-    defaults: { scan: 6e-6, prep: 1e-6, text: 2e-6, out: 1e-4 },
+    defaults: { scan: 6e-6, nodes: 2e-5, cells: 1e-6, text: 2e-6, out: 1e-4 },
     applicable() {
       return true;
     },

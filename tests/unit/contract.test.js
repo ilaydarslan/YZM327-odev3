@@ -1,4 +1,4 @@
-// Sözleşme testleri (docx bölüm 4): HER atom bunları geçmelidir.
+// Sözleşme testleri (docx bölüm 4, belge/korpus biçimine uyarlanmış): HER atom bunları geçmelidir.
 
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
@@ -26,9 +26,9 @@ for (const AtomClass of ALL_ATOMS) {
       ]);
     });
 
-    it('çıktı alanları: header, pattern, position, length', () => {
+    it('çıktı alanları: id, pattern, position, length', () => {
       const [match] = search(AtomClass, 'xxACGT', ['ACGT']);
-      assert.deepEqual(match, { header: '>t', pattern: 'ACGT', position: 2, length: 4 });
+      assert.deepEqual(match, { id: 't', pattern: 'ACGT', position: 2, length: 4 });
     });
 
     it('sıralama: önce konum, eşitse desenin listedeki sırası', () => {
@@ -68,20 +68,20 @@ for (const AtomClass of ALL_ATOMS) {
       assert.throws(() => new AtomClass({}));
     });
 
-    it('birden çok kayıt: her kayıt kendi header’ı ve konumlarıyla', () => {
+    it('birden çok belge: her belge kendi id’si ve konumlarıyla', () => {
       const atom = new AtomClass({ patterns: ['CG'] });
       const out = runAtom(atom, [
-        { header: '>a', seq: 'ACGCG' },
-        { header: '>b', seq: 'TTT' },
-        { header: '>c', seq: 'CG' },
+        { id: 'a', text: 'ACGCG' },
+        { id: 'b', text: 'TTT' },
+        { id: 'c', text: 'CG' },
       ]);
-      assert.deepEqual(out.map((m) => [m.header, m.position]), [['>a', 1], ['>a', 3], ['>c', 0]]);
+      assert.deepEqual(out.map((m) => [m.id, m.position]), [['a', 1], ['a', 3], ['c', 0]]);
     });
 
     it('deterministik: aynı girdi → aynı çıktı', () => {
       const atom = new AtomClass({ patterns: ['TA', 'ATA'] });
-      const entry = { header: '>x', seq: 'TATATATAGGATA' };
-      assert.deepEqual(runAtom(atom, [entry]), runAtom(atom, [entry]));
+      const doc = { id: 'x', text: 'TATATATAGGATA' };
+      assert.deepEqual(runAtom(atom, [doc]), runAtom(atom, [doc]));
     });
   });
 }
