@@ -21,15 +21,20 @@ function charRange(from, count) {
 }
 
 export const ALPHABETS = {
-  // Kalibrasyon ızgarasının üç alfabesi: küçük, orta ve büyük σ.
+  // Docx'in (Görev 2) istediği sentetik alfabeler: DNA, protein, metin, ikili (+ RNA, karışık harf)
+  binary: 'ab', // σ = 2
+  dna: 'ACGT', // σ = 4
+  protein: 'ACDEFGHIKLMNPQRSTVWY', // σ = 20
+  text: 'abcdefghijklmnopqrstuvwxyz ', // σ = 27
+  rna: 'ACGU',
+  mixedCase: 'acgtACGT', // ignoreCase testleri için
+  // Yapay zekâ uyarlamasının alfabeleri. Kalibrasyon ızgarası: labels, normalized, printable.
   labels: 'ABCD', // σ = 4: etiket / eylem dizileri (ör. sınıf etiketleri, ajan eylemleri)
   normalized: 'abcdefghijklmnopqrstuvwxyz0123456789 ', // σ = 37: normalize metin (kirlenme taramasının alfabesi)
   printable: charRange(32, 95), // σ = 95: ham metin ve kaynak kod (yazdırılabilir ASCII)
-  // Kalibrasyonda kullanılmayan, doğrulama için ek alfabeler:
-  binary: 'ab', // σ = 2
+  // Doğrulamada kalibrasyonda olmayan alfabeler: binary (yukarıda), turkish, tokens
   turkish: 'abcçdefgğhıijklmnoöprsştuüvyz ', // σ = 30: normalize Türkçe metin
   tokens: charRange(0x4e00, 1000), // σ = 1000: token kimlikleri (her token bir UTF-16 karakteri)
-  mixedCase: 'abcxyzABCXYZ', // ignoreCase testleri için
 };
 
 export function randomInt(random, min, max) {

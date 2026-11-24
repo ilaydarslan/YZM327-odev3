@@ -9,12 +9,12 @@
 import { toCodes, countDistinct } from './functions/alphabet.js';
 
 /**
- * @param {{ text: string }} doc  ilk belge
+ * @param {{ seq: string }} entry  ilk kayıt (FASTA.Entry)
  * @param {string[]} patterns
  * @param {boolean} ignoreCase
  */
-export function computeShape(doc, patterns, ignoreCase = false) {
-  const text = toCodes(doc.text, ignoreCase);
+export function computeShape(entry, patterns, ignoreCase = false) {
+  const text = toCodes(entry.seq, ignoreCase);
   const lengths = patterns.map((p) => p.length);
   const total = lengths.reduce((a, b) => a + b, 0);
   const patternCodes = toCodes(patterns.join(''), ignoreCase);

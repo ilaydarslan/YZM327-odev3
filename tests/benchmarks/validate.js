@@ -31,17 +31,17 @@ function runCases(cases) {
   const out = [];
   const started = Date.now();
   cases.forEach((c, i) => {
-    const { docs, patterns } = buildCase(c);
-    const shape = computeShape(docs[0], patterns, false);
+    const { entries, patterns } = buildCase(c);
+    const shape = computeShape(entries[0], patterns, false);
     const times = {};
     for (const AtomClass of ATOMS) {
       const name = AtomClass.manifest.name;
       if (AtomClass.selection.applicable(shape) !== true) continue;
-      times[name] = measureAtom(AtomClass, { patterns }, docs).ms;
+      times[name] = measureAtom(AtomClass, { patterns }, entries).ms;
     }
     const em = new ExactMatch({ patterns });
-    const record = em.decide(docs[0]);
-    const decisionMs = measure(() => new ExactMatch({ patterns }).decide(docs[0])).ms;
+    const record = em.decide(entries[0]);
+    const decisionMs = measure(() => new ExactMatch({ patterns }).decide(entries[0])).ms;
     const fastest = Object.entries(times).sort((a, b) => a[1] - b[1])[0][0];
     out.push({ ...c, shape, times, fastest, decisionMs, chosen: { auto: record.selected },
       estimates: Object.fromEntries(Object.entries(record.estimates).map(([n, e]) => [n, e.applicable ? e.cost : null])) });

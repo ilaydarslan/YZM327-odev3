@@ -44,7 +44,8 @@ export class ContaminationDetector {
 
     if (patterns.length > 0 && text.length > 0) {
       const molecule = new ExactMatch({ patterns, ...this.moleculeOptions });
-      for (const match of molecule.run([{ id: 'korpus', text }])) {
+      // Birleşik korpus, çekirdeğin sözleşmesindeki tek bir FASTA.Entry olarak verilir
+      for (const match of molecule.run([{ header: '>korpus', seq: text }])) {
         matches++;
         const docId = corpus[findDoc(starts, match.position)].id;
         for (const i of owners.get(match.pattern)) {

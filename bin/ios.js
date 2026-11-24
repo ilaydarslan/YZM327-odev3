@@ -1,21 +1,27 @@
 #!/usr/bin/env node
-// Komut satırı — FACADE deseni: korpusu okuma, molekülü/dedektörü kurma, karar ve çıktı yazma
+// Komut satırı — FACADE deseni: girdiyi okuma, molekülü/dedektörü kurma, karar ve çıktı yazma
 // işlerini birkaç basit komutun arkasına saklar.
 //
-//   node bin/ios.js run ExactMatch --patterns P1,P2 [--ignoreCase] [--strategy auto] < korpus.jsonl > eslesmeler.jsonl
-//   node bin/ios.js explain --patterns P1,P2 [--ignoreCase] < korpus.jsonl
+// Girdi iki biçimde olabilir; ilk karaktere bakılarak anlaşılır:
+//   FASTA (">" ile başlar)  docx'teki sözleşme; çıktı Sequence.Match { header, pattern, position, length }
+//   JSONL ("{" ile başlar)  dil modeli eğitim verisi { id, text }; JsonlFastaAdapter ile çekirdeğe bağlanır,
+//                           çıktı { id, pattern, position, length }
+//
+//   node bin/ios.js run ExactMatch --patterns ACGT,GGCC [--ignoreCase] [--strategy auto] < girdi.fasta > cikti.jsonl
+//   node bin/ios.js explain --patterns ACGT,GGCC < girdi.fasta
 //   node bin/ios.js contamination --benchmark sorular.jsonl [--method ngram|substring] [--n 13]
 //                                 [--length 50] [--samples 3] [--strategy auto] < korpus.jsonl
 
 import { readFileSync } from 'node:fs';
-import { parseJsonl } from '../src/corpus.js';
+import { parseFasta } from '../src/fasta.js';
+import { parseJsonl, JsonlFastaAdapter } from '../src/corpus.js';
 import { ExactMatch } from '../src/molecules/ExactMatch.js';
 import { ContaminationDetector } from '../src/contamination/ContaminationDetector.js';
 import { createExtractor } from '../src/contamination/extractors.js';
 
 const USAGE = `Kullanım:
-  node bin/ios.js run ExactMatch --patterns P1,P2 [--ignoreCase] [--strategy auto|<atom>] < korpus.jsonl
-  node bin/ios.js explain --patterns P1,P2 [--ignoreCase] [--strategy auto|<atom>] < korpus.jsonl
+  node bin/ios.js run ExactMatch --patterns P1,P2 [--ignoreCase] [--strategy auto|<atom>] < girdi.fasta|girdi.jsonl
+  node bin/ios.js explain --patterns P1,P2 [--ignoreCase] [--strategy auto|<atom>] < girdi.fasta|girdi.jsonl
   node bin/ios.js contamination --benchmark sorular.jsonl [--method ngram|substring] [--n 13]
                                 [--length 50] [--samples 3] [--strategy auto|<atom>] < korpus.jsonl`;
 
@@ -48,12 +54,20 @@ async function readStdin() {
   return Buffer.concat(chunks).toString('utf8');
 }
 
-function runMolecule(options, docs) {
-  if (!options.patterns) throw new Error('--patterns gerekli');
+/** Girdiyi okur: FASTA ise kayıtlar olduğu gibi, JSONL ise Adapter'dan geçirilerek FASTA.Entry olur. */
+function readInput(content) {
+  const first = content.trimStart()[0];
+  if (first === undefined) return { format: 'fasta', entries: [] };
+  if (first === '>') return { format: 'fasta', entries: parseFasta(content) };
+  return { format: 'jsonl', entries: JsonlFastaAdapter.toEntries(parseJsonl(content)) };
+}
+
+function runMolecule(options, { format, entries }) {
   const molecule = new ExactMatch({ patterns: options.patterns, ignoreCase: options.ignoreCase, strategy: options.strategy });
+  const shown = format === 'jsonl' ? JsonlFastaAdapter.toMatch : (match) => match;
   let buffer = [];
-  for (const match of molecule.run(docs)) {
-    buffer.push(JSON.stringify(match));
+  for (const match of molecule.run(entries)) {
+    buffer.push(JSON.stringify(shown(match)));
     if (buffer.length >= 10000) {
       process.stdout.write(buffer.join('\n') + '\n');
       buffer = [];
@@ -65,16 +79,16 @@ function runMolecule(options, docs) {
   }
 }
 
-function explain(options, docs) {
-  if (!options.patterns) throw new Error('--patterns gerekli');
-  if (docs.length === 0) throw new Error('Girdide belge yok');
+function explain(options, { entries }) {
+  if (entries.length === 0) throw new Error('Girdide kayıt yok');
   const molecule = new ExactMatch({ patterns: options.patterns, ignoreCase: options.ignoreCase, strategy: options.strategy });
-  process.stdout.write(JSON.stringify(molecule.decide(docs[0]), null, 2) + '\n');
+  process.stdout.write(JSON.stringify(molecule.decide(entries[0]), null, 2) + '\n');
 }
 
-function contamination(options, corpus) {
-  if (!options.benchmark) throw new Error('--benchmark gerekli (test soruları, JSONL)');
-  const benchmark = parseJsonl(readFileSync(options.benchmark, 'utf8'));
+function contamination(options, { entries }) {
+  const corpus = entries.map((entry) => JsonlFastaAdapter.toDoc(entry));
+  const benchmarkInput = readInput(readFileSync(options.benchmark, 'utf8'));
+  const benchmark = benchmarkInput.entries.map((entry) => JsonlFastaAdapter.toDoc(entry));
   const method = options.method ?? 'ngram';
   const extractor = createExtractor(method, {
     n: toInt(options.n, 'n'),
@@ -113,14 +127,14 @@ async function main() {
   if ((command === 'run' || command === 'explain') && !options.patterns) throw new Error('--patterns gerekli');
   if (command === 'contamination' && !options.benchmark) throw new Error('--benchmark gerekli (test soruları, JSONL)');
 
-  const docs = parseJsonl(await readStdin());
+  const input = readInput(await readStdin());
   if (command === 'run') {
     if (component !== 'ExactMatch') throw new Error(`Bilinmeyen bileşen "${component}". Geçerli: ExactMatch`);
-    runMolecule(options, docs);
+    runMolecule(options, input);
   } else if (command === 'explain') {
-    explain(options, docs);
+    explain(options, input);
   } else if (command === 'contamination') {
-    contamination(options, docs);
+    contamination(options, input);
   } else {
     throw new Error(`Bilinmeyen komut "${command}"\n${USAGE}`);
   }

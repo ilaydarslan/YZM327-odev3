@@ -10,32 +10,32 @@
   {
     "title": "Shift-Or: yanlış eşleşme biti",
     "file": "src/functions/shiftOr.js",
-    "failedTests": 21,
-    "passedTests": 245,
+    "failedTests": 23,
+    "passedTests": 254,
     "hung": false,
     "caught": true
   },
   {
     "title": "KMP: eşleşmeden sonra baştan başla",
     "file": "src/functions/kmp.js",
-    "failedTests": 4,
-    "passedTests": 262,
+    "failedTests": 8,
+    "passedTests": 269,
     "hung": false,
     "caught": true
   },
   {
     "title": "Aho-Corasick: failure çıktıları eklenmez",
     "file": "src/functions/ahoCorasick.js",
-    "failedTests": 8,
-    "passedTests": 258,
+    "failedTests": 11,
+    "passedTests": 266,
     "hung": false,
     "caught": true
   },
   {
     "title": "Boyer-Moore: eşleşmeden sonra m kay",
     "file": "src/functions/boyerMoore.js",
-    "failedTests": 4,
-    "passedTests": 262,
+    "failedTests": 8,
+    "passedTests": 269,
     "hung": false,
     "caught": true
   },
@@ -59,23 +59,23 @@
     "title": "bm4DNAHMbs: doğrulamada son karakter atlanır",
     "file": "src/functions/bm4dnaHmbs.js",
     "failedTests": 2,
-    "passedTests": 264,
+    "passedTests": 275,
     "hung": false,
     "caught": true
   },
   {
     "title": "Wu-Manber: kayma 0 iken 2 ilerle",
     "file": "src/functions/wuManber.js",
-    "failedTests": 15,
-    "passedTests": 251,
+    "failedTests": 18,
+    "passedTests": 259,
     "hung": false,
     "caught": true
   },
   {
     "title": "ExactSearchAtom: sıralama yok",
     "file": "src/functions/hits.js",
-    "failedTests": 26,
-    "passedTests": 234,
+    "failedTests": 35,
+    "passedTests": 242,
     "hung": false,
     "caught": true
   },
@@ -83,7 +83,7 @@
     "title": "ignoreCase: bütün harfler küçültülür",
     "file": "src/functions/alphabet.js",
     "failedTests": 9,
-    "passedTests": 257,
+    "passedTests": 268,
     "hung": false,
     "caught": true
   },
@@ -91,7 +91,7 @@
     "title": "Molekül: en PAHALI atomu seç",
     "file": "src/molecules/ExactMatch.js",
     "failedTests": 2,
-    "passedTests": 264,
+    "passedTests": 275,
     "hung": false,
     "caught": true
   },
@@ -99,7 +99,7 @@
     "title": "Kirlenme: belgeler boşlukla birleştirilir (desen belge sınırını aşar)",
     "file": "src/contamination/ContaminationDetector.js",
     "failedTests": 1,
-    "passedTests": 265,
+    "passedTests": 276,
     "hung": false,
     "caught": true
   },
@@ -107,7 +107,7 @@
     "title": "Normalleştirme: harfler küçültülmez",
     "file": "src/contamination/normalize.js",
     "failedTests": 5,
-    "passedTests": 261,
+    "passedTests": 272,
     "hung": false,
     "caught": true
   }

@@ -1,9 +1,11 @@
-// Korpus okuyucu: JSONL metnini Document nesnelerine çevirir.
-//   { id: "train-0001", text: "Natalia sold clips to 48 of her friends..." }
-// JSONL, büyük dil modeli eğitim verisinin standart biçimidir: her satır bir JSON nesnesi.
-// Satırda "text" alanı zorunludur; "id" yoksa satır numarasından üretilir. Boş satırlar atlanır.
+// Korpus okuyucu ve ADAPTER: yapay zekâ verisini (JSONL) çekirdeğin sözleşmesine bağlar.
+//
+// Çekirdek (atomlar ve ExactMatch) docx'teki sözleşmeyi AYNEN korur: girdi FASTA.Entry { header, seq },
+// çıktı Sequence.Match { header, pattern, position, length }. Büyük dil modeli eğitim verisi ise JSONL'dir:
+// her satır bir belge { id, text }. JsonlFastaAdapter bu iki dünya arasında çevirir; böylece çekirdeğe
+// dokunmadan yeni bir veri biçimi eklenmiş olur (Adapter deseni, OCP).
 
-/** @param {string} content  JSONL dosyasının içeriği */
+/** JSONL metnini belgelere çevirir. Satırda "text" zorunlu; "id" yoksa satır numarasından üretilir. */
 export function parseJsonl(content) {
   const docs = [];
   const lines = content.split('\n');
@@ -28,4 +30,26 @@ export function parseJsonl(content) {
 /** Belgeleri JSONL metnine çevirir (testler ve veri hazırlama için). */
 export function formatJsonl(docs) {
   return docs.map((d) => JSON.stringify({ id: d.id, text: d.text })).join('\n') + '\n';
+}
+
+export class JsonlFastaAdapter {
+  /** { id, text } → FASTA.Entry { header: ">id", seq: text } */
+  static toEntry(doc) {
+    return { header: `>${doc.id}`, seq: doc.text };
+  }
+
+  static toEntries(docs) {
+    return docs.map((doc) => JsonlFastaAdapter.toEntry(doc));
+  }
+
+  /** FASTA.Entry → { id, text } (başlıktaki ">" atılır) */
+  static toDoc(entry) {
+    const id = entry.header[0] === '>' ? entry.header.slice(1) : entry.header;
+    return { id, text: entry.seq };
+  }
+
+  /** Sequence.Match { header, ... } → { id, pattern, position, length } */
+  static toMatch(match) {
+    return { id: JsonlFastaAdapter.toDoc({ header: match.header, seq: '' }).id, pattern: match.pattern, position: match.position, length: match.length };
+  }
 }

@@ -29,8 +29,8 @@ classDiagram
     +strategy: string
     +record: Record
     +estimate(shape) Estimates
-    +decide(firstDoc) Record
-    +run(docs)* Match
+    +decide(firstEntry) Record
+    +run(entries)* Match
   }
   class Registry {
     +register(AtomClass) Registry
@@ -39,7 +39,7 @@ classDiagram
   }
   class ExactSearchAtom {
     <<abstract>>
-    +process(doc)* Match
+    +process(entry)* Match
     #prepare()
     #search(text, collector)
     #searchOne(text, i, collector)
@@ -50,7 +50,14 @@ classDiagram
     +defaults
     +applicable(shape)
   }
+  class JsonlFastaAdapter {
+    <<Adapter>>
+    +toEntry(doc) FASTA.Entry
+    +toDoc(entry) Document
+    +toMatch(match) Match
+  }
   Cli --> ContaminationDetector
+  Cli ..> JsonlFastaAdapter : JSONL girdi
   Cli --> ExactMatch
   ContaminationDetector --> PatternExtractor : Strategy
   ContaminationDetector --> ExactMatch : arama

@@ -41,7 +41,7 @@ Hocanın verdiği IoS projesini (biyolojide genomda motif arama) yapay zekâ mü
 molekülü var; seçim ölçümle kalibre edilmiş bir maliyet modeliyle yapılır. Kalibrasyonda kullanılmamış 120 vakada molekül
 vakaların <b>%92,5</b>'inde en hızlı atomu seçti, <b>%95,0</b>'inde en hızlının %10 yakınında kaldı; toplam süre en iyi seçimlerin <b>1,021</b> katı (en iyi sabit politika "hep Wu-Manber" 1,158, Allmer 2016 kuralı 9,283). GSM8K'nin gerçek kirlenme iş yükünde molekül iki yöntemde de ölçülen en hızlı atomu (Wu-Manber) seçti; tek desenli KMP ile aynı tarama 210–390 kat uzun sürerdi. Tam GSM8K taramasında (1319 test sorusu, 7473 eğitim kaydı) 13-gram yöntemi 3, GPT-4'ün 50 karakter yöntemi
 3 kirli soru buldu (toplam 4 farklı soru); bulunanlar aynı soru şablonunun farklı isim ve sayılarla eğitim setinde yer alması.
-Bütün atomlar 266 testte referans uygulamayla eleman eleman aynı sonucu verir.
+Çekirdek şartnamenin sözleşmesini aynen korur (FASTA girdisi, lambda genomu ve E. coli testleri); yapay zekâ verisi ona bir Adapter ile bağlanır. Bütün atomlar 277 testte referans uygulamayla eleman eleman aynı sonucu verir.
 </div>
 
 <h2>1. Ne yapar ve neden</h2>
@@ -55,8 +55,8 @@ Aho-Corasick ya da Wu-Manber öne çıkar.</p>
 <p><b>Kapsam ve katkı.</b> IoS'un atom/molekül modeline uygun olarak (1) aynı sözleşmeyi uygulayan sekiz atom (A grubu:
 Horspool, Shift-Or, bm4DNADS, bm4DNAHMbs; B: KMP; C: Aho-Corasick, Wu-Manber; ayrıca Boyer-Moore), (2) bunlardan birini
 girdinin şekline bakarak seçen ve kararını açıklayan bir molekül, (3) yeni atom eklendiğinde molekülü değiştirmeyi
-gerektirmeyen bir kayıt defteri, (4) bu çekirdeği kullanan bir kirlenme dedektörü (iki desen çıkarma yöntemiyle) ve
-(5) seçim yöntemini ölçümle kuran, görülmemiş veride ve gerçek GSM8K iş yükünde sınayan bir deney düzeneği geliştirdik.</p>
+gerektirmeyen bir kayıt defteri, (4) bu çekirdeği kullanan bir kirlenme dedektörü (iki desen çıkarma yöntemiyle) ve onu çekirdeğe
+bağlayan bir JSONL adaptörü, (5) seçim yöntemini ölçümle kuran, görülmemiş veride ve gerçek GSM8K iş yükünde sınayan bir deney düzeneği geliştirdik.</p>
 
 <h2>2. Algoritmalar</h2>
 <table>
@@ -91,13 +91,17 @@ her adayı doğruluyoruz; (4) q = ⌈log<sub>σ</sub>(2m)⌉ (Wu &amp; Manber ö
 sentinel için bir kopya tampon kullanılır ve eşleşmeden sonraki kayma örtüşmeleri kaçırmayacak şekilde seçilir.</p>
 
 <h2>3. Girdi, çıktı ve parametreler</h2>
-<p><b>Arama çekirdeği.</b> Girdi belgelerdir (<span class="mono">{ id, text }</span>; komut satırında JSONL, dil modeli eğitim
-verisinin standart biçimi), parametreler <span class="mono">{ patterns: string[], ignoreCase: boolean }</span>. Her eşleşme için
-<span class="mono">{ id, pattern, position, length }</span> üretilir. Konumlar 0 tabanlı ve UTF-16 kod birimi cinsindendir; örtüşen
-eşleşmeler raporlanır; sıralama belge sırası, konum, sonra desenin listedeki sırasıdır; aynı desen iki kez verilirse iki kez
+<p><b>Arama çekirdeği (şartnamenin sözleşmesi, değiştirilmedi).</b> Girdi FASTA kayıtlarıdır (<span class="mono">{ header, seq }</span>),
+parametreler <span class="mono">{ patterns: string[], ignoreCase: boolean }</span>. Her eşleşme için
+<span class="mono">{ header, pattern, position, length }</span> üretilir. Konumlar 0 tabanlı ve UTF-16 kod birimi cinsindendir; örtüşen
+eşleşmeler raporlanır; sıralama kayıt sırası, konum, sonra desenin listedeki sırasıdır; aynı desen iki kez verilirse iki kez
 raporlanır. Desen metinden uzunsa veya metin boşsa sonuç boştur; boş desen listesi veya boş desen hata verir. Molekülün
 <span class="mono">strategy</span> parametresi <span class="mono">"auto"</span> ya da bir atom adıdır; bilinmeyen ad geçerli
 seçenekleri listeleyen bir hata verir.</p>
+<p><b>JSONL adaptörü.</b> Dil modeli eğitim verisi JSONL'dir: her satır bir belge <span class="mono">{ id, text }</span>.
+<span class="mono">JsonlFastaAdapter</span> (Adapter deseni) belgeyi <span class="mono">{ header: "&gt;id", seq: text }</span> kaydına,
+eşleşmeyi de <span class="mono">{ id, pattern, position, length }</span> biçimine çevirir; komut satırı girdinin biçimini ilk karakterden
+(<span class="mono">&gt;</span> ya da <span class="mono">{</span>) anlar. Böylece yapay zekâ için çekirdeğin hiçbir satırı değişmedi.</p>
 <p><b>Kirlenme dedektörü.</b> Girdi test soruları ve eğitim korpusudur (ikisi de belge listesi). (1) Metinler normalize
 edilir: küçük harf, harf ve rakam dışındaki her karakter boşluk, art arda boşluklar teke iner. (2) Desen çıkarıcı (Strategy)
 her sorudan desenleri üretir: <span class="mono">NgramExtractor</span> (13-gram) ya da <span class="mono">SubstringSampleExtractor</span>
@@ -107,7 +111,7 @@ ve molekül kararını korpusun tamamının şekline göre verir. (4) Her eşle�
 bağlanır. Çıktı her soru için kirli olup olmadığı, eşleşen desen sayısı / toplam desen ve geçtiği eğitim kayıtlarıdır.</p>
 
 <h2>4. Seçim yöntemi</h2>
-<p><b>Veri şekli.</b> Molekül ilk belgeye bakarak metin uzunluğu n, metnin alfabe büyüklüğü σ, desenlerin alfabe büyüklüğü
+<p><b>Veri şekli.</b> Molekül ilk kayda bakarak metin uzunluğu n, metnin alfabe büyüklüğü σ, desenlerin alfabe büyüklüğü
 σ<sub>p</sub>, desen sayısı k ve desen uzunluklarının en küçüğü, en büyüğü ve ortalamasını hesaplar. Karar bütün akış için bir kez
 verilir. σ<sub>p</sub> ayrıca gereklidir, çünkü atomların tabloları desenlerde geçen karakterlerle kurulur: 1000 sembollü bir token
 metninde birkaç kısa desen aranırken tablo 1000 değil birkaç düzine sütunludur.</p>
@@ -141,10 +145,11 @@ ya da uygulanamazlık nedenini ve seçimin gerekçesini taşır. Kirlenme komutu
 yalnızca ASCII <span class="mono">ignoreCase</span> (ı/İ/ç etkilenmez), UTF-16 konumları (emoji), boş metin, uzun desen, hata durumları, determinizm.</li>
 <li><b>Özel durumlar:</b> her atom için ortak (periyodik ABAB, tek karakter, desen alfabesinde olmayan karakterler, iç içe desenler…) ve atoma
 özgü testler (Shift-Or'da m = 32/33 sınırı, Aho-Corasick'te he/she/his/hers, bm4DNAHMbs'de m − q + 1 kayması, Wu-Manber'de 1000 desen ve katlanan tablo).</li>
-<li><b>Gerçek veri (GSM8K):</b> 1000 eğitim kaydından oluşan çok belgeli akışta kısa, uzun, 302 desen ve ignoreCase; ayrıca kirlenme taramasının
-gerçek iş yükü (normalize korpusta 13-gram ve 50 karakterlik desenler).</li>
-<li><b>Tohumlu rastgele testler:</b> 420 vaka; etiket, normalize metin, ham metin, ikili, Türkçe, 1000 sembollü token ve karışık harfli
-alfabeler, tekrarlı metinler, 1–3 belge, 1–40 desen, desen tekrarı, ignoreCase. Her atom ve molekül NaiveSearch ile eleman eleman karşılaştırılır.</li>
+<li><b>Gerçek veri:</b> şartnamenin istediği lambda faj genomu (NC_001416.1, 48 502 baz; kısa, uzun, 302 desen, ignoreCase) ve 126 E. coli K-12
+proteini (çok kayıtlı akış); ayrıca GSM8K (1000 eğitim kaydı, Adapter üzerinden; kısa, uzun, 302 desen, ignoreCase ve kirlenme taramasının
+gerçek iş yükü: normalize korpusta 13-gram ve 50 karakterlik desenler).</li>
+<li><b>Tohumlu rastgele testler:</b> 420 vaka; DNA, protein, metin, ikili, RNA, karışık harfli, etiket, normalize metin, ham metin, Türkçe
+ve 1000 sembollü token alfabeleri, tekrarlı metinler, 1–3 kayıt, 1–40 desen, desen tekrarı, ignoreCase. Her atom ve molekül NaiveSearch ile eleman eleman karşılaştırılır.</li>
 <li><b>Molekül testleri:</b> record alanları, en ucuz tahminin seçilmesi, zorla seçilen her stratejinin aynı sonucu vermesi, test içinde kayıt
 defterine eklenen sahte atomun molekül kodu değişmeden seçilmesi, kendini uygulanamaz ilan eden atomun hiç seçilmemesi.</li>
 <li><b>Kirlenme testleri:</b> normalleştirme, iki çıkarıcı (sayı, uzunluk, determinizm), bilinmeyen yöntem hatası; korpusa bilinçli eklenen
@@ -154,7 +159,7 @@ hangi atomla çalışırsa çalışsın aynı sonucu vermesi; tam taramanın ger
 kaçıran kayma, failure çıktılarının unutulması, sıralamanın kaldırılması, ignoreCase'in bütün harflere uygulanması, en pahalı atomun seçilmesi,
 belgelerin boşlukla birleştirilmesi, normalleştirmenin harfleri küçültmemesi. {{MUTATION_SUMMARY}}</li>
 </ul>
-<p>Toplam 266 test, bağımlılık kurmadan <span class="mono">npm test</span> ile yaklaşık 6 saniyede geçer.</p>
+<p>Toplam 277 test, bağımlılık kurmadan <span class="mono">npm test</span> ile yaklaşık 6 saniyede geçer.</p>
 
 <h2>6. Sonuçlar</h2>
 <p><b>Ölçüm düzeni.</b> Her ölçümden önce bir ısınma turu atıldı; en az 3 tekrarın medyanı alındı; 15 ms'den kısa işlerde bir tekrar,
@@ -204,7 +209,7 @@ birbirini tamamlıyor.</p>
 <li><b>Yalnızca birebir eşleşme.</b> Kirlenme dedektörü yalnızca normalize edildikten sonra birebir aynı parçaları bulur; sayıları veya
 isimleri değiştirilmiş, yeniden yazılmış (paraphrase) sorular 13 kelimelik ortak parça bırakmadıkça kaçar. Bulduğumuz örnekler de bu yüzden
 şablonun değişmeyen kısmından yakalandı.</li>
-<li><b>Karar ilk belgeye bakar.</b> Molekül doğrudan kullanıldığında belgeler çok farklıysa (ilk belge kısa, sonrakiler uzun) seçim kötü
+<li><b>Karar ilk kayda bakar.</b> Molekül doğrudan kullanıldığında kayıtlar çok farklıysa (ilk kayıt kısa, sonrakiler uzun) seçim kötü
 olabilir; dedektör bu yüzden korpusu tek metne birleştirir.</li>
 <li><b>Makineye bağlı katsayılar.</b> Katsayılar bir makinede ve Node sürümünde ölçüldü; başka bir makinede <span class="mono">npm run calibrate</span>
 yeniden çalıştırılmalıdır. Izgara dışı değerlerde (σ &lt; 4 veya σ &gt; 95, m &gt; 64, k &gt; 512) model dış değerleme yapar.</li>
@@ -212,13 +217,14 @@ yeniden çalıştırılmalıdır. Izgara dışı değerlerde (σ &lt; 4 veya σ 
 
 <h2>8. Nasıl kullanılır</h2>
 <pre>npm test                                    # birim testleri, bağımlılık yok
+node bin/ios.js run ExactMatch --patterns ACGT,GGCC &lt; girdi.fasta &gt; cikti.jsonl   # şartnamedeki kullanım
 node bin/ios.js contamination --benchmark sorular.jsonl [--method ngram|substring] [--n 13] &lt; korpus.jsonl
 node bin/ios.js run ExactMatch --patterns "how many,in total" [--ignoreCase] [--strategy auto] &lt; korpus.jsonl
 node bin/ios.js explain --patterns "how many,in total" &lt; korpus.jsonl     # yalnızca karar (JSON)
 npm run calibrate &amp;&amp; npm run bench &amp;&amp; npm run contamination   # ölçümler
 npm run mutation                            # negatif kontrol</pre>
 <p>Kodda: <span class="mono">new ContaminationDetector({ extractor: createExtractor('ngram', { n: 13 }) }).detect(sorular, korpus)</span>;
-<span class="mono">new ExactMatch({ patterns, strategy: 'auto' }).run(docs)</span>. Yeni bir atom <span class="mono">src/registry.js</span>'e,
+<span class="mono">new ExactMatch({ patterns, strategy: 'auto' }).run(entries)</span>. Yeni bir atom <span class="mono">src/registry.js</span>'e,
 yeni bir kirlenme yöntemi <span class="mono">extractors.js</span>'teki listeye tek satırla eklenir; molekül ve dedektör değişmez.</p>
 
 <h2>Kaynaklar</h2>
@@ -233,19 +239,19 @@ yeni bir kirlenme yöntemi <span class="mono">extractors.js</span>'teki listeye 
 · Knuth D. E., Morris J. H., Pratt V. R. (1977). Fast pattern matching in strings. <i>SIAM J. Comput.</i> 6(2).
 · OpenAI (2023). GPT-4 Technical Report. arXiv:2303.08774 (50 karakterlik parça ile kirlenme kontrolü).
 · Wu S., Manber U. (1994). A fast algorithm for multi-pattern searching. Tech. Rep. TR-94-17, Univ. of Arizona.
-· Veri: GSM8K, github.com/openai/grade-school-math (MIT lisansı).</p>
+· Veri: NCBI RefSeq NC_001416.1 (lambda faj genomu); UniProtKB/Swiss-Prot, E. coli K-12 (OX=83333); GSM8K, github.com/openai/grade-school-math (MIT lisansı).</p>
 
 <div class="appendix">
 <h2>Ek A. Grup üyelerinin katkıları ve araç kullanımı</h2>
 <p>{{KATKILAR}}</p>
 <p><b>Yapay zekâ kullanımı.</b> Kodun, testlerin, ölçüm betiklerinin ve bu raporun hazırlanmasında Anthropic'in Claude modeli kullanılmıştır.
-Algoritmalar kaynaklardan (yukarıdaki listede) öğrenilmiş; başka bir projeden kod kopyalanmamıştır. Test verisi (GSM8K) MIT lisanslıdır;
-seçim yöntemi <span class="mono">tests/data/KAYNAK.md</span>'de.</p>
+Algoritmalar kaynaklardan (yukarıdaki listede) öğrenilmiş; başka bir projeden kod kopyalanmamıştır. Test verileri herkese açık kaynaklardandır (NCBI, UniProt, GSM8K/MIT);
+kaynaklar ve seçim yöntemi <span class="mono">tests/data/KAYNAK.md</span>'de.</p>
 <h2>Ek B. Sınıf diyagramı</h2>
 <figure><img src="../figures/sinif_diyagrami.png" alt="Sınıf diyagramı" style="width:100%">
 <figcaption>Strategy: atomlar ConcreteStrategy, <span class="mono">ExactMatch</span> Context; desen çıkarıcılar, <span class="mono">ContaminationDetector</span> Context.
 Template Method: <span class="mono">ExactSearchAtom.process()</span>. Factory Method + Registry: <span class="mono">Registry.create()</span>,
-<span class="mono">createExtractor()</span>. Facade: <span class="mono">ContaminationDetector</span>, <span class="mono">bin/ios.js</span>.
+<span class="mono">createExtractor()</span>. Facade: <span class="mono">ContaminationDetector</span>, <span class="mono">bin/ios.js</span>. Adapter: <span class="mono">JsonlFastaAdapter</span>.
 SOLID eşlemesi: <span class="mono">docs/tasarim.md</span>.</figcaption></figure>
 <h2>Ek C. Ham sonuçlar</h2>
 <p><span class="mono">bench/results/calibration.json</span> (kalibrasyon ölçümleri), <span class="mono">coefficients.json</span> (katsayılar ve hata),

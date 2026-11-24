@@ -7,7 +7,7 @@ Proje iki katmandır:
 
 1. **Arama çekirdeği (IoS atom/molekül modeli):** aynı işi yapan 9 tam eşleştirme algoritması (atom) ve girdiye bakıp
    en hızlısını seçen `ExactMatch` molekülü. Alana bağlı değildir; her metinde çalışır.
-2. **Yapay zekâ uygulaması (kirlenme tespiti):** `ContaminationDetector`, bir LLM benchmark'ının test sorularının eğitim
+2. **Yapay zekâ uygulaması (kirlenme tespiti):** veriler çekirdeğe `JsonlFastaAdapter` ile bağlanır; `ContaminationDetector`, bir LLM benchmark'ının test sorularının eğitim
    verisinde birebir geçip geçmediğini bu çekirdekle bulur.
 
 ## Tasarım desenleri
@@ -19,6 +19,7 @@ Proje iki katmandır:
 | **Template Method** | `ExactSearchAtom.process()`: koda çevirme → `search()` → sıralı çıktı. Alt sınıf yalnızca `prepare()` ve `search()`/`searchOne()` yazar. | Sözleşme kuralları (sıralama, ignoreCase, parametre denetimi) tek yerde kalır; her atom aynı kuralları otomatik uygular. |
 | **Factory Method** | `Registry.create(name, params)` atomları, `createExtractor(method, options)` çıkarıcıları adıyla üretir. | Molekül `new HorspoolSearch(...)`, komut satırı `new NgramExtractor(...)` yazmaz; adı bilmesi yeter. |
 | **Registry** | `src/registry.js`: `register`, `get`, `atoms(task)`, `clone`. | Yeni atom = tek satır. Test içinde sahte atom `clone().register(...)` ile eklenir, varsayılan defter kirlenmez. |
+| **Adapter** | `JsonlFastaAdapter` (`src/corpus.js`): JSONL belgesi `{ id, text }` ↔ şartnamedeki FASTA.Entry `{ header, seq }`; eşleşmeyi de `{ id, ... }` biçimine geri çevirir. | Çekirdek (atomlar, molekül) şartnamenin sözleşmesini aynen korur; yapay zekâ verisi bu tek sınıftan geçer. Yeni bir veri biçimi = yeni bir adaptör, çekirdek değişmez. |
 | **Facade** | `ContaminationDetector.detect()`: normalleştirme, desen çıkarma, korpusu birleştirme, `ExactMatch` ile arama ve soru bazında özet tek çağrıda. `bin/ios.js`: JSONL okuma, molekül/dedektör kurma, çıktı yazma tek komutta. | Kullanıcı iç yapıyı bilmeden `contamination`, `run`, `explain` ile çalışır. |
 
 ## SOLID
@@ -26,7 +27,7 @@ Proje iki katmandır:
 | İlke | Nasıl sağlandı | Kanıt |
 | --- | --- | --- |
 | **S** Tek sorumluluk | `functions/` yalnızca algoritma çekirdeği, `atomic/` sözleşme ve seçim bilgisi, `molecules/` karar, `shape.js` veri şekli, `corpus.js` JSONL okuma, `contamination/normalize.js` yalnızca normalleştirme, `extractors.js` yalnızca desen çıkarma, `ContaminationDetector` yalnızca adımları birleştirme, `bin/` giriş/çıkış. | Dosya yapısı |
-| **O** Açık/kapalı | Yeni atom eklemek molekülü, yeni bir kirlenme yöntemi eklemek dedektörü değiştirmez. | `molecule.test.js`: "sahte atom … molekül kodu değişmeden seçilebilir" |
+| **O** Açık/kapalı | Yeni atom eklemek molekülü, yeni bir kirlenme yöntemi eklemek dedektörü, yeni bir veri biçimi (JSONL) eklemek çekirdeği değiştirmez. | `molecule.test.js`: "sahte atom … molekül kodu değişmeden seçilebilir" |
 | **L** Liskov | Her atom diğerinin yerine kullanılabilir: hepsi aynı sözleşme testlerinden geçer, dedektör hangi atomla çalışırsa çalışsın aynı kirli soruları bulur. | `contract.test.js`, `random.test.js`, `contamination.test.js` ("zorla seçilen her atom aynı sonucu verir") |
 | **I** Arayüz ayrımı | Atomdan istenen yalnızca `manifest`, `selection` ve `process`; çıkarıcıdan yalnızca `extract` ve `describe`. Çok desenli atom `search`'ü, tek desenli `searchOne`'ı yazar. | `ExactSearchAtom.js`, `extractors.js` |
 | **D** Bağımlılığın ters çevrilmesi | `ExactMatch` somut atomlara değil kayıt defterine ve `selection` arayüzüne; `ContaminationDetector` somut algoritmaya değil `ExactMatch`'e ve çıkarıcı arayüzüne bağlı. İkisi de yapıcıdan verilebilir. | `new ExactMatch({ patterns, registry })`, `new ContaminationDetector({ extractor, strategy })` |
@@ -65,8 +66,8 @@ classDiagram
     +strategy: string
     +record: Record
     +estimate(shape) Estimates
-    +decide(firstDoc) Record
-    +run(docs)* Match
+    +decide(firstEntry) Record
+    +run(entries)* Match
   }
   class Registry {
     +register(AtomClass) Registry
@@ -75,7 +76,7 @@ classDiagram
   }
   class ExactSearchAtom {
     <<abstract>>
-    +process(doc)* Match
+    +process(entry)* Match
     #prepare()
     #search(text, collector)
     #searchOne(text, i, collector)
@@ -86,7 +87,14 @@ classDiagram
     +defaults
     +applicable(shape)
   }
+  class JsonlFastaAdapter {
+    <<Adapter>>
+    +toEntry(doc) FASTA.Entry
+    +toDoc(entry) Document
+    +toMatch(match) Match
+  }
   Cli --> ContaminationDetector
+  Cli ..> JsonlFastaAdapter : JSONL girdi
   Cli --> ExactMatch
   ContaminationDetector --> PatternExtractor : Strategy
   ContaminationDetector --> ExactMatch : arama
@@ -110,7 +118,7 @@ classDiagram
 ## Kâğıda çizilecek sade hâli
 
 ```
-          «Facade» bin/ios.js  (contamination, run, explain)
+          «Facade» bin/ios.js  (contamination, run, explain)   ── JSONL ──► «Adapter» JsonlFastaAdapter ──► FASTA.Entry
                 │                         │
                 ▼                         │
    «Facade» ContaminationDetector         │
@@ -122,7 +130,7 @@ classDiagram
    SubstringSampleExtractor (GPT-4)        │ seçilen atom
                                            ▼
                          «abstract» ExactSearchAtom (Template Method)
-                           process(doc) ← iskelet; prepare(), search() ← alt sınıflar
+                           process(entry) ← iskelet; prepare(), search() ← alt sınıflar
                                            ▲ kalıtım
      Horspool  ShiftOr  bm4DNADS  bm4DNAHMbs  KMP  Aho-Corasick  Wu-Manber  Boyer-Moore
 ```

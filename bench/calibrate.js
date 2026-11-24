@@ -23,13 +23,13 @@ function measureGrid(cases) {
   const rows = [];
   const started = Date.now();
   cases.forEach((c, i) => {
-    const { docs, patterns } = buildCase(c);
-    const shape = computeShape(docs[0], patterns, false);
+    const { entries, patterns } = buildCase(c);
+    const shape = computeShape(entries[0], patterns, false);
     for (const AtomClass of ATOMS) {
       const name = AtomClass.manifest.name;
       const verdict = AtomClass.selection.applicable(shape);
       if (verdict !== true) continue;
-      const { ms, samples, inner } = measureAtom(AtomClass, { patterns }, docs);
+      const { ms, samples, inner } = measureAtom(AtomClass, { patterns }, entries);
       rows.push({ case: c.id, alphabet: c.alphabet, n: c.n, m: c.m, k: c.k, atom: name, ms, samples, inner,
         shape, features: AtomClass.selection.features(shape) });
     }
@@ -71,8 +71,8 @@ function main() {
     // Ölçülen süreler aynen kalır; veri şekli (tohumlu veriden) ve özellikler GÜNCEL koddan yeniden
     // hesaplanır. Böylece model değişince (ör. yeni bir özellik) ızgarayı yeniden ölçmek gerekmez.
     const shapes = new Map(calibrationCases().map((c) => {
-      const { docs, patterns } = buildCase(c);
-      return [c.id, computeShape(docs[0], patterns, false)];
+      const { entries, patterns } = buildCase(c);
+      return [c.id, computeShape(entries[0], patterns, false)];
     }));
     rows = saved.rows.map((r) => {
       const shape = shapes.get(r.case);

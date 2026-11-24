@@ -3,7 +3,7 @@
 // process() algoritmanın iskeletini sabitler:
 //   1) metni kod dizisine çevir (ignoreCase burada uygulanır)
 //   2) arama yap  ← alt sınıfın işi (search / searchOne)
-//   3) eşleşmeleri sözleşmedeki sıraya koy ve Match nesnesi üret
+//   3) eşleşmeleri sözleşmedeki sıraya koy ve Sequence.Match üret
 // Alt sınıflar yalnızca değişen adımları yazar: prepare() ve search()/searchOne().
 // Böylece sıralama, ignoreCase, parametre kontrolü gibi kurallar tek yerde kalır
 // ve bütün atomlar aynı sözleşmeye uyar (LSP: hepsi birbirinin yerine kullanılabilir).
@@ -11,7 +11,7 @@
 import { toCodes, reduceAlphabet } from '../functions/alphabet.js';
 import { HitCollector } from '../functions/hits.js';
 
-export const TASK = 'text.pattern-match.exact';
+export const TASK = 'sequence.pattern-match.exact';
 
 export class ExactSearchAtom {
   static manifest = {
@@ -70,17 +70,17 @@ export class ExactSearchAtom {
   }
 
   /**
-   * Şablon metot: bir belge (korpus kaydı) için Match nesneleri üretir.
-   * @param {{ id: string, text: string }} doc
+   * Şablon metot: bir FASTA.Entry için Sequence.Match nesneleri üretir.
+   * @param {{ header: string, seq: string }} entry
    */
-  *process(doc) {
-    const text = toCodes(doc.text, this.ignoreCase);
+  *process(entry) {
+    const text = toCodes(entry.seq, this.ignoreCase);
     const collector = new HitCollector(this.keys.length);
     if (text.length > 0) this.search(text, collector);
 
     for (const [position, patternIndex] of collector.sorted()) {
       const pattern = this.patterns[patternIndex];
-      yield { id: doc.id, pattern, position, length: pattern.length };
+      yield { header: entry.header, pattern, position, length: pattern.length };
     }
   }
 }

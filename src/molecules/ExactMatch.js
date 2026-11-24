@@ -73,9 +73,9 @@ export class ExactMatch {
     return estimates;
   }
 
-  /** İlk belgeye bakarak kararı verir ve record'u doldurur. */
-  decide(firstDoc) {
-    const shape = computeShape(firstDoc, this.params.patterns, this.params.ignoreCase);
+  /** İlk kayda bakarak kararı verir ve record'u doldurur. */
+  decide(firstEntry) {
+    const shape = computeShape(firstEntry, this.params.patterns, this.params.ignoreCase);
     const estimates = this.estimate(shape);
     const ranked = Object.entries(estimates)
       .filter(([, e]) => e.applicable)
@@ -103,17 +103,17 @@ export class ExactMatch {
   }
 
   /**
-   * Belge akışını işler, Match nesneleri üretir.
-   * "auto"da karar ilk belgede verilir ve bütün akış için aynı atom kullanılır.
+   * FASTA.Entry akışını işler, Sequence.Match üretir.
+   * "auto"da karar ilk kayıtta verilir ve bütün akış için aynı atom kullanılır.
    */
-  *run(docs) {
+  *run(entries) {
     let decided = false;
-    for (const doc of docs) {
+    for (const entry of entries) {
       if (!decided) {
-        this.decide(doc);
+        this.decide(entry);
         decided = true;
       }
-      yield* this.atom.process(doc);
+      yield* this.atom.process(entry);
     }
   }
 }

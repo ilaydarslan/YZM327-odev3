@@ -22,6 +22,8 @@ Her konuşmacı kodun her bölümünü açıklayabilmeli: aşağıdaki "olası s
 
 ```bash
 npm test
+# 0) Şartnamedeki explain örneği (FASTA, lambda genomu)
+node bin/ios.js explain --patterns GGATCC,GAATTC,AAGCTT < tests/data/lambda_NC_001416.fa
 # 1) Kirlenme taraması (200 test sorusu × 1000 eğitim kaydı): kirli sorular + molekülün kararı
 node bin/ios.js contamination --benchmark tests/data/gsm8k_test_200.jsonl < tests/data/gsm8k_train_1000.jsonl
 # 2) GPT-4 yöntemi: başka bir kirli soru (test-0919) da çıkar
@@ -47,11 +49,14 @@ gibi Wu-Manber'in ön işlemesini iki özelliğe ayırmak (tablo hücreleri ve d
 
 ## Olası sorular ve cevaplar
 
-- **Biyoloji projesini nasıl uyarladınız?** Atom/molekül mimarisi aynı kaldı; FASTA/genom yerine JSONL eğitim korpusu, motif yerine benchmark
-  sorularından çıkan n-gram'lar. Üstüne kirlenme dedektörünü (normalleştirme, iki çıkarma yöntemi, soru bazında rapor) ekledik.
+- **Biyoloji projesini nasıl uyarladınız?** Şartnamedeki çekirdek (atomlar, molekül, FASTA sözleşmesi, lambda ve E. coli testleri) aynen duruyor.
+  Yapay zekâ verisi JSONL; onu çekirdeğe `JsonlFastaAdapter` (Adapter deseni) bağlıyor. Üstüne kirlenme dedektörünü (normalleştirme,
+  iki çıkarma yöntemi, soru bazında rapor) ekledik. Motif yerine benchmark sorularından çıkan n-gram'ları arıyoruz.
 - **Neden maliyet modeli, kural değil?** Yeni atom eklenince molekül değişmesin diye: atom kendi özelliklerini getirir, kalibrasyon katsayıyı bulur.
 - **Strategy deseni nerede?** İki yerde: atomlar (ConcreteStrategy) + `ExactMatch` (Context); desen çıkarıcılar + `ContaminationDetector`.
 - **Template Method nerede?** `ExactSearchAtom.process()`: koda çevir → `search()` → sırala. Alt sınıf yalnızca `prepare()`/`search()` yazar.
+- **Adapter nerede, neden?** `src/corpus.js`, `JsonlFastaAdapter`: JSONL belgesini şartnamedeki FASTA kaydına çevirir. Böylece hocanın
+  sözleşmesi (ve gizli testleri) bozulmadan aynı çekirdek yapay zekâ verisinde de çalışır.
 - **Facade?** `ContaminationDetector.detect()` dört adımı tek çağrıya saklar; `bin/ios.js` komut satırını.
 - **Yeni atom eklemek molekülü değiştirmiyor, kanıt?** `molecule.test.js` "sahte atom" testi.
 - **Korpusu neden tek metne birleştiriyorsunuz?** Molekül kararı ilk belgeye bakarak verir; tek tek belgelerde n ≈ 500 olur ve yanlış

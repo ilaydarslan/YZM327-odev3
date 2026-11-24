@@ -127,12 +127,14 @@ det = box(ax, 0.22, 0.96, 0.25, "ContaminationDetector", ["-extractor: PatternEx
 pex = box(ax, 0.55, 0.96, 0.19, "PatternExtractor", ["+extract(text): string[]", "+describe(): string"], "interface · Strategy", STR)
 ngr = box(ax, 0.81, 0.98, 0.18, "NgramExtractor", ["+n = 13   (GPT-3)"], None, STR)
 sub = box(ax, 0.81, 0.82, 0.18, "SubstringSampleExtractor", ["+length = 50, samples = 3", "(GPT-4)"], None, STR)
-em = box(ax, 0.22, 0.66, 0.25, "ExactMatch", ["+strategy, +record", "+estimate(shape)", "+decide(firstDoc): Record", "+run(docs)*: Match"], "Context · molekül", CTX)
+em = box(ax, 0.22, 0.66, 0.25, "ExactMatch", ["+strategy, +record", "+estimate(shape)", "+decide(firstEntry): Record", "+run(entries)*: Match"], "Context · molekül", CTX)
 reg = box(ax, 0.55, 0.62, 0.19, "Registry", ["+register(AtomClass)", "+create(name, params)", "+atoms(task)"], "Registry · Factory Method", CTX)
 sel = box(ax, 0.81, 0.56, 0.18, "Selection", ["+features(shape)", "+defaults", "+applicable(shape)"], "interface", CTX)
-atom = box(ax, 0.30, 0.34, 0.34, "ExactSearchAtom", ["+process(doc)*: Match   ← şablon metot", "#prepare()   #search()   #searchOne()"], "abstract · Template Method", CTX)
+ada = box(ax, 0.01, 0.50, 0.18, "JsonlFastaAdapter", ["+toEntry(doc): FASTA.Entry", "+toDoc(entry): Document", "+toMatch(match)"], "Adapter", FAC)
+atom = box(ax, 0.30, 0.34, 0.34, "ExactSearchAtom", ["+process(entry)*: Match   ← şablon metot", "#prepare()   #search()   #searchOne()"], "abstract · Template Method", CTX)
 
 arrow(ax, anchor(cli, "right"), anchor(det, "left"))
+arrow(ax, (0.05, cli[1] - cli[3]), (0.05, ada[1]), dashed=True, label="JSONL", lpos=0.5)
 arrow(ax, (0.12, cli[1] - cli[3]), anchor(em, "left"), rad=0.25)
 arrow(ax, anchor(det, "right"), anchor(pex, "left"), label="Strategy", lpos=0.5)
 arrow(ax, anchor(det, "bottom"), anchor(em, "top"), label="arama", lpos=0.5)
@@ -153,8 +155,8 @@ for i, (name, g) in enumerate(zip(names, groups)):
     x = x0 + i * (w + gap)
     b = box(ax, x, 0.13, w, name, [g], None, "#eef2f6", title_size=6.9)
     arrow(ax, anchor(b, "top"), (atom[0] + 0.02 + i * (atom[2] - 0.04) / (len(names) - 1), atom[1] - atom[3]), style="-|>", hollow=True)
-ax.text(0.01, 0.015, "Strategy: atomlar ConcreteStrategy, ExactMatch Context · Template Method: ExactSearchAtom.process() · "
-        "Factory Method + Registry: Registry.create(), createExtractor() · Facade: ContaminationDetector, bin/ios.js",
+ax.text(0.01, 0.015, "Strategy: atomlar → ExactMatch, çıkarıcılar → ContaminationDetector · Template Method: ExactSearchAtom.process() · "
+        "Factory Method + Registry · Facade: ContaminationDetector, bin/ios.js · Adapter: JsonlFastaAdapter",
         fontsize=6.8, color=LINE)
 fig.savefig(os.path.join(HERE, "sinif_diyagrami.png"), dpi=200)
 plt.close(fig)

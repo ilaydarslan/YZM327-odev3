@@ -12,15 +12,15 @@ export const GRID = {
   k: [1, 8, 64, 512],
 };
 
-/** Bir vakanın verisini üretir: tek belgelik metin + desenler (bir kısmı metinden kesilmiş). */
+/** Bir vakanın verisini üretir: tek kayıtlı metin (FASTA.Entry) + desenler (bir kısmı metinden kesilmiş). */
 export function buildCase({ alphabet, n, m, k, seed, mSpread = 0 }) {
   const random = makeRandom(seed);
   const letters = ALPHABETS[alphabet] ?? alphabet;
-  const text = randomText(random, letters, n);
+  const seq = randomText(random, letters, n);
   const minLen = Math.max(1, Math.round(m * (1 - mSpread)));
   const maxLen = Math.max(minLen, Math.round(m * (1 + mSpread)));
-  const patterns = randomPatterns(random, text, letters, k, minLen, maxLen);
-  return { docs: [{ id: `${alphabet}-${n}`, text }], patterns };
+  const patterns = randomPatterns(random, seq, letters, k, minLen, maxLen);
+  return { entries: [{ header: `>${alphabet}-${n}`, seq }], patterns };
 }
 
 /** Kalibrasyon ızgarası: 3 alfabe × 3 n × 5 m × 4 k = 180 vaka, tohum 1000'den. */

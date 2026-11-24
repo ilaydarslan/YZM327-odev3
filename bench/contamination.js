@@ -34,7 +34,7 @@ function repoExperiment(benchmark, corpus) {
     const detector = new ContaminationDetector({ extractor: createExtractor(method, options) });
     const result = detector.detect(benchmark, corpus);
     const { patterns } = detector.buildPatterns(benchmark);
-    const docs = [{ id: 'korpus', text: joinCorpus(corpus).text }];
+    const docs = [{ header: '>korpus', seq: joinCorpus(corpus).text }];
     const shape = computeShape(docs[0], patterns, false);
     const times = {};
     for (const AtomClass of ATOMS) {

@@ -13,6 +13,11 @@ n-gram; GPT-4: soru başına 3 rastgele 50 karakterlik parça). Bu, binlerce des
 uzunlukları) göre en hızlısını seçen `ExactMatch` molekülü ve bu çekirdeği kullanan `ContaminationDetector`.
 Node.js 22+, dış bağımlılık yok.
 
+**Docx sözleşmesi aynen korunur.** Atomlar ve molekül şartnamedeki biçimle çalışır: girdi FASTA kayıtları
+`{ header, seq }`, çıktı `{ header, pattern, position, length }`, görev adı `sequence.pattern-match.exact`; lambda genomu
+ve E. coli proteinleri testleri de yerinde. Yapay zekâ verisi (JSONL) çekirdeğe `JsonlFastaAdapter` ile bağlanır
+(Adapter deseni); çekirdeğin hiçbir satırı yapay zekâ için değişmedi.
+
 **Sonuçlar:** bkz. [`bench/results/validation.md`](bench/results/validation.md) (seçim kalitesi, görülmemiş 120 vaka),
 [`bench/results/contamination.md`](bench/results/contamination.md) (GSM8K'de gerçek tarama), rapor: [`docs/rapor.pdf`](docs/rapor.pdf).
 
@@ -22,7 +27,7 @@ Kurulacak bir şey yok; Node.js 22 veya üstü yeterli.
 
 ```bash
 node --version          # v22 veya üstü
-npm test                # birim testleri (sözleşme, gerçek veri, 420 rastgele vaka, molekül, kirlenme, CLI)
+npm test                # birim testleri (sözleşme, lambda/E. coli/GSM8K, 420 rastgele vaka, molekül, kirlenme, CLI)
 npm run calibrate       # kalibrasyon ızgarasını ölçer, src/calibration.js'i yeniden yazar (~8 dk)
 npm run bench           # doğrulama kümesi + politika karşılaştırması → bench/results/validation.md
 npm run contamination   # GSM8K kirlenme deneyi → bench/results/contamination.md
@@ -34,9 +39,15 @@ Başka bir makinede seçim kalitesi için önce `npm run calibrate` çalıştır
 
 ## Kullanım
 
-Girdi JSONL'dir (büyük dil modeli eğitim verisinin standart biçimi): her satır `{"id": "...", "text": "..."}`.
+Girdi iki biçimde olabilir; komut satırı ilk karaktere bakarak anlar:
+**FASTA** (şartnamedeki biçim, `>` ile başlar) ya da **JSONL** (büyük dil modeli eğitim verisinin standart biçimi,
+her satır `{"id": "...", "text": "..."}`).
 
 ```bash
+# Şartnamedeki kullanım (FASTA)
+node bin/ios.js run ExactMatch --patterns ACGT,GGCC < tests/data/lambda_NC_001416.fa > cikti.jsonl
+node bin/ios.js explain --patterns GGATCC,GAATTC < tests/data/lambda_NC_001416.fa     # yalnızca karar (JSON)
+
 # Kirlenme taraması: hangi test soruları eğitim korpusunda geçiyor?
 node bin/ios.js contamination --benchmark tests/data/gsm8k_test_200.jsonl < tests/data/gsm8k_train_1000.jsonl
 node bin/ios.js contamination --benchmark sorular.jsonl --method substring --length 50 --samples 3 < korpus.jsonl
@@ -49,7 +60,8 @@ node bin/ios.js explain --patterns "how many,in total" < korpus.jsonl     # yaln
 ```
 
 `contamination` kirli soruları, eşleşen desen sayısını, geçtikleri eğitim kayıtlarını ve molekülün kararını yazar.
-`run` her satıra bir eşleşme yazar: `{"id":"train-0004","pattern":"how many","position":188,"length":8}`.
+`run` her satıra bir eşleşme yazar: FASTA girdide `{"header":">chr1","pattern":"ACGT","position":0,"length":4}`,
+JSONL girdide `{"id":"train-0004","pattern":"how many","position":188,"length":8}`.
 Windows PowerShell `<` yönlendirmesini desteklemez: komutları Komut İstemi (cmd) ya da Git Bash'te çalıştırın, veya
 `Get-Content korpus.jsonl | node bin/ios.js ...` yazın. Kodda:
 
@@ -60,8 +72,9 @@ const detector = new ContaminationDetector({ extractor: createExtractor('ngram',
 const { summary, items, record } = detector.detect(testSorulari, egitimKorpusu);
 
 import { ExactMatch } from './src/molecules/ExactMatch.js';
-const em = new ExactMatch({ patterns: ['how many'], strategy: 'auto' });
-for (const match of em.run(docs)) { /* ... */ }
+const em = new ExactMatch({ patterns: ['ACGT', 'GGCC'], strategy: 'auto' });
+for (const match of em.run(parseFasta(metin))) { /* ... */ }             // FASTA.Entry akışı
+for (const match of em.run(JsonlFastaAdapter.toEntries(belgeler))) { }   // JSONL belgeleri, Adapter ile
 console.log(em.record); // { requested, selected, shape, estimates, why }
 ```
 
@@ -90,7 +103,8 @@ Allmer 2016'nın sözde kodundan ayrıldığımız noktalar: [`docs/sapmalar.md`
    korpusun tamamının şekline göre seçer. `\n` normalize metinde hiç geçmediği için desen belge sınırını aşamaz.
 4. Her eşleşme belgesine ve desenin geldiği sorulara bağlanır; desenlerinden en az biri geçen soru **kirli** sayılır.
 
-Test verisi: GSM8K'den 200 test sorusu ve 1000 eğitim kaydı (MIT lisansı; seçim yöntemi [`tests/data/KAYNAK.md`](tests/data/KAYNAK.md)).
+Test verisi: şartnamenin istediği lambda faj genomu ve 126 E. coli proteini (NCBI, UniProt) ile yapay zekâ uyarlaması için
+GSM8K'den 200 test sorusu ve 1000 eğitim kaydı (MIT lisansı). Kaynaklar ve seçim yöntemi: [`tests/data/KAYNAK.md`](tests/data/KAYNAK.md).
 
 ## Seçim yöntemi
 
@@ -107,7 +121,8 @@ model düzeltildi (tablolar desen alfabesi σ_p ile; Aho-Corasick'e düğüm ba�
 ## Tasarım
 
 Strategy (atomlar / `ExactMatch`; desen çıkarıcılar / `ContaminationDetector`), Template Method (`ExactSearchAtom.process`),
-Factory Method + Registry (`src/registry.js`, `createExtractor`), Facade (`ContaminationDetector`, `bin/ios.js`);
+Factory Method + Registry (`src/registry.js`, `createExtractor`), Facade (`ContaminationDetector`, `bin/ios.js`),
+Adapter (`JsonlFastaAdapter`: JSONL belgelerini şartnamedeki FASTA.Entry biçimine çevirir);
 SOLID eşlemesi ve sınıf diyagramı: [`docs/tasarim.md`](docs/tasarim.md). Yeni bir atom eklemek için `src/registry.js`'e
 bir `.register(...)` satırı yeterli; molekül değişmez.
 
@@ -118,11 +133,13 @@ src/functions/       algoritma çekirdekleri (saf işlevler)
 src/atomic/          atom sınıfları (manifest + selection + process)
 src/molecules/       ExactMatch.js (seçici molekül)
 src/contamination/   normalize.js, extractors.js (Strategy), ContaminationDetector.js (Facade)
-src/registry.js      kayıt defteri      src/shape.js   veri şekli      src/corpus.js   JSONL okuyucu
+src/registry.js      kayıt defteri      src/shape.js   veri şekli
+src/fasta.js         FASTA okuyucu      src/corpus.js  JSONL okuyucu + JsonlFastaAdapter
 src/calibration.js   katsayılar
 bin/ios.js           komut satırı
 bench/               veri üretici, süre ölçümü, kalibrasyon, kirlenme deneyi, mutasyon testi, results/
-tests/unit/          birim testleri      tests/benchmarks/validate.js  doğrulama    tests/data/  GSM8K
+tests/unit/          birim testleri      tests/benchmarks/validate.js  doğrulama
+tests/data/          lambda genomu, E. coli proteinleri, GSM8K
 docs/                rapor.pdf, sapmalar.md, tasarim.md, sunum.md, figures/
 ```
 
