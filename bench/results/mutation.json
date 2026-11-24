@@ -1,0 +1,98 @@
+[
+  {
+    "title": "Horspool: kayma bir fazla",
+    "file": "src/functions/horspool.js",
+    "failedTests": 5,
+    "passedTests": 44,
+    "hung": true,
+    "caught": true
+  },
+  {
+    "title": "Shift-Or: yanlış eşleşme biti",
+    "file": "src/functions/shiftOr.js",
+    "failedTests": 21,
+    "passedTests": 221,
+    "hung": false,
+    "caught": true
+  },
+  {
+    "title": "KMP: eşleşmeden sonra baştan başla",
+    "file": "src/functions/kmp.js",
+    "failedTests": 4,
+    "passedTests": 238,
+    "hung": false,
+    "caught": true
+  },
+  {
+    "title": "Aho-Corasick: failure çıktıları eklenmez",
+    "file": "src/functions/ahoCorasick.js",
+    "failedTests": 7,
+    "passedTests": 235,
+    "hung": false,
+    "caught": true
+  },
+  {
+    "title": "Boyer-Moore: eşleşmeden sonra m kay",
+    "file": "src/functions/boyerMoore.js",
+    "failedTests": 5,
+    "passedTests": 237,
+    "hung": false,
+    "caught": true
+  },
+  {
+    "title": "bm4DNADS: sonek kayması bir fazla",
+    "file": "src/functions/bm4dnaDs.js",
+    "failedTests": 2,
+    "passedTests": 38,
+    "hung": true,
+    "caught": true
+  },
+  {
+    "title": "bm4DNAHMbs: desende olmayan q-gram kayması m − q + 2",
+    "file": "src/functions/bm4dnaHmbs.js",
+    "failedTests": 0,
+    "passedTests": 29,
+    "hung": true,
+    "caught": true
+  },
+  {
+    "title": "bm4DNAHMbs: doğrulamada son karakter atlanır",
+    "file": "src/functions/bm4dnaHmbs.js",
+    "failedTests": 2,
+    "passedTests": 247,
+    "hung": false,
+    "caught": true
+  },
+  {
+    "title": "Wu-Manber: kayma 0 iken 2 ilerle",
+    "file": "src/functions/wuManber.js",
+    "failedTests": 12,
+    "passedTests": 230,
+    "hung": false,
+    "caught": true
+  },
+  {
+    "title": "ExactSearchAtom: sıralama yok",
+    "file": "src/functions/hits.js",
+    "failedTests": 26,
+    "passedTests": 216,
+    "hung": false,
+    "caught": true
+  },
+  {
+    "title": "ignoreCase: bütün harfler küçültülür",
+    "file": "src/functions/alphabet.js",
+    "failedTests": 9,
+    "passedTests": 240,
+    "hung": false,
+    "caught": true
+  },
+  {
+    "title": "Molekül: en PAHALI atomu seç",
+    "file": "src/molecules/ExactMatch.js",
+    "failedTests": 2,
+    "passedTests": 247,
+    "hung": false,
+    "caught": true
+  }
+]
