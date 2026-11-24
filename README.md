@@ -131,4 +131,6 @@ docs/                rapor.pdf, sapmalar.md, tasarim.md, sunum.md, figures/
 - İlayda Arslan
 - Beyza Seray Seyrek
 
+Kod, testler, ölçümler, rapor ve sunum iki üye tarafından birlikte hazırlandı; iki üye de projenin her bölümünü açıklayabilir.
+
 Kodun, testlerin ve raporun hazırlanmasında yapay zekâ aracı (Claude, Anthropic) kullanılmıştır.
