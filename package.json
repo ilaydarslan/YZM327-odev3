@@ -1,0 +1,20 @@
+{
+  "name": "ios-exact-match",
+  "version": "1.0.0",
+  "description": "IoS sequence.pattern-match.exact: tam eşleştirme atomları ve seçici ExactMatch molekülü",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "ios": "bin/ios.js"
+  },
+  "scripts": {
+    "test": "node --test \"tests/unit/*.test.js\"",
+    "calibrate": "node bench/calibrate.js",
+    "bench": "node tests/benchmarks/validate.js",
+    "mutation": "node bench/mutation.js",
+    "report": "node bench/report-data.js && python3 docs/figures/make_figures.py && node docs/rapor/build.mjs"
+  },
+  "license": "MIT"
+}
