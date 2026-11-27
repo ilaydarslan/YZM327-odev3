@@ -41,7 +41,7 @@ Hocanın verdiği IoS projesini (biyolojide genomda motif arama) yapay zekâ mü
 molekülü var; seçim ölçümle kalibre edilmiş bir maliyet modeliyle yapılır. Kalibrasyonda kullanılmamış 120 vakada molekül
 vakaların <b>%92,5</b>'inde en hızlı atomu seçti, <b>%95,0</b>'inde en hızlının %10 yakınında kaldı; toplam süre en iyi seçimlerin <b>1,021</b> katı (en iyi sabit politika "hep Wu-Manber" 1,158, Allmer 2016 kuralı 9,283). GSM8K'nin gerçek kirlenme iş yükünde molekül iki yöntemde de ölçülen en hızlı atomu (Wu-Manber) seçti; tek desenli KMP ile aynı tarama 210–390 kat uzun sürerdi. Tam GSM8K taramasında (1319 test sorusu, 7473 eğitim kaydı) 13-gram yöntemi 3, GPT-4'ün 50 karakter yöntemi
 3 kirli soru buldu (toplam 4 farklı soru); bulunanlar aynı soru şablonunun farklı isim ve sayılarla eğitim setinde yer alması.
-Çekirdek şartnamenin sözleşmesini aynen korur (FASTA girdisi, lambda genomu ve E. coli testleri); yapay zekâ verisi ona bir Adapter ile bağlanır. Bütün atomlar 277 testte referans uygulamayla eleman eleman aynı sonucu verir.
+Çekirdek şartnamenin sözleşmesini aynen korur (FASTA girdisi, lambda genomu ve E. coli testleri); yapay zekâ verisi ona bir Adapter ile bağlanır. Bütün atomlar 284 testte referans uygulamayla eleman eleman aynı sonucu verir.
 </div>
 
 <h2>1. Ne yapar ve neden</h2>
@@ -159,7 +159,7 @@ hangi atomla çalışırsa çalışsın aynı sonucu vermesi; tam taramanın ger
 kaçıran kayma, failure çıktılarının unutulması, sıralamanın kaldırılması, ignoreCase'in bütün harflere uygulanması, en pahalı atomun seçilmesi,
 belgelerin boşlukla birleştirilmesi, normalleştirmenin harfleri küçültmemesi. {{MUTATION_SUMMARY}}</li>
 </ul>
-<p>Toplam 277 test, bağımlılık kurmadan <span class="mono">npm test</span> ile yaklaşık 6 saniyede geçer.</p>
+<p>Toplam 284 test, bağımlılık kurmadan <span class="mono">npm test</span> ile yaklaşık 6 saniyede geçer.</p>
 
 <h2>6. Sonuçlar</h2>
 <p><b>Ölçüm düzeni.</b> Her ölçümden önce bir ısınma turu atıldı; en az 3 tekrarın medyanı alındı; 15 ms'den kısa işlerde bir tekrar,
@@ -217,6 +217,7 @@ yeniden çalıştırılmalıdır. Izgara dışı değerlerde (σ &lt; 4 veya σ 
 
 <h2>8. Nasıl kullanılır</h2>
 <pre>npm test                                    # birim testleri, bağımlılık yok
+npm run editor                              # IoS tarzı görsel iş akışı editörü (tarayıcıda)
 node bin/ios.js run ExactMatch --patterns ACGT,GGCC &lt; girdi.fasta &gt; cikti.jsonl   # şartnamedeki kullanım
 node bin/ios.js contamination --benchmark sorular.jsonl [--method ngram|substring] [--n 13] &lt; korpus.jsonl
 node bin/ios.js run ExactMatch --patterns "how many,in total" [--ignoreCase] [--strategy auto] &lt; korpus.jsonl

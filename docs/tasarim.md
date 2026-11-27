@@ -20,6 +20,7 @@ Proje iki katmandır:
 | **Factory Method** | `Registry.create(name, params)` atomları, `createExtractor(method, options)` çıkarıcıları adıyla üretir. | Molekül `new HorspoolSearch(...)`, komut satırı `new NgramExtractor(...)` yazmaz; adı bilmesi yeter. |
 | **Registry** | `src/registry.js`: `register`, `get`, `atoms(task)`, `clone`. | Yeni atom = tek satır. Test içinde sahte atom `clone().register(...)` ile eklenir, varsayılan defter kirlenmez. |
 | **Adapter** | `JsonlFastaAdapter` (`src/corpus.js`): JSONL belgesi `{ id, text }` ↔ şartnamedeki FASTA.Entry `{ header, seq }`; eşleşmeyi de `{ id, ... }` biçimine geri çevirir. | Çekirdek (atomlar, molekül) şartnamenin sözleşmesini aynen korur; yapay zekâ verisi bu tek sınıftan geçer. Yeni bir veri biçimi = yeni bir adaptör, çekirdek değişmez. |
+| **İş akışı (Registry)** | İş akışı editörü: `web/components.js` bileşen kayıtları (yeni kutu = yeni kayıt), `web/workflow.js` kutuları ve bağlantıları tutar, tür ve döngü denetler, sırayla çalıştırır. | IoS'taki dördüncü katman (iş akışı): bileşenleri birbirine bağlar. Editör bileşenleri tanımaz, ortak biçimi (girdiler, çıktı, run) kullanır. |
 | **Facade** | `ContaminationDetector.detect()`: normalleştirme, desen çıkarma, korpusu birleştirme, `ExactMatch` ile arama ve soru bazında özet tek çağrıda. `bin/ios.js`: JSONL okuma, molekül/dedektör kurma, çıktı yazma tek komutta. | Kullanıcı iç yapıyı bilmeden `contamination`, `run`, `explain` ile çalışır. |
 
 ## SOLID

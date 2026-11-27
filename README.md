@@ -78,6 +78,19 @@ for (const match of em.run(JsonlFastaAdapter.toEntries(belgeler))) { }   // JSON
 console.log(em.record); // { requested, selected, shape, estimates, why }
 ```
 
+## İş akışı editörü (IoS tarzı)
+
+Tarayıcıda çalışan görsel editör: bileşenleri (veri, desen, normalize, ExactMatch, kirlenme dedektörü, sonuç) kutu olarak
+ekleyip birbirine bağlarsınız; **Çalıştır** akışı gerçek kodla çalıştırır, her kutunun sonucunu ve molekülün kararını (explain)
+gösterir. Hazır akışlar: şartnamedeki explain örneği (lambda), GSM8K kirlenme taraması, normalize + arama.
+
+```bash
+npm run editor          # sonra tarayıcıda: http://127.0.0.1:8080/web/
+```
+
+Kod: `web/components.js` (bileşenler), `web/workflow.js` (bağlantı, tür denetimi, döngü denetimi, çalıştırma; DOM'suz,
+`tests/unit/editor.test.js` ile test edilir), `web/editor.js` (arayüz), `web/server.js` (yalnızca bu bilgisayara açık küçük sunucu).
+
 ## Atomlar
 
 | Atom | Grup | Kaynak | Güçlü olduğu yer |
@@ -137,6 +150,7 @@ src/registry.js      kayıt defteri      src/shape.js   veri şekli
 src/fasta.js         FASTA okuyucu      src/corpus.js  JSONL okuyucu + JsonlFastaAdapter
 src/calibration.js   katsayılar
 bin/ios.js           komut satırı
+web/                 IoS tarzı iş akışı editörü (npm run editor)
 bench/               veri üretici, süre ölçümü, kalibrasyon, kirlenme deneyi, mutasyon testi, results/
 tests/unit/          birim testleri      tests/benchmarks/validate.js  doğrulama
 tests/data/          lambda genomu, E. coli proteinleri, GSM8K

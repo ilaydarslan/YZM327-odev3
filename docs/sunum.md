@@ -38,6 +38,11 @@ node bin/ios.js run ExactMatch --patterns "post office" --strategy Yok < tests/d
 Windows PowerShell'de `<` yönlendirmesi çalışmaz; bu komutları **Komut İstemi (cmd)** ya da Git Bash'te çalıştırın, veya
 PowerShell'de `Get-Content tests/data/gsm8k_train_1000.jsonl | node bin/ios.js contamination --benchmark tests/data/gsm8k_test_200.jsonl` yazın.
 
+## İsteğe bağlı: iş akışı editörü
+
+`npm run editor` → http://127.0.0.1:8080/web/ . "Kirlenme taraması (GSM8K)" hazır akışını yükleyip Çalıştır'a basın;
+Sonuç kutusuna tıklayınca kirli sorular görünür. Hoca IoS editörünü sorarsa bunu gösterin.
+
 ## Yanlış seçim analizi (val-103)
 
 Normalize metin (σ = 37), n = 20 000, 24 desen, uzunluklar karışık (42–116). Model bm4DNAHMbs'i 0,18 ms, Wu-Manber'i 0,22 ms

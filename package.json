@@ -15,6 +15,7 @@
     "bench": "node tests/benchmarks/validate.js",
     "contamination": "node bench/contamination.js",
     "mutation": "node bench/mutation.js",
+    "editor": "node web/server.js",
     "report": "node bench/report-data.js && python docs/figures/make_figures.py && node docs/rapor/build.mjs"
   },
   "license": "MIT"

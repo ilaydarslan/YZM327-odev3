@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>IoS iş akışı editörü — ExactMatch</title>
+<style>
+  :root { --bg: #f4f2ed; --panel: #fbfaf7; --ink: #1d2b36; --soft: #5b6b78; --line: #cbd3da; --blue: #2f6da3; --orange: #c8641f; --ok: #2e7d4f; --err: #b3261e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.4 system-ui, "Segoe UI", Arial, sans-serif; color: var(--ink); background: var(--bg); height: 100vh; display: grid; grid-template-rows: auto 1fr; }
+  header { display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: var(--ink); color: #f4f2ed; }
+  header h1 { font-size: 16px; margin: 0 12px 0 0; font-weight: 600; }
+  header select, header button { font: inherit; padding: 6px 10px; border-radius: 6px; border: 1px solid #3c4d5a; background: #24343f; color: #f4f2ed; cursor: pointer; }
+  header button.run { background: var(--orange); border-color: var(--orange); font-weight: 600; }
+  header .hint { margin-left: auto; color: #9fb0bd; font-size: 12px; }
+  main { display: grid; grid-template-columns: 210px 1fr 360px; min-height: 0; }
+  #palette { background: var(--panel); border-right: 1px solid var(--line); padding: 12px; overflow: auto; }
+  #palette h3 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); margin: 14px 0 6px; }
+  .pal { display: block; width: 100%; text-align: left; padding: 8px 10px; margin-bottom: 6px; border: 1px solid var(--line); border-radius: 8px; background: #fff; cursor: pointer; font: inherit; }
+  .pal:hover { border-color: var(--blue); }
+  .pal small { display: block; color: var(--soft); font-size: 11px; }
+  #canvas { position: relative; overflow: auto; background-color: #eef1f4; background-image: radial-gradient(#c9d2da 1px, transparent 1px); background-size: 20px 20px; }
+  #edges { position: absolute; inset: 0; width: 3000px; height: 2000px; pointer-events: none; }
+  .node { position: absolute; width: 220px; background: #fff; border: 1.5px solid var(--line); border-radius: 10px; box-shadow: 0 2px 6px #0001; user-select: none; }
+  .node.sel { border-color: var(--blue); box-shadow: 0 0 0 3px #2f6da333; }
+  .node .head { padding: 8px 10px; border-bottom: 1px solid var(--line); cursor: move; border-radius: 10px 10px 0 0; }
+  .node .head b { display: block; font-size: 13px; }
+  .node .head small { color: var(--soft); font-size: 11px; }
+  .node[data-group="Veri"] .head { background: #e8f4e8; }
+  .node[data-group="Desen"] .head { background: #f3eefa; }
+  .node[data-group="İşlem"] .head { background: #fdf0e1; }
+  .node[data-group="Arama"] .head { background: #e3eefa; }
+  .node[data-group="Çıktı"] .head { background: #f1f1ef; }
+  .ports { position: relative; padding: 6px 0; min-height: 28px; }
+  .port { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--soft); padding: 3px 10px; }
+  .port.out { justify-content: flex-end; }
+  .dot { width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--blue); background: #fff; cursor: crosshair; flex: none; }
+  .port.in .dot { margin-left: -17px; }
+  .port.out .dot { margin-right: -17px; }
+  .dot.pending { background: var(--orange); border-color: var(--orange); }
+  .status { padding: 5px 10px; font-size: 11px; border-top: 1px solid var(--line); color: var(--soft); min-height: 24px; }
+  .status.ok { color: var(--ok); }
+  .status.err { color: var(--err); }
+  #side { background: var(--panel); border-left: 1px solid var(--line); overflow: auto; padding: 12px 14px; }
+  #side h2 { font-size: 14px; margin: 4px 0 8px; }
+  #side label { display: block; font-size: 12px; color: var(--soft); margin: 10px 0 4px; }
+  #side input[type=text], #side textarea, #side select { width: 100%; font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  #side textarea { min-height: 90px; }
+  #side .del { margin-top: 12px; font: inherit; padding: 5px 10px; border: 1px solid var(--err); color: var(--err); background: #fff; border-radius: 6px; cursor: pointer; }
+  #side pre { background: #0e161d; color: #d6dfe6; padding: 10px; border-radius: 8px; font-size: 11.5px; white-space: pre-wrap; word-break: break-word; max-height: 340px; overflow: auto; }
+  #side table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  #side td, #side th { border-bottom: 1px solid var(--line); padding: 4px 6px; text-align: left; }
+  .muted { color: var(--soft); font-size: 12px; }
+  #toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--err); color: #fff; padding: 8px 14px; border-radius: 8px; display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>IoS iş akışı editörü</h1>
+  <select id="preset"></select>
+  <button id="load">Hazır akışı yükle</button>
+  <button id="clear">Temizle</button>
+  <button id="run" class="run">▶ Çalıştır</button>
+  <span class="hint">Soldan kutu ekle · kutuyu başlığından sürükle · bağlamak için çıkış noktasına, sonra giriş noktasına tıkla</span>
+</header>
+<main>
+  <aside id="palette"></aside>
+  <section id="canvas"><svg id="edges"></svg></section>
+  <aside id="side"><p class="muted">Bir kutu seçin: ayarları ve çalıştırınca sonucu burada görünür.</p></aside>
+</main>
+<div id="toast"></div>
+<script type="module" src="./editor.js"></script>
+</body>
+</html>
